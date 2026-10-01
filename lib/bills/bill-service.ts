@@ -54,6 +54,18 @@ class MemoryBillStore {
     return Array.from(this.expenses.values()).filter(e => !e.user_id || e.user_id === userId);
   }
 
+  public deleteExpense(id: string): boolean {
+    return this.expenses.delete(id);
+  }
+
+  public deleteExpenses(ids: string[]): number {
+    let count = 0;
+    for (const id of ids) {
+      if (this.expenses.delete(id)) count++;
+    }
+    return count;
+  }
+
   public clear() {
     this.bills.clear();
     this.feedback = [];
@@ -409,6 +421,19 @@ export class BillService {
     } catch {
       // Memory store preserves state
     }
+  }
+
+  public async createExpense(expense: Expense): Promise<void> {
+    return this.persistExpense(expense);
+  }
+
+  public async deleteExpenses(expenseIds: string[], userId: string): Promise<number> {
+    memoryBillStore.deleteExpenses(expenseIds);
+    try {
+      const supabase = await createClient();
+      await supabase.from("expenses").delete().in("id", expenseIds).eq("user_id", userId);
+    } catch {}
+    return expenseIds.length;
   }
 
   private async persistExpense(expense: Expense): Promise<void> {

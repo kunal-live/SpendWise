@@ -14,6 +14,7 @@ import {
   CreditCard,
   Dumbbell,
   ExternalLink,
+  FileSpreadsheet,
   FileText,
   Fuel,
   HeartPulse,
@@ -60,6 +61,8 @@ import DatePicker from "./DatePicker";
 import { trackEvent } from "@/lib/analytics";
 import BillUploadModal from "./bills/BillUploadModal";
 import BillsHistoryView from "./bills/BillsHistoryView";
+import StatementImportModal from "./imports/StatementImportModal";
+import ImportHistoryView from "./imports/ImportHistoryView";
 
 const categories = [
   "Food", "EMI", "Invest", "Personal Expense", "Outing", "Night Out",
@@ -132,6 +135,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [showExpense, setShowExpense] = useState(false);
   const [showBillModal, setShowBillModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
   const [showEmiModal, setShowEmiModal] = useState(false);
   const [active, setActive] = useState("Dashboard");
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -905,6 +909,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
     ["Dashboard", LayoutDashboard],
     ["Transactions", ReceiptText],
     ["Bills", FileText],
+    ["Imports", FileSpreadsheet],
     ["Budgets", Target],
     ["Investments", TrendingUp],
     ["EMIs", CreditCard],
@@ -982,6 +987,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               </div>
 
               <div className="flex items-center gap-3">
+                <button 
+                  onClick={() => setShowImportModal(true)} 
+                  className="hidden items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2.5 text-sm font-bold text-violet-300 hover:bg-violet-500/20 sm:flex transition-all"
+                >
+                  <FileSpreadsheet size={16} className="text-violet-400" /> Import statement
+                </button>
                 <button 
                   onClick={() => setShowBillModal(true)} 
                   className="hidden items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2.5 text-sm font-bold text-violet-300 hover:bg-violet-500/20 sm:flex transition-all"
@@ -1171,6 +1182,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                                   <div className="text-sm font-semibold flex items-center gap-2">
                                     {e.title}
                                     {e.is_recurring && <span className="inline-flex items-center rounded bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-300 ring-1 ring-inset ring-violet-500/20">Recurring</span>}
+                                    {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/20">Imported</span>}
+                                    {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/20">Bill</span>}
                                   </div>
                                   <div className="mt-1 text-xs text-zinc-600">{e.category} • {e.payment_method} • {e.date}</div>
                                 </div>
@@ -1271,6 +1284,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                                 <div className="text-sm font-semibold flex items-center gap-2">
                                   {e.title} 
                                   {e.is_recurring && <span className="inline-flex items-center rounded bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-300 ring-1 ring-inset ring-violet-500/20">Recurring</span>}
+                                  {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/20">Imported</span>}
+                                  {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/20">Bill</span>}
                                 </div>
                                 <div className="mt-1 text-xs text-zinc-600">{e.category} • {e.payment_method} • {e.date}</div>
                               </div>
@@ -1295,6 +1310,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               </section>
             ) : active === "Bills" ? (
               <BillsHistoryView onOpenUploadModal={() => setShowBillModal(true)} />
+            ) : active === "Imports" ? (
+              <ImportHistoryView 
+                onOpenImportModal={() => setShowImportModal(true)} 
+                showToast={showToast} 
+              />
             ) : active === "Budgets" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
@@ -2259,6 +2279,40 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
         onExpenseCreated={(newExp) => {
           setExpenses((prev) => [newExp, ...prev]);
           trackEvent("bill_uploaded_expense_created", { category: newExp.category, amount: newExp.amount });
+        }}
+        showToast={showToast}
+      />
+      <StatementImportModal
+        isOpen={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        onImportConfirmed={async (count) => {
+          trackEvent("statement_imported", { count });
+          // Reload user expenses from server to update analytics
+          try {
+            const res = await fetch("/api/bills");
+            // Also refresh local expenses if user is authenticated
+            const supabase = createClient();
+            const { data } = await supabase.from("expenses").select("*").order("expense_date", { ascending: false });
+            if (data && data.length > 0) {
+              const mapped: Expense[] = data.map((d: any) => ({
+                id: d.id,
+                user_id: d.user_id,
+                title: d.title || d.merchant || "Expense",
+                category: d.category,
+                amount: Number(d.amount),
+                currency: d.currency || "INR",
+                date: d.expense_date,
+                payment_method: d.payment_method || "UPI",
+                notes: d.note,
+                merchant: d.merchant,
+                source: d.source,
+                bill_document_id: d.bill_document_id,
+                classification_confidence: d.classification_confidence,
+                invoice_number: d.invoice_number
+              }));
+              setExpenses(mapped);
+            }
+          } catch {}
         }}
         showToast={showToast}
       />

@@ -199,3 +199,145 @@ export type LoginAttempt = {
   success: boolean;
 };
 
+// ============================================================================
+// Feature 2: Payment History & Bank Statement Import Types
+// ============================================================================
+
+export type TransactionDirection = "debit" | "credit";
+
+export type TransactionType =
+  | "expense"
+  | "income"
+  | "refund"
+  | "transfer"
+  | "cash_withdrawal"
+  | "cash_deposit"
+  | "card_payment"
+  | "subscription"
+  | "investment"
+  | "loan"
+  | "fee"
+  | "unknown";
+
+export type ImportSourceType = "bank_statement" | "payment_app" | "csv" | "pdf" | "xlsx";
+
+export type ImportBatchStatus =
+  | "uploaded"
+  | "parsing"
+  | "review_required"
+  | "ready_to_import"
+  | "imported"
+  | "partially_imported"
+  | "failed"
+  | "cancelled";
+
+export type ImportReviewStatus =
+  | "pending"
+  | "accepted"
+  | "edited"
+  | "ignored"
+  | "duplicate"
+  | "invalid";
+
+export type DedupeStatus = "unique" | "possible_duplicate" | "exact_duplicate";
+
+export type ImportCategorySummary = {
+  category: string;
+  count: number;
+  totalAmount: number;
+};
+
+export type ImportBatchSummary = {
+  totalTransactions: number;
+  expensesDetected: number;
+  incomeDetected: number;
+  transfersDetected: number;
+  refundsDetected: number;
+  feesDetected: number;
+  withdrawalsDetected: number;
+  investmentsDetected: number;
+  duplicatesDetected: number;
+  needsReview: number;
+  totalExpenseAmount: number;
+  categoryBreakdown: ImportCategorySummary[];
+};
+
+export type ImportBatch = {
+  id: string;
+  user_id: string;
+  source_type: ImportSourceType;
+  source_name: string;
+  original_filename: string;
+  file_size: number;
+  file_hash?: string;
+  total_rows: number;
+  processed_rows: number;
+  created_expenses: number;
+  review_count: number;
+  duplicate_count: number;
+  failed_count: number;
+  status: ImportBatchStatus;
+  summary: ImportBatchSummary;
+  created_at: string;
+  completed_at?: string | null;
+};
+
+export type ImportedTransaction = {
+  id: string;
+  import_batch_id: string;
+  user_id: string;
+  transaction_date: string; // YYYY-MM-DD
+  value_date?: string;
+  description: string;
+  merchant?: string;
+  amount: number;
+  currency: string;
+  direction: TransactionDirection;
+  transaction_type: TransactionType;
+  reference_id?: string;
+  suggested_category_id?: string;
+  suggested_category?: string;
+  confidence_score: number;
+  confidence_level: "high" | "medium" | "low";
+  dedupe_status: DedupeStatus;
+  dedupe_reason?: string;
+  review_status: ImportReviewStatus;
+  selected_category?: string;
+  expense_id?: string | null;
+  raw_data?: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ExpenseSource = {
+  id: string;
+  expense_id: string;
+  user_id: string;
+  import_batch_id?: string | null;
+  source_type: "bank_statement" | "payment_app" | "bill_upload";
+  source_name?: string;
+  source_transaction_id?: string;
+  source_record_hash?: string;
+  created_at: string;
+};
+
+export type MerchantAlias = {
+  id: string;
+  canonical_merchant: string;
+  alias: string;
+  category_name?: string;
+  created_at?: string;
+  updated_at?: string;
+};
+
+export type Account = {
+  id: string;
+  user_id: string;
+  institution_name: string;
+  account_type: string;
+  masked_identifier: string;
+  currency: string;
+  created_at: string;
+};
+
+

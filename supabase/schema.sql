@@ -605,3 +605,165 @@ create policy "classification_feedback user isolation" on public.classification_
   for all using ((select auth.uid()) = user_id)
   with check ((select auth.uid()) = user_id);
 
+-- ============================================================================
+-- 8. FEATURE 2 — PAYMENT HISTORY & BANK STATEMENT IMPORT
+-- ============================================================================
+
+-- User Accounts (e.g. HDFC Savings, ICICI Credit Card)
+create table if not exists public.accounts (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.users(id) on delete cascade,
+  institution_name text not null,
+  account_type text not null default 'Savings',
+  masked_identifier text not null, -- e.g. 'XXXX1234'
+  currency text not null default 'INR',
+  created_at timestamptz not null default now()
+);
+
+-- Merchant Aliases for Canonical Normalization (Section 37)
+create table if not exists public.merchant_aliases (
+  id uuid primary key default gen_random_uuid(),
+  canonical_merchant text not null,
+  alias text not null unique,
+  category_name text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Seed common Indian & Global merchant aliases
+insert into public.merchant_aliases (canonical_merchant, alias, category_name) values
+  ('Swiggy', 'SWIGGY PVT LTD', 'Food'),
+  ('Swiggy', 'SWIGGY*ORDER123', 'Food'),
+  ('Swiggy', 'SWIGGY INSTAMART', 'Groceries'),
+  ('Swiggy', 'BUNDL TECHNOLOGIES', 'Food'),
+  ('Zomato', 'ZOMATO ONLINE', 'Food'),
+  ('Zomato', 'ZOMATO LIMITED', 'Food'),
+  ('Zomato', 'BLINKIT COMMERCE', 'Groceries'),
+  ('Uber', 'UBER INDIA', 'Transport'),
+  ('Uber', 'UBER INDIA SYSTEMS', 'Transport'),
+  ('Uber', 'UBER TRIP', 'Transport'),
+  ('Ola', 'ANI TECHNOLOGIES', 'Transport'),
+  ('Ola', 'OLA CABS', 'Transport'),
+  ('Amazon', 'AMAZON PAY INDIA', 'Shopping'),
+  ('Amazon', 'AMAZON SELLER SERVICES', 'Shopping'),
+  ('Flipkart', 'FLIPKART INTERNET', 'Shopping'),
+  ('Flipkart', 'FLIPKART PAYMENTS', 'Shopping'),
+  ('Zepto', 'KIRANAKART TECHNOLOGIES', 'Groceries'),
+  ('Zepto', 'ZEPTO COMMERCE', 'Groceries'),
+  ('Netflix', 'NETFLIX ENTERTAINMENT', 'Subscriptions'),
+  ('Spotify', 'SPOTIFY INDIA', 'Subscriptions'),
+  ('Airtel', 'BHARTI AIRTEL LTD', 'Bills & Utilities'),
+  ('Jio', 'RELIANCE JIO INFOCOMM', 'Bills & Utilities'),
+  ('Croma', 'INFINITI RETAIL LTD', 'Electronics'),
+  ('Reliance Digital', 'RELIANCE DIGITAL RETAIL', 'Electronics'),
+  ('Tata 1mg', 'TATA 1MG TECHNOLOGIES', 'Healthcare'),
+  ('Apollo Pharmacy', 'APOLLO PHARMACIES LTD', 'Healthcare'),
+  ('MakeMyTrip', 'MAKEMYTRIP INDIA PVT', 'Travel'),
+  ('IRCTC', 'INDIAN RAILWAY CATERING', 'Travel'),
+  ('Zerodha', 'ZERODHA BROKING LTD', 'Invest'),
+  ('Groww', 'NEXTBILLION TECHNOLOGY', 'Invest')
+on conflict (alias) do nothing;
+
+-- Import Batches (Tracks every uploaded payment history or bank statement)
+create table if not exists public.import_batches (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.users(id) on delete cascade,
+  source_type text not null check (source_type in ('bank_statement', 'payment_app', 'csv', 'pdf', 'xlsx')),
+  source_name text not null, -- 'HDFC', 'Google Pay', 'PhonePe', 'SBI', etc.
+  original_filename text not null,
+  file_size integer not null default 0,
+  file_hash text,
+  total_rows integer not null default 0,
+  processed_rows integer not null default 0,
+  created_expenses integer not null default 0,
+  review_count integer not null default 0,
+  duplicate_count integer not null default 0,
+  failed_count integer not null default 0,
+  status text not null default 'uploaded' check (
+    status in ('uploaded', 'parsing', 'review_required', 'ready_to_import', 'imported', 'partially_imported', 'failed', 'cancelled')
+  ),
+  summary jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  completed_at timestamptz
+);
+
+-- Staging Table: Imported Transactions (Never write statement directly to expenses!)
+create table if not exists public.imported_transactions (
+  id uuid primary key default gen_random_uuid(),
+  import_batch_id uuid not null references public.import_batches(id) on delete cascade,
+  user_id uuid not null references public.users(id) on delete cascade,
+  transaction_date date not null,
+  value_date date,
+  description text not null,
+  merchant text,
+  amount numeric(14,2) not null check (amount > 0),
+  currency text not null default 'INR',
+  direction text not null check (direction in ('debit', 'credit')),
+  transaction_type text not null default 'expense' check (
+    transaction_type in ('expense', 'income', 'refund', 'transfer', 'cash_withdrawal', 'cash_deposit', 'card_payment', 'subscription', 'investment', 'loan', 'fee', 'unknown')
+  ),
+  reference_id text, -- UTR, UPI Ref, Cheque Number, or Transaction ID
+  suggested_category_id text,
+  suggested_category text,
+  confidence_score numeric(4,2) default 0.50,
+  confidence_level text default 'medium' check (confidence_level in ('high', 'medium', 'low')),
+  dedupe_status text not null default 'unique' check (dedupe_status in ('unique', 'possible_duplicate', 'exact_duplicate')),
+  dedupe_reason text,
+  review_status text not null default 'pending' check (review_status in ('pending', 'accepted', 'edited', 'ignored', 'duplicate', 'invalid')),
+  selected_category text,
+  expense_id uuid references public.expenses(id) on delete set null,
+  raw_data jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Expense Sources (Reconciliation audit trail linking canonical expenses to origin)
+create table if not exists public.expense_sources (
+  id uuid primary key default gen_random_uuid(),
+  expense_id uuid not null references public.expenses(id) on delete cascade,
+  user_id uuid not null references public.users(id) on delete cascade,
+  import_batch_id uuid references public.import_batches(id) on delete cascade,
+  source_type text not null check (source_type in ('bank_statement', 'payment_app', 'bill_upload')),
+  source_name text,
+  source_transaction_id text,
+  source_record_hash text,
+  created_at timestamptz not null default now()
+);
+
+-- Indexes for Feature 2
+create index if not exists accounts_user_id_idx on public.accounts (user_id);
+create index if not exists merchant_aliases_alias_idx on public.merchant_aliases (lower(trim(alias)));
+create index if not exists import_batches_user_id_created_at_idx on public.import_batches (user_id, created_at desc);
+create index if not exists imported_transactions_batch_id_idx on public.imported_transactions (import_batch_id);
+create index if not exists imported_transactions_user_id_date_idx on public.imported_transactions (user_id, transaction_date desc);
+create index if not exists imported_transactions_ref_id_idx on public.imported_transactions (user_id, reference_id);
+create index if not exists expense_sources_expense_id_idx on public.expense_sources (expense_id);
+create index if not exists expense_sources_batch_id_idx on public.expense_sources (import_batch_id);
+
+-- RLS Policies for Feature 2
+alter table public.accounts enable row level security;
+alter table public.merchant_aliases enable row level security;
+alter table public.import_batches enable row level security;
+alter table public.imported_transactions enable row level security;
+alter table public.expense_sources enable row level security;
+
+create policy "accounts user isolation" on public.accounts
+  for all using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
+create policy "merchant aliases are readable" on public.merchant_aliases
+  for select using (true);
+
+create policy "import_batches user isolation" on public.import_batches
+  for all using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
+create policy "imported_transactions user isolation" on public.imported_transactions
+  for all using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
+create policy "expense_sources user isolation" on public.expense_sources
+  for all using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
+

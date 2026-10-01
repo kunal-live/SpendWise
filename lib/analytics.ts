@@ -11,7 +11,9 @@ export type AnalyticsEvent =
   | "badge_unlocked"
   | "profile_updated"
   | "bill_uploaded"
-  | "bill_uploaded_expense_created";
+  | "bill_uploaded_expense_created"
+  | "statement_uploaded"
+  | "statement_imported";
 
 interface EventPayload {
   category?: string;
