@@ -10,7 +10,8 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx tsx tests/auth-suite.ts"
+    "test": "npx tsx tests/auth-suite.ts && npx tsx tests/bills-suite.ts",
+    "test:bills": "npx tsx tests/bills-suite.ts"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.20.6",

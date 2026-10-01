@@ -9,7 +9,9 @@ export type AnalyticsEvent =
   | "emi_added"
   | "goal_updated"
   | "badge_unlocked"
-  | "profile_updated";
+  | "profile_updated"
+  | "bill_uploaded"
+  | "bill_uploaded_expense_created";
 
 interface EventPayload {
   category?: string;

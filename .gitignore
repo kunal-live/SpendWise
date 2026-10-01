@@ -39,3 +39,7 @@ next-env.d.ts
 .open-next
 .wrangler
 
+# bill object storage
+.storage
+
+

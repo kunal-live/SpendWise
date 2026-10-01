@@ -438,3 +438,170 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert or update on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- ============================================================================
+-- 5. BILL UPLOAD & AUTOMATIC EXPENSE CATEGORIZATION MODULE
+-- ============================================================================
+
+-- Standard Categories Table
+create table if not exists public.categories (
+  id uuid primary key default gen_random_uuid(),
+  name text not null unique,
+  description text,
+  is_active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Seed initial 13 standard categories
+insert into public.categories (name, description) values
+  ('Food', 'Dining out, cafes, fast food, and food delivery'),
+  ('Groceries', 'Supermarket, provisions, fresh produce, and daily essentials'),
+  ('Shopping', 'General retail shopping, lifestyle, and consumer goods'),
+  ('Clothing', 'Apparel, footwear, fashion accessories, and garments'),
+  ('Electronics', 'Gadgets, computer hardware, peripherals, and electronics'),
+  ('Transport', 'Fuel, public transit, cabs, taxis, tolls, and auto'),
+  ('Healthcare', 'Medicines, clinic visits, pharmacy, tests, and medical care'),
+  ('Entertainment', 'Movies, events, games, concerts, and recreational activities'),
+  ('Bills & Utilities', 'Electricity, water, gas, broadband, phone, and municipal bills'),
+  ('Travel', 'Flights, hotels, train tickets, lodging, and holiday trips'),
+  ('Education', 'Courses, books, tuition fees, certifications, and school'),
+  ('Subscriptions', 'Digital subscriptions, streaming, SaaS, and memberships'),
+  ('Other', 'Miscellaneous transactions and unassigned expenses')
+on conflict (name) do nothing;
+
+-- Merchant Category Rules Table (Layer 1)
+create table if not exists public.merchant_category_rules (
+  id uuid primary key default gen_random_uuid(),
+  merchant_name text not null unique,
+  category text not null,
+  priority integer not null default 1,
+  created_at timestamptz not null default now()
+);
+
+-- Seed standard merchant category mappings
+insert into public.merchant_category_rules (merchant_name, category, priority) values
+  ('Uber', 'Transport', 10),
+  ('Ola', 'Transport', 10),
+  ('Rapido', 'Transport', 10),
+  ('Swiggy', 'Food', 10),
+  ('Zomato', 'Food', 10),
+  ('McDonald''s', 'Food', 10),
+  ('Starbucks', 'Food', 10),
+  ('Domino''s Pizza', 'Food', 10),
+  ('KFC', 'Food', 10),
+  ('Zepto', 'Groceries', 10),
+  ('Blinkit', 'Groceries', 10),
+  ('BigBasket', 'Groceries', 10),
+  ('DMart', 'Groceries', 10),
+  ('Instamart', 'Groceries', 10),
+  ('Netflix', 'Subscriptions', 10),
+  ('Spotify', 'Subscriptions', 10),
+  ('Prime Video', 'Subscriptions', 10),
+  ('YouTube Premium', 'Subscriptions', 10),
+  ('Disney+ Hotstar', 'Subscriptions', 10),
+  ('Apollo Pharmacy', 'Healthcare', 10),
+  ('1mg', 'Healthcare', 10),
+  ('MedPlus', 'Healthcare', 10),
+  ('MakeMyTrip', 'Travel', 10),
+  ('IndiGo', 'Travel', 10),
+  ('Air India', 'Travel', 10),
+  ('IRCTC', 'Travel', 10),
+  ('Coursera', 'Education', 10),
+  ('Udemy', 'Education', 10),
+  ('Airtel', 'Bills & Utilities', 10),
+  ('Jio', 'Bills & Utilities', 10),
+  ('BESCOM', 'Bills & Utilities', 10),
+  ('Zara', 'Clothing', 10),
+  ('H&M', 'Clothing', 10),
+  ('Myntra', 'Clothing', 10),
+  ('Uniqlo', 'Clothing', 10),
+  ('Croma', 'Electronics', 10),
+  ('Reliance Digital', 'Electronics', 10),
+  ('Apple Store', 'Electronics', 10)
+on conflict (merchant_name) do nothing;
+
+-- Bill Documents Table
+create table if not exists public.bill_documents (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.users(id) on delete cascade,
+  storage_key text not null,
+  original_filename text not null,
+  mime_type text not null,
+  file_size integer not null check (file_size > 0),
+  file_hash text not null, -- SHA-256 for duplicate detection
+  processing_status text not null default 'uploaded' check (
+    processing_status in ('uploaded', 'ocr_processing', 'extraction_processing', 'classification_processing', 'review_required', 'confirmed', 'failed', 'processing')
+  ),
+  ocr_status text not null default 'pending',
+  extraction_status text not null default 'pending',
+  classification_status text not null default 'pending',
+  raw_text text,
+  extracted_data jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Enhance expenses table with bill upload source & metadata
+alter table public.expenses add column if not exists merchant text;
+alter table public.expenses add column if not exists currency text default 'INR';
+alter table public.expenses add column if not exists source text default 'manual' check (source in ('manual', 'bill_upload', 'import'));
+alter table public.expenses add column if not exists bill_document_id uuid references public.bill_documents(id) on delete set null;
+alter table public.expenses add column if not exists classification_confidence numeric(4,2);
+alter table public.expenses add column if not exists invoice_number text;
+alter table public.expenses add column if not exists line_items jsonb default '[]'::jsonb;
+
+-- Classification Feedback Table (User Corrections Learning)
+create table if not exists public.classification_feedback (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references public.users(id) on delete cascade,
+  bill_id uuid references public.bill_documents(id) on delete cascade,
+  original_category text not null,
+  corrected_category text not null,
+  merchant text,
+  item_summary text,
+  created_at timestamptz not null default now()
+);
+
+-- ============================================================================
+-- 6. INDEXES FOR PERFORMANCE & DUPLICATE DETECTION
+-- ============================================================================
+
+create index if not exists bill_documents_user_id_created_at_idx 
+  on public.bill_documents (user_id, created_at desc);
+
+create index if not exists bill_documents_user_file_hash_idx 
+  on public.bill_documents (user_id, file_hash);
+
+create index if not exists classification_feedback_user_merchant_idx 
+  on public.classification_feedback (user_id, lower(trim(merchant)));
+
+create index if not exists expenses_user_id_date_idx 
+  on public.expenses (user_id, expense_date desc);
+
+create index if not exists expenses_user_bill_doc_idx 
+  on public.expenses (user_id, bill_document_id);
+
+-- ============================================================================
+-- 7. RLS POLICIES FOR BILL DOCUMENTS & FEEDBACK
+-- ============================================================================
+
+alter table public.categories enable row level security;
+alter table public.merchant_category_rules enable row level security;
+alter table public.bill_documents enable row level security;
+alter table public.classification_feedback enable row level security;
+
+create policy "categories are publicly readable" on public.categories
+  for select using (true);
+
+create policy "merchant rules are publicly readable" on public.merchant_category_rules
+  for select using (true);
+
+create policy "bill_documents user isolation" on public.bill_documents
+  for all using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+
+create policy "classification_feedback user isolation" on public.classification_feedback
+  for all using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);
+

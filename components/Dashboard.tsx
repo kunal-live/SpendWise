@@ -58,6 +58,8 @@ import { BADGES } from "@/lib/achievements";
 import { createClient } from "@/lib/supabase/client";
 import DatePicker from "./DatePicker";
 import { trackEvent } from "@/lib/analytics";
+import BillUploadModal from "./bills/BillUploadModal";
+import BillsHistoryView from "./bills/BillsHistoryView";
 
 const categories = [
   "Food", "EMI", "Invest", "Personal Expense", "Outing", "Night Out",
@@ -129,6 +131,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [showExpense, setShowExpense] = useState(false);
+  const [showBillModal, setShowBillModal] = useState(false);
   const [showEmiModal, setShowEmiModal] = useState(false);
   const [active, setActive] = useState("Dashboard");
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -901,6 +904,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
   const nav = [
     ["Dashboard", LayoutDashboard],
     ["Transactions", ReceiptText],
+    ["Bills", FileText],
     ["Budgets", Target],
     ["Investments", TrendingUp],
     ["EMIs", CreditCard],
@@ -978,6 +982,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               </div>
 
               <div className="flex items-center gap-3">
+                <button 
+                  onClick={() => setShowBillModal(true)} 
+                  className="hidden items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2.5 text-sm font-bold text-violet-300 hover:bg-violet-500/20 sm:flex transition-all"
+                >
+                  <Sparkles size={16} className="text-violet-400" /> Upload bill
+                </button>
                 <button onClick={() => setShowExpense(true)} className="hidden items-center gap-2 rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-violet-400 sm:flex">
                   <Plus size={17}/> Add expense
                 </button>
@@ -1283,6 +1293,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   </div>
                 </div>
               </section>
+            ) : active === "Bills" ? (
+              <BillsHistoryView onOpenUploadModal={() => setShowBillModal(true)} />
             ) : active === "Budgets" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
@@ -1881,7 +1893,21 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <button onClick={() => setShowExpense(false)} className="text-zinc-500 hover:text-white"><X/></button>
             </div>
 
-            <div className="mt-6 grid gap-4">
+            <div className="mt-4 flex items-center justify-between rounded-2xl border border-violet-500/20 bg-violet-500/10 p-3 text-xs text-violet-300">
+              <div className="flex items-center gap-2">
+                <Sparkles size={15} className="text-violet-400 shrink-0" />
+                <span>Have a receipt or bill? Auto-extract amounts and category.</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => { setShowExpense(false); setShowBillModal(true); }}
+                className="rounded-lg bg-violet-500 px-2.5 py-1 text-xs font-bold text-white hover:bg-violet-400 transition-colors shrink-0"
+              >
+                Upload Bill
+              </button>
+            </div>
+
+            <div className="mt-4 grid gap-4">
               <label className="text-sm">
                 <span className="mb-2 block text-zinc-500">Title</span>
                 <input className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={newExpense.title} onChange={(e) => setNewExpense({ ...newExpense, title: e.target.value })} placeholder="Dinner with friends"/>
@@ -2227,6 +2253,16 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
           </div>
         </div>
       )}
+      <BillUploadModal
+        isOpen={showBillModal}
+        onClose={() => setShowBillModal(false)}
+        onExpenseCreated={(newExp) => {
+          setExpenses((prev) => [newExp, ...prev]);
+          trackEvent("bill_uploaded_expense_created", { category: newExp.category, amount: newExp.amount });
+        }}
+        showToast={showToast}
+      />
+
       {toast && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-zinc-700 bg-zinc-900/95 px-5 py-3.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
           <div className={`grid h-7 w-7 place-items-center rounded-lg ${toast.type === "success" ? "bg-emerald-500/20 text-emerald-400" : "bg-violet-500/20 text-violet-400"}`}>
