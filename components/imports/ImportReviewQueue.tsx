@@ -134,8 +134,8 @@ export default function ImportReviewQueue({
             onClick={() => setActiveTab("all")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
               activeTab === "all"
-                ? "bg-violet-500 text-white shadow-lg shadow-violet-500/20"
-                : "bg-zinc-900 text-zinc-400 hover:text-zinc-200"
+                ? "bg-[#FF6B4A] text-white shadow-md shadow-[#FF6B4A]/20"
+                : "bg-[#F4EFE6] text-[#7A756D] hover:text-[#14151A] hover:bg-[#EAE4D7]"
             }`}
           >
             All ({transactions.length})
@@ -144,8 +144,8 @@ export default function ImportReviewQueue({
             onClick={() => setActiveTab("review")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
               activeTab === "review"
-                ? "bg-amber-500 text-black shadow-lg shadow-amber-500/20"
-                : "bg-zinc-900 text-zinc-400 hover:text-zinc-200"
+                ? "bg-amber-500 text-black shadow-md shadow-amber-500/20"
+                : "bg-[#F4EFE6] text-[#7A756D] hover:text-[#14151A] hover:bg-[#EAE4D7]"
             }`}
           >
             Needs Review ({transactions.filter((t) => t.review_status === "pending" || t.confidence_level === "low").length})
@@ -154,8 +154,8 @@ export default function ImportReviewQueue({
             onClick={() => setActiveTab("expenses")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
               activeTab === "expenses"
-                ? "bg-violet-500 text-white shadow-lg shadow-violet-500/20"
-                : "bg-zinc-900 text-zinc-400 hover:text-zinc-200"
+                ? "bg-[#FF6B4A] text-white shadow-md shadow-[#FF6B4A]/20"
+                : "bg-[#F4EFE6] text-[#7A756D] hover:text-[#14151A] hover:bg-[#EAE4D7]"
             }`}
           >
             Expenses ({transactions.filter((t) => t.transaction_type === "expense").length})
@@ -164,8 +164,8 @@ export default function ImportReviewQueue({
             onClick={() => setActiveTab("transfers")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
               activeTab === "transfers"
-                ? "bg-blue-500 text-white shadow-lg shadow-blue-500/20"
-                : "bg-zinc-900 text-zinc-400 hover:text-zinc-200"
+                ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
+                : "bg-[#F4EFE6] text-[#7A756D] hover:text-[#14151A] hover:bg-[#EAE4D7]"
             }`}
           >
             Transfers/Income ({transactions.filter((t) => t.transaction_type !== "expense").length})
@@ -174,8 +174,8 @@ export default function ImportReviewQueue({
             onClick={() => setActiveTab("duplicates")}
             className={`rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
               activeTab === "duplicates"
-                ? "bg-rose-500 text-white shadow-lg shadow-rose-500/20"
-                : "bg-zinc-900 text-zinc-400 hover:text-zinc-200"
+                ? "bg-rose-600 text-white shadow-md shadow-rose-500/20"
+                : "bg-[#F4EFE6] text-[#7A756D] hover:text-[#14151A] hover:bg-[#EAE4D7]"
             }`}
           >
             Duplicates ({transactions.filter((t) => t.dedupe_status !== "unique").length})
@@ -187,18 +187,18 @@ export default function ImportReviewQueue({
           placeholder="Search merchant, reference, or narration..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-xs text-zinc-200 outline-none focus:border-violet-500 w-full sm:w-64"
+          className="rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-1.5 text-xs text-[#14151A] placeholder-[#7A756D] outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] w-full sm:w-64 transition-all"
         />
       </div>
 
       {/* Floating / Sticky Bulk Action Bar */}
       {selectedIds.length > 0 && (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-violet-500/30 bg-violet-950/40 p-3 backdrop-blur-md animate-in fade-in duration-200">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#FF6B4A]/30 bg-[#FFFDF9] p-3 shadow-md animate-in fade-in duration-200">
           <div className="flex items-center gap-2">
-            <span className="grid h-6 w-6 place-items-center rounded-md bg-violet-500 text-xs font-bold text-white">
+            <span className="grid h-6 w-6 place-items-center rounded-md bg-[#FF6B4A] text-xs font-bold text-white">
               {selectedIds.length}
             </span>
-            <span className="text-xs font-medium text-zinc-300">transactions selected</span>
+            <span className="text-xs font-medium text-[#14151A]">transactions selected</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
@@ -206,17 +206,17 @@ export default function ImportReviewQueue({
             <div className="relative">
               <button
                 onClick={() => setShowBulkCategoryMenu(!showBulkCategoryMenu)}
-                className="flex items-center gap-1.5 rounded-lg border border-violet-500/30 bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-violet-300 hover:bg-zinc-800"
+                className="flex items-center gap-1.5 rounded-lg border border-[#FF6B4A]/30 bg-[#F4EFE6] px-3 py-1.5 text-xs font-semibold text-[#FF6B4A] hover:bg-[#EAE4D7]"
               >
                 Assign Category <ChevronDown size={13} />
               </button>
               {showBulkCategoryMenu && (
-                <div className="absolute left-0 top-full z-30 mt-1 max-h-56 w-48 overflow-y-auto rounded-xl border border-zinc-800 bg-zinc-950 p-1 shadow-2xl">
+                <div className="absolute left-0 top-full z-30 mt-1 max-h-56 w-48 overflow-y-auto rounded-xl border border-[#E5DFD3] bg-[#FFFDF9] p-1 shadow-2xl">
                   {ALL_CATEGORIES.map((c) => (
                     <button
                       key={c}
                       onClick={() => handleBulkAssignCategory(c)}
-                      className="w-full text-left rounded-lg px-2.5 py-1.5 text-xs text-zinc-300 hover:bg-violet-500/20 hover:text-white"
+                      className="w-full text-left rounded-lg px-2.5 py-1.5 text-xs text-[#45423E] hover:bg-[#FF6B4A]/10 hover:text-[#FF6B4A]"
                     >
                       {c}
                     </button>
@@ -227,21 +227,21 @@ export default function ImportReviewQueue({
 
             <button
               onClick={handleBulkMarkAsTransfer}
-              className="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-blue-300 hover:bg-zinc-800"
+              className="flex items-center gap-1.5 rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-1.5 text-xs font-semibold text-blue-700 hover:bg-[#EAE4D7]"
             >
               <RefreshCw size={12} /> Mark as Transfer
             </button>
 
             <button
               onClick={handleBulkMarkAsExpense}
-              className="flex items-center gap-1.5 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-emerald-300 hover:bg-zinc-800"
+              className="flex items-center gap-1.5 rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-1.5 text-xs font-semibold text-emerald-700 hover:bg-[#EAE4D7]"
             >
               <Receipt size={12} /> Mark as Expense
             </button>
 
             <button
               onClick={handleBulkIgnore}
-              className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-zinc-400 hover:text-rose-300 hover:bg-rose-500/10"
+              className="flex items-center gap-1.5 rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-1.5 text-xs font-semibold text-[#7A756D] hover:text-rose-700 hover:bg-rose-50"
             >
               <Trash2 size={12} /> Ignore Selected
             </button>
@@ -250,16 +250,16 @@ export default function ImportReviewQueue({
       )}
 
       {/* Transactions Table */}
-      <div className="overflow-x-auto rounded-2xl border border-zinc-800 bg-zinc-950">
+      <div className="overflow-x-auto rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] shadow-sm">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-zinc-800/80 bg-zinc-900/50 text-[11px] font-semibold text-zinc-400">
+            <tr className="border-b border-[#E5DFD3] bg-[#F4EFE6] text-[11px] font-semibold text-[#7A756D]">
               <th className="py-3 px-4 w-10">
                 <input
                   type="checkbox"
                   checked={filtered.length > 0 && selectedIds.length === filtered.length}
                   onChange={selectAll}
-                  className="rounded border-zinc-700 bg-zinc-900 text-violet-500 focus:ring-0"
+                  className="rounded border-[#E5DFD3] text-[#FF6B4A] focus:ring-0"
                 />
               </th>
               <th className="py-3 px-3">Date</th>
@@ -271,10 +271,10 @@ export default function ImportReviewQueue({
               <th className="py-3 px-4 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-zinc-900 text-xs">
+          <tbody className="divide-y divide-[#E5DFD3] text-xs">
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="py-12 text-center text-zinc-500">
+                <td colSpan={8} className="py-12 text-center text-[#7A756D]">
                   No transactions match the selected filter.
                 </td>
               </tr>
@@ -293,10 +293,10 @@ export default function ImportReviewQueue({
                     key={t.id}
                     className={`transition-colors ${
                       isIgnored
-                        ? "opacity-40 bg-zinc-950"
+                        ? "opacity-40 bg-[#F4EFE6]"
                         : isSelected
-                        ? "bg-violet-500/10"
-                        : "hover:bg-zinc-900/40"
+                        ? "bg-[#FF6B4A]/10"
+                        : "hover:bg-[#F4EFE6]/70"
                     }`}
                   >
                     <td className="py-3 px-4">
@@ -304,25 +304,25 @@ export default function ImportReviewQueue({
                         type="checkbox"
                         checked={isSelected}
                         onChange={() => toggleSelect(t.id)}
-                        className="rounded border-zinc-700 bg-zinc-900 text-violet-500 focus:ring-0"
+                        className="rounded border-[#E5DFD3] text-[#FF6B4A] focus:ring-0"
                       />
                     </td>
-                    <td className="py-3 px-3 whitespace-nowrap text-zinc-400 font-mono text-[11px]">
+                    <td className="py-3 px-3 whitespace-nowrap text-[#7A756D] font-mono text-[11px]">
                       {t.transaction_date}
                     </td>
                     <td className="py-3 px-3 max-w-xs">
-                      <div className="font-semibold text-zinc-200 flex items-center gap-1.5">
+                      <div className="font-semibold text-[#14151A] flex items-center gap-1.5">
                         <span className="truncate">{t.merchant || t.description}</span>
                         {isDuplicate && (
                           <span 
                             title={t.dedupe_reason || "Possible duplicate detected"}
-                            className="inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                            className="inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/15 text-amber-800 border border-amber-500/30"
                           >
                             <AlertTriangle size={10} /> Duplicate
                           </span>
                         )}
                       </div>
-                      <div className="text-[11px] text-zinc-500 truncate" title={t.description}>
+                      <div className="text-[11px] text-[#7A756D] truncate" title={t.description}>
                         {t.description}
                       </div>
                     </td>
@@ -337,12 +337,12 @@ export default function ImportReviewQueue({
                         }
                         className={`rounded-lg border px-2 py-1 text-[11px] font-medium outline-none ${
                           isExpense
-                            ? "border-violet-500/30 bg-violet-500/10 text-violet-300"
+                            ? "border-[#FF6B4A]/30 bg-[#FF6B4A]/10 text-[#FF6B4A]"
                             : isTransfer
-                            ? "border-blue-500/30 bg-blue-500/10 text-blue-300"
+                            ? "border-blue-500/30 bg-blue-500/10 text-blue-700"
                             : isIncome
-                            ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                            : "border-zinc-800 bg-zinc-900 text-zinc-400"
+                            ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700"
+                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#45423E]"
                         }`}
                       >
                         <option value="expense">Expense</option>
@@ -356,10 +356,10 @@ export default function ImportReviewQueue({
                       </select>
                     </td>
                     <td className="py-3 px-3 whitespace-nowrap">
-                      <div className={`font-bold ${t.direction === "credit" ? "text-emerald-400" : "text-zinc-200"}`}>
+                      <div className={`font-bold ${t.direction === "credit" ? "text-emerald-700" : "text-[#14151A]"}`}>
                         {t.direction === "credit" ? "+" : ""}{money(t.amount)}
                       </div>
-                      <div className="text-[10px] text-zinc-500 uppercase">{t.direction}</div>
+                      <div className="text-[10px] text-[#7A756D] uppercase">{t.direction}</div>
                     </td>
                     <td className="py-3 px-3 whitespace-nowrap">
                       {isExpense ? (
@@ -372,7 +372,7 @@ export default function ImportReviewQueue({
                               review_status: "edited"
                             })
                           }
-                          className="rounded-lg border border-zinc-800 bg-zinc-900 px-2 py-1 text-[11px] text-zinc-200 outline-none focus:border-violet-500"
+                          className="rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-2 py-1 text-[11px] text-[#14151A] outline-none focus:border-[#FF6B4A]"
                         >
                           {ALL_CATEGORIES.map((cat) => (
                             <option key={cat} value={cat}>
@@ -381,7 +381,7 @@ export default function ImportReviewQueue({
                           ))}
                         </select>
                       ) : (
-                        <span className="text-[11px] text-zinc-500 italic">Excluded from spend</span>
+                        <span className="text-[11px] text-[#7A756D] italic">Excluded from spend</span>
                       )}
                     </td>
                     <td className="py-3 px-3 whitespace-nowrap">
@@ -389,13 +389,13 @@ export default function ImportReviewQueue({
                         <div
                           className={`h-2 w-2 rounded-full ${
                             t.confidence_score >= 0.90
-                              ? "bg-emerald-400 shadow-sm shadow-emerald-400/50"
+                              ? "bg-emerald-500 shadow-sm shadow-emerald-500/50"
                               : t.confidence_score >= 0.70
-                              ? "bg-amber-400 shadow-sm shadow-amber-400/50"
-                              : "bg-rose-400 shadow-sm shadow-rose-400/50"
+                              ? "bg-amber-500 shadow-sm shadow-amber-500/50"
+                              : "bg-rose-500 shadow-sm shadow-rose-500/50"
                           }`}
                         />
-                        <span className="text-[11px] font-mono text-zinc-400">
+                        <span className="text-[11px] font-mono text-[#7A756D]">
                           {Math.round(t.confidence_score * 100)}%
                         </span>
                       </div>
@@ -404,14 +404,14 @@ export default function ImportReviewQueue({
                       {isIgnored ? (
                         <button
                           onClick={() => onUpdateTransaction(t.id, { review_status: "pending" })}
-                          className="text-[11px] text-zinc-400 hover:text-white"
+                          className="text-[11px] text-[#7A756D] hover:text-[#14151A]"
                         >
                           Restore
                         </button>
                       ) : (
                         <button
                           onClick={() => onUpdateTransaction(t.id, { review_status: "ignored" })}
-                          className="text-[11px] text-zinc-500 hover:text-rose-400 transition-colors"
+                          className="text-[11px] text-[#7A756D] hover:text-rose-600 transition-colors"
                         >
                           Ignore
                         </button>
@@ -426,23 +426,23 @@ export default function ImportReviewQueue({
       </div>
 
       {/* Confirmation & Bottom Action Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-zinc-900">
-        <div className="text-xs text-zinc-400">
-          Ready to import <strong className="text-emerald-400">{readyToImportCount}</strong> expense records.
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-4 border-t border-[#E5DFD3]">
+        <div className="text-xs text-[#7A756D]">
+          Ready to import <strong className="text-emerald-700">{readyToImportCount}</strong> expense records.
           Transfers and income will be excluded from spending analytics.
         </div>
 
         <div className="flex items-center gap-3">
           <button
             onClick={onCancel}
-            className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-zinc-300 hover:bg-zinc-800 transition-colors"
+            className="rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-2.5 text-xs font-semibold text-[#14151A] hover:bg-[#EAE4D7] transition-colors"
           >
             Cancel / Save Draft
           </button>
           <button
             onClick={() => onConfirmImport(selectedIds.length > 0 ? selectedIds : undefined)}
             disabled={isConfirming || readyToImportCount === 0}
-            className="flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-2.5 text-xs font-bold text-white hover:bg-violet-400 transition-all shadow-lg shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-5 py-2.5 text-xs font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#FF6B4A]/25 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isConfirming ? (
               <>

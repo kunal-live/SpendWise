@@ -61,7 +61,7 @@ export const BADGES: Badge[] = [
     name: "Budget Master",
     description: "Kept your Needs under 50% of your income this month.",
     icon: ShieldCheck,
-    color: "text-violet-400",
+    color: "text-[#ff6b4a]",
     evaluate: (expenses, income) => {
       if (income <= 0) return false;
       const currentMonth = new Date().toISOString().slice(0, 7);
@@ -154,7 +154,7 @@ export const BADGES: Badge[] = [
     name: "Treat Yo' Self",
     description: "Logged a 'Wants' expense over ₹5,000.",
     icon: Gift,
-    color: "text-purple-400",
+    color: "text-[#ff8566]",
     evaluate: (expenses) => {
       const wantsCategories = ["Entertainment", "Shopping", "Miscellaneous", "Subscriptions"];
       return expenses.some(e => wantsCategories.includes(e.category) && e.amount > 5000);

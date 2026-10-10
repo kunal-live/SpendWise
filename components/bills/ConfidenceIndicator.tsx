@@ -20,21 +20,21 @@ export default function ConfidenceIndicator({
     high: {
       bg: "bg-emerald-500/10",
       border: "border-emerald-500/25",
-      text: "text-emerald-400",
+      text: "text-emerald-700",
       icon: ShieldCheck,
       label: "High Confidence"
     },
     medium: {
       bg: "bg-amber-500/10",
       border: "border-amber-500/25",
-      text: "text-amber-400",
+      text: "text-amber-800",
       icon: AlertTriangle,
       label: "Medium Confidence"
     },
     low: {
       bg: "bg-rose-500/10",
       border: "border-rose-500/25",
-      text: "text-rose-400",
+      text: "text-rose-700",
       icon: AlertCircle,
       label: "Review Needed"
     }
@@ -49,12 +49,12 @@ export default function ConfidenceIndicator({
       <span className="hidden sm:inline font-normal opacity-80">({config.label})</span>
 
       {reason && (
-        <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-64 -translate-x-1/2 rounded-xl border border-zinc-800 bg-zinc-950 p-3 text-xs font-normal text-zinc-300 opacity-0 shadow-2xl transition-opacity duration-200 group-hover:opacity-100 z-50">
-          <div className="font-semibold text-white mb-1 flex items-center gap-1.5">
-            <HelpCircle size={13} className="text-violet-400" />
+        <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-64 -translate-x-1/2 rounded-xl border border-[#E5DFD3] bg-[#FFFDF9] p-3 text-xs font-normal text-[#45423E] opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100 z-50">
+          <div className="font-semibold text-[#14151A] mb-1 flex items-center gap-1.5">
+            <HelpCircle size={13} className="text-[#FF6B4A]" />
             Why this category?
           </div>
-          <p className="text-zinc-400 leading-relaxed">{reason}</p>
+          <p className="text-[#7A756D] leading-relaxed">{reason}</p>
         </div>
       )}
     </div>

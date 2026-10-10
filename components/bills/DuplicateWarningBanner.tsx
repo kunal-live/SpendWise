@@ -21,18 +21,18 @@ export default function DuplicateWarningBanner({
   onCancel
 }: DuplicateWarningProps) {
   return (
-    <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-amber-200">
+    <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 text-amber-900">
       <div className="flex items-start gap-3">
-        <div className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-amber-500/20 text-amber-400">
+        <div className="grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-amber-500/20 text-amber-600">
           <AlertTriangle size={18} />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="font-bold text-amber-300 text-sm">Possible Duplicate Detected</div>
-          <p className="mt-1 text-xs text-amber-200/90 leading-relaxed">
+          <div className="font-bold text-amber-950 text-sm">Possible Duplicate Detected</div>
+          <p className="mt-1 text-xs text-amber-900 leading-relaxed">
             {message}
           </p>
           {details && (
-            <div className="mt-2.5 flex flex-wrap gap-2 text-[11px] text-amber-300/80 bg-black/20 p-2.5 rounded-xl border border-amber-500/15">
+            <div className="mt-2.5 flex flex-wrap gap-2 text-[11px] text-amber-950 bg-[#FFFDF9]/80 p-2.5 rounded-xl border border-amber-500/25">
               <span><strong>Merchant:</strong> {details.merchant}</span>
               <span>•</span>
               <span><strong>Amount:</strong> ₹{details.amount.toLocaleString("en-IN")}</span>
@@ -51,7 +51,7 @@ export default function DuplicateWarningBanner({
             <button
               type="button"
               onClick={onProceedAnyway}
-              className="rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 px-3.5 py-1.5 text-xs font-bold text-amber-200 transition-colors"
+              className="rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 px-3.5 py-1.5 text-xs font-bold text-amber-950 transition-colors"
             >
               Add Anyway
             </button>
@@ -59,7 +59,7 @@ export default function DuplicateWarningBanner({
               <button
                 type="button"
                 onClick={onViewExisting}
-                className="rounded-xl bg-zinc-900/80 hover:bg-zinc-850 px-3.5 py-1.5 text-xs font-semibold text-zinc-300 transition-colors"
+                className="rounded-xl bg-[#F4EFE6] border border-[#E5DFD3] hover:bg-[#EAE4D7] px-3.5 py-1.5 text-xs font-semibold text-[#14151A] transition-colors"
               >
                 View Existing
               </button>
@@ -68,7 +68,7 @@ export default function DuplicateWarningBanner({
               <button
                 type="button"
                 onClick={onCancel}
-                className="text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+                className="text-xs text-[#7A756D] hover:text-[#14151A] transition-colors"
               >
                 Cancel Upload
               </button>

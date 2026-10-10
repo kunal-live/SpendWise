@@ -191,7 +191,7 @@ export default function StatementImportModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/85 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-black/50 backdrop-blur-md transition-opacity animate-in fade-in duration-200"
         onClick={() => {
           if (!isProcessing && !isConfirming) {
             handleReset();
@@ -201,19 +201,19 @@ export default function StatementImportModal({
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-5xl rounded-3xl border border-zinc-800 bg-[#0c0a13] p-5 sm:p-8 shadow-2xl z-10 max-h-[92vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-5xl rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 sm:p-8 shadow-2xl z-10 max-h-[92vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-zinc-900 shrink-0">
+        <div className="flex items-center justify-between pb-4 border-b border-[#E5DFD3] shrink-0">
           <div>
             <div className="flex items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-violet-500/20 text-violet-400">
+              <span className="grid h-7 w-7 place-items-center rounded-lg bg-[#FF6B4A]/10 text-[#FF6B4A]">
                 <UploadCloud size={16} />
               </span>
-              <h2 className="text-xl font-black tracking-tight text-zinc-100">
+              <h2 className="text-xl font-black tracking-tight text-[#14151A]">
                 {currentBatch ? "Review & Confirm Statement" : "Import Statement or History"}
               </h2>
             </div>
-            <p className="mt-1 text-xs text-zinc-500">
+            <p className="mt-1 text-xs text-[#7A756D]">
               {currentBatch 
                 ? "Review detected transactions, adjust categories, and confirm expenses."
                 : "Upload bank statements (PDF/CSV) or payment app exports (Google Pay, PhonePe, Paytm)."}
@@ -226,7 +226,7 @@ export default function StatementImportModal({
               onClose();
             }}
             disabled={isProcessing || isConfirming}
-            className="rounded-full p-2 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 disabled:opacity-40 transition-colors"
+            className="rounded-full p-2 text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] disabled:opacity-40 transition-colors"
           >
             <X size={18} />
           </button>
@@ -235,7 +235,7 @@ export default function StatementImportModal({
         {/* Modal Body */}
         <div className="flex-1 overflow-y-auto py-5 space-y-6 pr-1">
           {error && (
-            <div className="flex items-start gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs text-rose-300">
+            <div className="flex items-start gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs text-rose-700">
               <AlertCircle size={16} className="shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -246,7 +246,7 @@ export default function StatementImportModal({
             <div className="space-y-6">
               {/* Source Selection */}
               <div>
-                <label className="text-xs font-semibold text-zinc-400 block mb-2">
+                <label className="text-xs font-semibold text-[#7A756D] block mb-2">
                   Select Statement / History Source
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -260,11 +260,11 @@ export default function StatementImportModal({
                         onClick={() => setSelectedSource(s.id)}
                         className={`flex items-center gap-2 rounded-xl border p-2.5 text-xs font-medium transition-all text-left ${
                           isSelected
-                            ? "border-violet-500 bg-violet-500/15 text-violet-200 shadow-md shadow-violet-500/10"
-                            : "border-zinc-800/80 bg-zinc-900/40 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+                            ? "border-[#FF6B4A] bg-[#FF6B4A]/10 text-[#FF6B4A] shadow-sm"
+                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#45423E] hover:border-[#FF6B4A]/40 hover:bg-[#FFFDF9] hover:text-[#14151A]"
                         }`}
                       >
-                        <Icon size={14} className={isSelected ? "text-violet-400" : "text-zinc-500"} />
+                        <Icon size={14} className={isSelected ? "text-[#FF6B4A]" : "text-[#7A756D]"} />
                         <span className="truncate">{s.name}</span>
                       </button>
                     );
@@ -283,10 +283,10 @@ export default function StatementImportModal({
                 onClick={() => fileInputRef.current?.click()}
                 className={`flex flex-col items-center justify-center rounded-3xl border-2 border-dashed p-10 text-center cursor-pointer transition-all ${
                   isDragging
-                    ? "border-violet-500 bg-violet-500/10"
+                    ? "border-[#FF6B4A] bg-[#FF6B4A]/10"
                     : file
                     ? "border-emerald-500/50 bg-emerald-500/5"
-                    : "border-zinc-800 bg-zinc-950/60 hover:border-violet-500/40 hover:bg-zinc-900/40"
+                    : "border-[#E5DFD3] bg-[#F4EFE6] hover:border-[#FF6B4A]/40 hover:bg-[#FFFDF9]"
                 }`}
               >
                 <input
@@ -301,23 +301,23 @@ export default function StatementImportModal({
                   }}
                 />
 
-                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-violet-500/10 text-violet-400 mb-4">
-                  {file ? <FileText size={32} className="text-emerald-400" /> : <UploadCloud size={32} />}
+                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#FF6B4A]/10 text-[#FF6B4A] mb-4">
+                  {file ? <FileText size={32} className="text-emerald-600" /> : <UploadCloud size={32} />}
                 </div>
 
                 {file ? (
                   <div>
-                    <p className="text-sm font-bold text-zinc-200">{file.name}</p>
-                    <p className="text-xs text-zinc-500 mt-1">
+                    <p className="text-sm font-bold text-[#14151A]">{file.name}</p>
+                    <p className="text-xs text-[#7A756D] mt-1">
                       {(file.size / 1024).toFixed(1)} KB • Click or drop another file to replace
                     </p>
                   </div>
                 ) : (
                   <div>
-                    <p className="text-sm font-bold text-zinc-200">
-                      Drop statement file here or <span className="text-violet-400 underline">browse</span>
+                    <p className="text-sm font-bold text-[#14151A]">
+                      Drop statement file here or <span className="text-[#FF6B4A] underline font-bold">browse</span>
                     </p>
-                    <p className="text-xs text-zinc-500 mt-1">
+                    <p className="text-xs text-[#7A756D] mt-1">
                       Supports Bank PDF, CSV, TSV, or XLSX statement exports (max 15MB)
                     </p>
                   </div>
@@ -326,10 +326,10 @@ export default function StatementImportModal({
 
               {/* Process Button / Progress */}
               {isProcessing ? (
-                <div className="rounded-2xl border border-violet-500/30 bg-violet-950/20 p-6 text-center space-y-3">
-                  <RefreshCw size={24} className="animate-spin text-violet-400 mx-auto" />
-                  <p className="text-sm font-semibold text-zinc-200">{processingStage}</p>
-                  <p className="text-xs text-zinc-500">
+                <div className="rounded-2xl border border-[#FF6B4A]/30 bg-[#FF6B4A]/10 p-6 text-center space-y-3">
+                  <RefreshCw size={24} className="animate-spin text-[#FF6B4A] mx-auto" />
+                  <p className="text-sm font-semibold text-[#14151A]">{processingStage}</p>
+                  <p className="text-xs text-[#7A756D]">
                     Applying debit/credit rules, merchant aliases, and expense categories...
                   </p>
                 </div>
@@ -338,7 +338,7 @@ export default function StatementImportModal({
                   type="button"
                   disabled={!file}
                   onClick={handleUploadAndProcess}
-                  className="w-full rounded-2xl bg-violet-500 py-3.5 text-sm font-bold text-white hover:bg-violet-400 transition-all shadow-lg shadow-violet-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-2xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] py-3.5 text-sm font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#FF6B4A]/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Parse &amp; Review Statement
                 </button>

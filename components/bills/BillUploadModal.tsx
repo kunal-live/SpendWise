@@ -156,32 +156,32 @@ export default function BillUploadModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-md">
       <div className="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-8">
         <div
-          className={`relative w-full overflow-hidden rounded-3xl border border-zinc-800 bg-[#0d0b12] shadow-2xl transition-all ${
+          className={`relative w-full overflow-hidden rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] shadow-2xl transition-all ${
             step === "review" ? "max-w-5xl" : "max-w-xl"
           }`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-zinc-800/80 px-6 py-4">
+          <div className="flex items-center justify-between border-b border-[#E5DFD3] px-6 py-4">
             <div className="flex items-center gap-3">
               {step === "review" && (
                 <button
                   type="button"
                   onClick={() => setStep("dropzone")}
-                  className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-900 hover:text-white transition-colors"
+                  className="rounded-lg p-1.5 text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] transition-colors"
                   title="Upload another file"
                 >
                   <ArrowLeft size={16} />
                 </button>
               )}
               <div>
-                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-violet-400 font-bold">
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#FF6B4A] font-bold">
                   <Sparkles size={13} />
                   SpendWise Bill Scan
                 </div>
-                <h2 className="mt-0.5 text-lg font-black text-white">
+                <h2 className="mt-0.5 text-lg font-black text-[#14151A]">
                   {step === "dropzone" && "Upload Bill or Receipt"}
                   {step === "processing" && "Analyzing Document"}
                   {step === "duplicate_warning" && "Duplicate Detection"}
@@ -192,7 +192,7 @@ export default function BillUploadModal({
 
             <button
               onClick={handleClose}
-              className="rounded-xl p-2 text-zinc-500 hover:bg-zinc-900 hover:text-white transition-colors"
+              className="rounded-xl p-2 text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] transition-colors"
               title="Close modal"
             >
               <X size={18} />
@@ -202,7 +202,7 @@ export default function BillUploadModal({
           {/* Modal Body */}
           <div className="p-6">
             {errorMessage && (
-              <div className="mb-5 flex items-center gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-4 py-3 text-xs text-rose-300">
+              <div className="mb-5 flex items-center gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-4 py-3 text-xs text-rose-700">
                 <AlertCircle size={16} className="shrink-0" />
                 <span>{errorMessage}</span>
               </div>
@@ -216,11 +216,11 @@ export default function BillUploadModal({
                   onClear={() => setSelectedFile(null)}
                 />
 
-                <div className="flex items-center justify-end gap-3 pt-2 border-t border-zinc-900">
+                <div className="flex items-center justify-end gap-3 pt-2 border-t border-[#E5DFD3]">
                   <button
                     type="button"
                     onClick={handleClose}
-                    className="rounded-xl px-4 py-2.5 text-xs font-semibold text-zinc-400 hover:bg-zinc-900 hover:text-white transition-colors"
+                    className="rounded-xl px-4 py-2.5 text-xs font-semibold text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] transition-colors"
                   >
                     Cancel
                   </button>
@@ -228,7 +228,7 @@ export default function BillUploadModal({
                     type="button"
                     disabled={!selectedFile}
                     onClick={() => selectedFile && handleStartProcessing(selectedFile)}
-                    className="flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-2.5 text-xs font-bold text-white hover:bg-violet-400 transition-all shadow-lg shadow-violet-500/20 disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-5 py-2.5 text-xs font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#FF6B4A]/25 disabled:opacity-50"
                   >
                     <Sparkles size={14} />
                     Extract & Categorize

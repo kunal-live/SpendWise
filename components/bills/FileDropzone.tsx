@@ -79,8 +79,8 @@ export default function FileDropzone({
           onClick={() => !isProcessing && fileInputRef.current?.click()}
           className={`relative flex flex-col items-center justify-center rounded-3xl border-2 border-dashed p-8 text-center transition-all cursor-pointer ${
             isDragging
-              ? "border-violet-400 bg-violet-500/10 shadow-lg shadow-violet-500/20"
-              : "border-zinc-800 bg-zinc-950/60 hover:border-violet-500/40 hover:bg-zinc-900/60"
+              ? "border-[#FF6B4A] bg-[#FF6B4A]/10 shadow-lg shadow-[#FF6B4A]/20"
+              : "border-[#E5DFD3] bg-[#FFFDF9] hover:border-[#FF6B4A]/50 hover:bg-[#F4EFE6]"
           }`}
         >
           <input
@@ -92,36 +92,36 @@ export default function FileDropzone({
             disabled={isProcessing}
           />
 
-          <div className="grid h-16 w-16 place-items-center rounded-2xl bg-violet-500/15 text-violet-400 mb-4 transition-transform hover:scale-105">
+          <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#FF6B4A]/10 text-[#FF6B4A] mb-4 transition-transform hover:scale-105">
             <UploadCloud size={30} />
           </div>
 
-          <h3 className="text-base font-bold text-zinc-100">
+          <h3 className="text-base font-bold text-[#14151A]">
             Upload your bill or invoice
           </h3>
-          <p className="mt-1 text-xs text-zinc-400 max-w-sm">
-            Drag & drop here or click to browse. We will automatically extract amounts, merchant, date, and line items.
+          <p className="mt-1 text-xs text-[#7A756D] max-w-sm">
+            Drag &amp; drop here or click to browse. We will automatically extract amounts, merchant, date, and line items.
           </p>
 
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[11px] text-zinc-500">
-            <span className="rounded-md bg-zinc-900 px-2 py-0.5 border border-zinc-800">JPG</span>
-            <span className="rounded-md bg-zinc-900 px-2 py-0.5 border border-zinc-800">PNG</span>
-            <span className="rounded-md bg-zinc-900 px-2 py-0.5 border border-zinc-800">PDF</span>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[11px] text-[#7A756D]">
+            <span className="rounded-md bg-[#F4EFE6] px-2 py-0.5 border border-[#E5DFD3] text-[#45423E]">JPG</span>
+            <span className="rounded-md bg-[#F4EFE6] px-2 py-0.5 border border-[#E5DFD3] text-[#45423E]">PNG</span>
+            <span className="rounded-md bg-[#F4EFE6] px-2 py-0.5 border border-[#E5DFD3] text-[#45423E]">PDF</span>
             <span>•</span>
             <span>Max 10 MB</span>
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-between rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
+        <div className="flex items-center justify-between rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4">
           <div className="flex items-center gap-3 min-w-0">
-            <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${isPdf ? "bg-red-500/15 text-red-400" : "bg-violet-500/15 text-violet-400"}`}>
+            <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${isPdf ? "bg-red-500/15 text-red-500" : "bg-[#FF6B4A]/10 text-[#FF6B4A]"}`}>
               {isPdf ? <FileText size={22} /> : <ImageIcon size={22} />}
             </div>
             <div className="min-w-0">
-              <div className="truncate text-sm font-semibold text-zinc-200">
+              <div className="truncate text-sm font-semibold text-[#14151A]">
                 {selectedFile.name}
               </div>
-              <div className="mt-0.5 text-xs text-zinc-500">
+              <div className="mt-0.5 text-xs text-[#7A756D]">
                 {(selectedFile.size / 1024).toFixed(0)} KB • {selectedFile.type || (isPdf ? "PDF Document" : "Image")}
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function FileDropzone({
             <button
               type="button"
               onClick={onClear}
-              className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200 transition-colors"
+              className="rounded-lg p-1.5 text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] transition-colors"
               title="Remove file"
             >
               <X size={18} />
@@ -141,7 +141,7 @@ export default function FileDropzone({
       )}
 
       {error && (
-        <div className="mt-3 flex items-center gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-4 py-2.5 text-xs text-rose-300">
+        <div className="mt-3 flex items-center gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-4 py-2.5 text-xs text-rose-700">
           <AlertCircle size={15} className="shrink-0" />
           <span>{error}</span>
         </div>

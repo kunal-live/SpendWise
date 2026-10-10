@@ -75,13 +75,13 @@ export default function ExtractedBillForm({
   return (
     <div className="flex flex-col h-full space-y-5">
       {/* Top Banner with Confidence */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4">
         <div>
-          <div className="text-xs uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5">
-            <Sparkles size={13} className="text-violet-400" />
+          <div className="text-xs uppercase tracking-wider text-[#7A756D] font-bold flex items-center gap-1.5">
+            <Sparkles size={13} className="text-[#FF6B4A]" />
             Automatic Extraction
           </div>
-          <div className="text-sm font-semibold text-zinc-200 mt-0.5">
+          <div className="text-sm font-semibold text-[#14151A] mt-0.5">
             Review and adjust details before creating expense
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function ExtractedBillForm({
       </div>
 
       {formError && (
-        <div className="flex items-center gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-4 py-2.5 text-xs text-rose-300">
+        <div className="flex items-center gap-2 rounded-xl border border-rose-500/25 bg-rose-500/10 px-4 py-2.5 text-xs text-rose-700">
           <AlertCircle size={15} className="shrink-0" />
           <span>{formError}</span>
         </div>
@@ -103,11 +103,11 @@ export default function ExtractedBillForm({
       {/* Main Form Fields */}
       <div className="grid gap-4 sm:grid-cols-2">
         {/* Merchant */}
-        <label className="block text-xs font-semibold text-zinc-400">
+        <label className="block text-xs font-semibold text-[#7A756D]">
           <span className="mb-1.5 block">Merchant / Store *</span>
           <input
             type="text"
-            className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-100 placeholder-zinc-600 outline-none focus:border-violet-500 transition-colors"
+            className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-2.5 text-sm text-[#14151A] placeholder-[#7A756D] outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
             value={formData.merchant}
             onChange={(e) => setFormData({ ...formData, merchant: e.target.value })}
             placeholder="e.g. Amazon, Swiggy, Uber"
@@ -115,15 +115,15 @@ export default function ExtractedBillForm({
         </label>
 
         {/* Total Amount */}
-        <label className="block text-xs font-semibold text-zinc-400">
+        <label className="block text-xs font-semibold text-[#7A756D]">
           <span className="mb-1.5 block">Total Amount (₹) *</span>
-          <div className="flex items-center rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-0.5 focus-within:border-violet-500 transition-colors">
-            <span className="text-sm font-bold text-violet-400">₹</span>
+          <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-0.5 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
+            <span className="text-sm font-bold text-[#FF6B4A]">₹</span>
             <input
               type="number"
               step="0.01"
               min="0"
-              className="w-full bg-transparent px-2 py-2 text-sm font-bold text-zinc-100 placeholder-zinc-600 outline-none"
+              className="w-full bg-transparent px-2 py-2 text-sm font-bold text-[#14151A] placeholder-[#7A756D] outline-none"
               value={formData.total || ""}
               onChange={(e) => setFormData({ ...formData, total: parseFloat(e.target.value) || 0 })}
               placeholder="0.00"
@@ -135,7 +135,7 @@ export default function ExtractedBillForm({
       <div className="grid gap-4 sm:grid-cols-2">
         {/* Category */}
         <div>
-          <label className="mb-1.5 block text-xs font-semibold text-zinc-400">
+          <label className="mb-1.5 block text-xs font-semibold text-[#7A756D]">
             Expense Category *
           </label>
           <CategorySelector
@@ -148,7 +148,7 @@ export default function ExtractedBillForm({
 
         {/* Transaction Date */}
         <div>
-          <label className="mb-1.5 block text-xs font-semibold text-zinc-400">
+          <label className="mb-1.5 block text-xs font-semibold text-[#7A756D]">
             Date of Bill *
           </label>
           <DatePicker
@@ -160,10 +160,10 @@ export default function ExtractedBillForm({
 
       <div className="grid gap-4 sm:grid-cols-2">
         {/* Payment Method */}
-        <label className="block text-xs font-semibold text-zinc-400">
+        <label className="block text-xs font-semibold text-[#7A756D]">
           <span className="mb-1.5 block">Payment Method</span>
           <select
-            className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 outline-none focus:border-violet-500 transition-colors"
+            className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-2.5 text-sm text-[#14151A] outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
             value={formData.payment_method}
             onChange={(e) => setFormData({ ...formData, payment_method: e.target.value })}
           >
@@ -176,11 +176,11 @@ export default function ExtractedBillForm({
         </label>
 
         {/* Invoice Number */}
-        <label className="block text-xs font-semibold text-zinc-400">
+        <label className="block text-xs font-semibold text-[#7A756D]">
           <span className="mb-1.5 block">Invoice / Receipt #</span>
           <input
             type="text"
-            className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-200 placeholder-zinc-600 outline-none focus:border-violet-500 transition-colors"
+            className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-2.5 text-sm text-[#14151A] placeholder-[#7A756D] outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
             value={formData.invoice_number || ""}
             onChange={(e) => setFormData({ ...formData, invoice_number: e.target.value })}
             placeholder="INV-12345 (Optional)"
@@ -189,36 +189,36 @@ export default function ExtractedBillForm({
       </div>
 
       {/* Line Items Section */}
-      <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
+      <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4">
         <div className="flex items-center justify-between mb-3">
-          <div className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+          <div className="text-xs font-bold uppercase tracking-wider text-[#7A756D]">
             Purchased Items ({formData.items?.length || 0})
           </div>
-          <span className="text-[11px] text-zinc-500">Used for smart categorization</span>
+          <span className="text-[11px] text-[#7A756D]">Used for smart categorization</span>
         </div>
 
         {formData.items && formData.items.length > 0 ? (
-          <div className="divide-y divide-zinc-900 max-h-40 overflow-y-auto pr-1">
+          <div className="divide-y divide-[#E5DFD3] max-h-40 overflow-y-auto pr-1">
             {formData.items.map((item, index) => (
               <div key={index} className="flex items-center justify-between py-2 text-xs">
                 <div className="flex items-center gap-2 min-w-0 pr-2">
-                  <span className="truncate text-zinc-200 font-medium">{item.name}</span>
+                  <span className="truncate text-[#14151A] font-medium">{item.name}</span>
                   {item.quantity && item.quantity > 1 && (
-                    <span className="rounded bg-zinc-800 px-1.5 py-0.2 text-[10px] text-zinc-400 shrink-0">
+                    <span className="rounded bg-[#F4EFE6] border border-[#E5DFD3] px-1.5 py-0.2 text-[10px] text-[#7A756D] shrink-0">
                       x{item.quantity}
                     </span>
                   )}
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
                   {item.total_price !== undefined && item.total_price > 0 && (
-                    <span className="font-semibold text-zinc-300">
+                    <span className="font-semibold text-[#14151A]">
                       ₹{item.total_price.toLocaleString("en-IN")}
                     </span>
                   )}
                   <button
                     type="button"
                     onClick={() => handleRemoveItem(index)}
-                    className="text-zinc-500 hover:text-rose-400 transition-colors"
+                    className="text-[#7A756D] hover:text-rose-600 transition-colors"
                     title="Remove item"
                   >
                     <Trash2 size={13} />
@@ -228,23 +228,23 @@ export default function ExtractedBillForm({
             ))}
           </div>
         ) : (
-          <div className="py-3 text-center text-xs text-zinc-600">
+          <div className="py-3 text-center text-xs text-[#7A756D]">
             No specific items extracted. You can add items below.
           </div>
         )}
 
         {/* Add custom item */}
-        <div className="mt-3 flex items-center gap-2 pt-2 border-t border-zinc-900">
+        <div className="mt-3 flex items-center gap-2 pt-2 border-t border-[#E5DFD3]">
           <input
             type="text"
-            className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 text-xs text-zinc-200 placeholder-zinc-500 outline-none focus:border-violet-500"
+            className="flex-1 rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-1.5 text-xs text-[#14151A] placeholder-[#7A756D] outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9]"
             value={newItemName}
             onChange={(e) => setNewItemName(e.target.value)}
             placeholder="Item name (e.g. Nike T-Shirt)"
           />
           <input
             type="number"
-            className="w-24 rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 text-xs text-zinc-200 placeholder-zinc-500 outline-none focus:border-violet-500"
+            className="w-24 rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-3 py-1.5 text-xs text-[#14151A] placeholder-[#7A756D] outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9]"
             value={newItemPrice}
             onChange={(e) => setNewItemPrice(e.target.value)}
             placeholder="Price (₹)"
@@ -252,7 +252,7 @@ export default function ExtractedBillForm({
           <button
             type="button"
             onClick={handleAddItem}
-            className="rounded-lg bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 px-3 py-1.5 text-xs font-semibold transition-colors shrink-0"
+            className="rounded-lg bg-[#FF6B4A]/10 hover:bg-[#FF6B4A]/20 text-[#FF6B4A] px-3 py-1.5 text-xs font-semibold transition-colors shrink-0"
           >
             <Plus size={14} />
           </button>
@@ -261,20 +261,20 @@ export default function ExtractedBillForm({
 
       {/* Financial Details (Subtotal, Tax, Discount) */}
       {(formData.tax || formData.subtotal || formData.discount) ? (
-        <div className="flex flex-wrap gap-4 text-xs text-zinc-400 bg-zinc-950/40 p-3 rounded-xl border border-zinc-900">
+        <div className="flex flex-wrap gap-4 text-xs text-[#45423E] bg-[#FFFDF9] p-3 rounded-xl border border-[#E5DFD3]">
           {formData.subtotal ? <span>Subtotal: ₹{formData.subtotal}</span> : null}
-          {formData.tax ? <span className="text-amber-400">GST / Tax: ₹{formData.tax}</span> : null}
-          {formData.discount ? <span className="text-emerald-400">Discount: -₹{formData.discount}</span> : null}
+          {formData.tax ? <span className="text-amber-700">GST / Tax: ₹{formData.tax}</span> : null}
+          {formData.discount ? <span className="text-emerald-700">Discount: -₹{formData.discount}</span> : null}
         </div>
       ) : null}
 
       {/* Buttons */}
-      <div className="mt-auto flex items-center justify-end gap-3 pt-3 border-t border-zinc-800/80">
+      <div className="mt-auto flex items-center justify-end gap-3 pt-3 border-t border-[#E5DFD3]">
         <button
           type="button"
           onClick={onCancel}
           disabled={isSubmitting}
-          className="rounded-xl px-4 py-2.5 text-xs font-semibold text-zinc-400 hover:bg-zinc-900 hover:text-white transition-colors"
+          className="rounded-xl px-4 py-2.5 text-xs font-semibold text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] transition-colors"
         >
           Cancel
         </button>
@@ -282,7 +282,7 @@ export default function ExtractedBillForm({
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="flex items-center gap-2 rounded-xl bg-violet-500 px-5 py-2.5 text-xs font-bold text-white hover:bg-violet-400 transition-all shadow-lg shadow-violet-500/20 disabled:opacity-50"
+          className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-5 py-2.5 text-xs font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#FF6B4A]/25 disabled:opacity-50"
         >
           {isSubmitting ? "Creating Expense..." : "Confirm & Add Expense"}
         </button>

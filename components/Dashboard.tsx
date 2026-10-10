@@ -109,22 +109,22 @@ function MetricCard({
   onClick?: () => void;
 }) {
   const deltaColor = 
-    deltaType === "positive" ? "text-emerald-400" :
-    deltaType === "negative" ? "text-rose-400" :
-    "text-zinc-500 font-normal";
+    deltaType === "positive" ? "text-emerald-600 font-medium" :
+    deltaType === "negative" ? "text-rose-600 font-medium" :
+    "text-[#7a756d] font-normal";
 
   return (
     <div 
-      className={`rounded-2xl border border-zinc-800/90 bg-zinc-950/75 p-5 ${onClick ? 'cursor-pointer hover:border-violet-500/30 hover:bg-zinc-900 transition-all' : ''}`}
+      className={`rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 shadow-sm transition-all ${onClick ? 'cursor-pointer hover:border-[#ff6b4a]/40 hover:shadow-md hover:bg-white' : ''}`}
       onClick={onClick}
     >
       <div className="flex items-center justify-between">
-        <span className="text-sm text-zinc-500">{label}</span>
-        <div className="grid h-9 w-9 place-items-center rounded-xl bg-violet-500/10 text-violet-300">
+        <span className="text-sm font-medium text-[#7a756d]">{label}</span>
+        <div className="grid h-9 w-9 place-items-center rounded-xl bg-[#ff6b4a]/10 text-[#ff6b4a]">
           <Icon size={18} />
         </div>
       </div>
-      <div className="mt-4 text-2xl font-black tracking-tight">{value}</div>
+      <div className="mt-4 text-2xl font-black tracking-tight text-[#14151a]">{value}</div>
       {delta && <div className={`mt-1 text-xs ${deltaColor}`}>{delta}</div>}
     </div>
   );
@@ -917,22 +917,22 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
   ] as const;
   if (!onboardingData) {
     return (
-      <div className="grid min-h-screen place-items-center bg-[#08070b] text-zinc-400">
+      <div className="grid min-h-screen place-items-center bg-[#faf6ee] text-[#45423e]">
         Loading your dashboard...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#08070b]">
+    <div className="min-h-screen bg-[#faf6ee] text-[#14151a]">
       <div className="flex min-h-screen">
-        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-zinc-800 bg-[#0b0910] p-6 transition-transform lg:static lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-[#e5dfd3] bg-[#f7f2e7] p-6 transition-transform lg:static lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-2xl font-black tracking-tight">SPEND<span className="text-violet-400">WISE</span></div>
-              <div className="mt-1 text-xs text-zinc-600">Personal finance OS</div>
+              <div className="text-2xl font-black tracking-tight text-[#14151a]">SPEND<span className="text-[#ff6b4a]">WISE</span></div>
+              <div className="mt-1 text-xs text-[#7a756d]">Personal finance OS</div>
             </div>
-            <button className="lg:hidden text-zinc-400" onClick={() => setMobileOpen(false)}><X /></button>
+            <button className="lg:hidden text-[#7a756d] hover:text-[#14151a]" onClick={() => setMobileOpen(false)}><X /></button>
           </div>
 
           <div className="mt-10 space-y-2">
@@ -940,7 +940,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <button
                 key={label}
                 onClick={() => { setActive(label); setMobileOpen(false); }}
-                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold ${active === label ? "bg-violet-500/12 text-violet-300 ring-1 ring-violet-500/15" : "text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"}`}
+                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === label ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}
               >
                 <Icon size={18} />
                 {label}
@@ -948,82 +948,82 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ))}
           </div>
 
-          <div className="mt-8 border-t border-zinc-800 pt-5 space-y-2">
-            <button onClick={() => { setActive("Reports"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold ${active === "Reports" ? "bg-violet-500/12 text-violet-300 ring-1 ring-violet-500/15" : "text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"}`}><ShieldCheck size={18}/> Financial Score</button>
-            <button onClick={() => { setActive("Achievements"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold ${active === "Achievements" ? "bg-violet-500/12 text-violet-300 ring-1 ring-violet-500/15" : "text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"}`}><Sparkles size={18}/> Achievements</button>
-            <button onClick={() => { setActive("Settings"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold ${active === "Settings" ? "bg-violet-500/12 text-violet-300 ring-1 ring-violet-500/15" : "text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"}`}><Settings size={18}/> Settings</button>
+          <div className="mt-8 border-t border-[#e5dfd3] pt-5 space-y-2">
+            <button onClick={() => { setActive("Reports"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Reports" ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}><ShieldCheck size={18}/> Financial Score</button>
+            <button onClick={() => { setActive("Achievements"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Achievements" ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}><Sparkles size={18}/> Achievements</button>
+            <button onClick={() => { setActive("Settings"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Settings" ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}><Settings size={18}/> Settings</button>
           </div>
 
-          <div className="mt-4 border-t border-zinc-900 pt-3 pb-24 px-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-zinc-600">
-            <Link href="/terms" target="_blank" className="hover:text-zinc-400">Terms</Link>
+          <div className="mt-4 border-t border-[#e5dfd3]/80 pt-3 pb-24 px-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-[#8a847b]">
+            <Link href="/terms" target="_blank" className="hover:text-[#14151a]">Terms</Link>
             <span>•</span>
-            <Link href="/privacy" target="_blank" className="hover:text-zinc-400">Privacy</Link>
+            <Link href="/privacy" target="_blank" className="hover:text-[#14151a]">Privacy</Link>
             <span>•</span>
-            <Link href="/disclaimer" target="_blank" className="hover:text-zinc-400">Disclaimer</Link>
+            <Link href="/disclaimer" target="_blank" className="hover:text-[#14151a]">Disclaimer</Link>
             <span>•</span>
-            <Link href="/contact" target="_blank" className="hover:text-zinc-400">Support</Link>
+            <Link href="/contact" target="_blank" className="hover:text-[#14151a]">Support</Link>
           </div>
 
-          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
-            <div className="text-xs text-zinc-600">SIGNED IN AS</div>
-            <div className="mt-1 truncate text-sm text-zinc-300">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "demo@spendwise.app"}</div>
-            <button onClick={signOut} className="mt-4 flex items-center gap-2 text-sm text-zinc-500 hover:text-red-300"><LogOut size={16}/> Sign out</button>
+          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-4 shadow-sm">
+            <div className="text-xs text-[#8a847b] uppercase tracking-wider font-semibold">SIGNED IN AS</div>
+            <div className="mt-1 truncate text-sm text-[#14151a] font-medium">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "demo@spendwise.app"}</div>
+            <button onClick={signOut} className="mt-4 flex items-center gap-2 text-sm text-[#7a756d] hover:text-rose-600 transition-colors"><LogOut size={16}/> Sign out</button>
           </div>
         </aside>
 
-        {mobileOpen && <button aria-label="Close menu" className="fixed inset-0 z-30 bg-black/70 lg:hidden" onClick={() => setMobileOpen(false)} />}
+        {mobileOpen && <button aria-label="Close menu" className="fixed inset-0 z-30 bg-black/40 lg:hidden" onClick={() => setMobileOpen(false)} />}
 
         <main className="min-w-0 flex-1">
-          <header className="sticky top-0 z-20 border-b border-zinc-800/80 bg-[#08070b]/85 backdrop-blur">
+          <header className="sticky top-0 z-20 border-b border-[#e5dfd3] bg-[#faf6ee]/90 backdrop-blur">
             <div className="flex items-center justify-between px-5 py-4 lg:px-8">
               <div className="flex items-center gap-3">
-                <button className="lg:hidden text-zinc-400" onClick={() => setMobileOpen(true)}><Menu /></button>
+                <button className="lg:hidden text-[#7a756d] hover:text-[#14151a]" onClick={() => setMobileOpen(true)}><Menu /></button>
                 <div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-zinc-600">
+                  <div className="text-xs uppercase tracking-[0.18em] text-[#7a756d]">
                     {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                   </div>
-                  <div className="mt-1 text-lg font-bold">{active}</div>
+                  <div className="mt-1 text-lg font-bold text-[#14151a]">{active}</div>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setShowImportModal(true)} 
-                  className="hidden items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2.5 text-sm font-bold text-violet-300 hover:bg-violet-500/20 sm:flex transition-all"
+                  className="hidden items-center gap-2 rounded-xl border border-[#ff6b4a]/30 bg-[#ff6b4a]/10 px-4 py-2.5 text-sm font-bold text-[#ff6b4a] hover:bg-[#ff6b4a]/15 sm:flex transition-all"
                 >
-                  <FileSpreadsheet size={16} className="text-violet-400" /> Import statement
+                  <FileSpreadsheet size={16} className="text-[#ff6b4a]" /> Import statement
                 </button>
                 <button 
                   onClick={() => setShowBillModal(true)} 
-                  className="hidden items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2.5 text-sm font-bold text-violet-300 hover:bg-violet-500/20 sm:flex transition-all"
+                  className="hidden items-center gap-2 rounded-xl border border-[#ff6b4a]/30 bg-[#ff6b4a]/10 px-4 py-2.5 text-sm font-bold text-[#ff6b4a] hover:bg-[#ff6b4a]/15 sm:flex transition-all"
                 >
-                  <Sparkles size={16} className="text-violet-400" /> Upload bill
+                  <Sparkles size={16} className="text-[#ff6b4a]" /> Upload bill
                 </button>
-                <button onClick={() => setShowExpense(true)} className="hidden items-center gap-2 rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-violet-400 sm:flex">
+                <button onClick={() => setShowExpense(true)} className="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-[#ff6b4a] to-[#ff5733] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-[#ff6b4a]/25 hover:brightness-105 sm:flex transition-all">
                   <Plus size={17}/> Add expense
                 </button>
                 <div className="relative">
                   <button 
                     onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                    className="grid h-10 w-10 place-items-center rounded-full bg-violet-500/15 text-sm font-black text-violet-300 hover:bg-violet-500/25 transition-colors"
+                    className="grid h-10 w-10 place-items-center rounded-full bg-[#ff6b4a]/15 text-sm font-black text-[#ff6b4a] hover:bg-[#ff6b4a]/25 transition-colors"
                   >
                     {(onboardingData?.name?.[0] ?? onboardingData?.username?.[0] ?? userEmail?.[0] ?? "U").toUpperCase()}
                   </button>
                   
                   {profileMenuOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-zinc-800 bg-zinc-950 p-2 shadow-2xl">
+                    <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-2 shadow-xl">
                       <div className="px-3 py-2">
-                        <div className="text-xs text-zinc-500">Signed in as</div>
-                        <div className="truncate text-sm font-semibold">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "Guest User"}</div>
+                        <div className="text-xs text-[#7a756d]">Signed in as</div>
+                        <div className="truncate text-sm font-semibold text-[#14151a]">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "Guest User"}</div>
                         {onboardingData?.email && (
-                          <div className="truncate text-xs text-zinc-500">{onboardingData.email}</div>
+                          <div className="truncate text-xs text-[#7a756d]">{onboardingData.email}</div>
                         )}
                       </div>
-                      <div className="my-1 h-px bg-zinc-800" />
-                      <button onClick={() => { setActive("Settings"); setProfileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
+                      <div className="my-1 h-px bg-[#e5dfd3]" />
+                      <button onClick={() => { setActive("Settings"); setProfileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-[#45423e] hover:bg-[#f4efe6] hover:text-[#14151a]">
                         <Settings size={16} /> Settings
                       </button>
-                      <button onClick={signOut} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-red-400 hover:bg-zinc-900 hover:text-red-300">
+                      <button onClick={signOut} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-rose-600 hover:bg-rose-50 hover:text-rose-700">
                         <LogOut size={16} /> Sign out & Reset
                       </button>
                     </div>
@@ -1035,25 +1035,25 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
           <div className="mx-auto max-w-7xl p-5 lg:p-8">
             {active === "Dashboard" && (
-              <section className="mb-8 rounded-3xl border border-violet-500/15 bg-gradient-to-br from-violet-500/10 via-zinc-950 to-zinc-950 p-6 lg:p-8">
+              <section className="mb-8 rounded-3xl border border-[#ff6b4a]/25 bg-gradient-to-br from-[#fff2ee] via-[#fffdf9] to-[#f7f2e7] p-6 lg:p-8 shadow-sm">
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                   <div>
-                    <div className="text-sm text-zinc-500">{new Date().toLocaleDateString('en-US', { month: 'long' })} overview</div>
-                    <h1 className="mt-2 text-3xl font-black tracking-tight lg:text-4xl">Your money, under control.</h1>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-500">
+                    <div className="text-sm font-medium text-[#7a756d]">{new Date().toLocaleDateString('en-US', { month: 'long' })} overview</div>
+                    <h1 className="mt-2 text-3xl font-black tracking-tight text-[#14151a] lg:text-4xl">Your money, under control.</h1>
+                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[#45423e]">
                       You have spent {money(totalSpent)} this month and invested {money(investment)}. Your current projected savings are {money(saved)}.
                     </p>
                   </div>
 
-                  <div className="w-full max-w-sm rounded-2xl border border-zinc-800 bg-black/30 p-5">
+                  <div className="w-full max-w-sm rounded-2xl border border-[#e5dfd3] bg-[#fffdf9]/95 p-5 shadow-sm">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-zinc-500">Financial health</span>
-                      <span className="font-black text-violet-300">82 / 100</span>
+                      <span className="text-sm font-medium text-[#7a756d]">Financial health</span>
+                      <span className="font-black text-[#ff6b4a]">82 / 100</span>
                     </div>
-                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-zinc-800">
-                      <div className="h-full w-[82%] rounded-full bg-violet-500" />
+                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#e8e1d2]">
+                      <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#ff6b4a] to-[#ff8566]" />
                     </div>
-                    <div className="mt-2 text-xs text-zinc-600">Strong progress. Keep discretionary spending below your budget.</div>
+                    <div className="mt-2 text-xs text-[#7a756d]">Strong progress. Keep discretionary spending below your budget.</div>
                   </div>
                 </div>
               </section>
@@ -1062,28 +1062,28 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             {active === "Dashboard" ? (
               <>
                 {!monthlyGoal ? (
-                  <section className="mb-6 flex items-center justify-between rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/50 p-6">
+                  <section className="mb-6 flex items-center justify-between rounded-2xl border border-dashed border-[#e5dfd3] bg-[#fffdf9]/70 p-6 shadow-sm">
                     <div>
-                      <h3 className="font-bold text-zinc-300">Set a Monthly Goal</h3>
-                      <p className="mt-1 text-sm text-zinc-500">Track a specific target like investing or saving.</p>
+                      <h3 className="font-bold text-[#14151a]">Set a Monthly Goal</h3>
+                      <p className="mt-1 text-sm text-[#7a756d]">Track a specific target like investing or saving.</p>
                     </div>
-                    <button onClick={() => setShowGoalModal(true)} className="rounded-xl bg-violet-500 px-4 py-2 text-sm font-bold text-white hover:bg-violet-400">
+                    <button onClick={() => setShowGoalModal(true)} className="rounded-xl bg-gradient-to-r from-[#ff6b4a] to-[#ff5733] px-4 py-2 text-sm font-bold text-white hover:brightness-105 shadow-md shadow-[#ff6b4a]/20 transition-all">
                       Set Goal
                     </button>
                   </section>
                 ) : (
-                  <section className="mb-6 rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
+                  <section className="mb-6 rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <h3 className="font-bold text-zinc-300">Monthly Goal: {monthlyGoal.category}</h3>
-                        <p className="mt-1 text-sm text-zinc-500">Target: {money(Number(monthlyGoal.amount))}</p>
+                        <h3 className="font-bold text-[#14151a]">Monthly Goal: {monthlyGoal.category}</h3>
+                        <p className="mt-1 text-sm text-[#7a756d]">Target: {money(Number(monthlyGoal.amount))}</p>
                       </div>
-                      <button onClick={() => setShowGoalModal(true)} className="text-sm font-medium text-violet-400 hover:text-violet-300">Edit Goal</button>
+                      <button onClick={() => setShowGoalModal(true)} className="text-sm font-medium text-[#ff6b4a] hover:text-[#ff5733]">Edit Goal</button>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-900">
-                      <div className="h-full rounded-full bg-violet-500 transition-all" style={{ width: `${Math.min(((monthlyGoal.category === 'Invest' ? investment : monthlyGoal.category === 'Save' ? saved : totalSpent) / Number(monthlyGoal.amount)) * 100, 100)}%` }} />
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#e8e1d2]">
+                      <div className="h-full rounded-full bg-gradient-to-r from-[#ff6b4a] to-[#ff8566] transition-all" style={{ width: `${Math.min(((monthlyGoal.category === 'Invest' ? investment : monthlyGoal.category === 'Save' ? saved : totalSpent) / Number(monthlyGoal.amount)) * 100, 100)}%` }} />
                     </div>
-                    <div className="mt-2 text-xs font-medium text-zinc-500">
+                    <div className="mt-2 text-xs font-medium text-[#7a756d]">
                       {money(monthlyGoal.category === 'Invest' ? investment : monthlyGoal.category === 'Save' ? saved : totalSpent)} / {money(Number(monthlyGoal.amount))} achieved
                     </div>
                   </section>
@@ -1097,41 +1097,41 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 </section>
 
                 <section className="mt-6 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                  <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h2 className="font-bold">Spending trend</h2>
-                        <p className="mt-1 text-xs text-zinc-600">
+                        <h2 className="font-bold text-[#14151a]">Spending trend</h2>
+                        <p className="mt-1 text-xs text-[#7a756d]">
                           {dynamicMonthlyTrend.length < 2 ? "First month tracking" : "Last six months"}
                         </p>
                       </div>
                       {dynamicMonthlyTrend.length < 2 ? (
-                        <div className="rounded-lg bg-violet-500/10 px-3 py-1.5 text-xs text-violet-300 border border-violet-500/20 font-medium">
+                        <div className="rounded-lg bg-[#ff6b4a]/10 px-3 py-1.5 text-xs text-[#ff6b4a] border border-[#ff6b4a]/20 font-medium">
                           Comparison unlocks next month
                         </div>
                       ) : (
-                        <div className="rounded-lg bg-zinc-900 px-3 py-2 text-xs text-zinc-500">Monthly</div>
+                        <div className="rounded-lg bg-[#f4efe6] px-3 py-2 text-xs text-[#7a756d]">Monthly</div>
                       )}
                     </div>
                     <div className="mt-6 h-72">
                       <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={dynamicMonthlyTrend}>
-                          <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false}/>
-                          <XAxis dataKey="month" stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                          <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                          <Tooltip contentStyle={{ background: "#111018", border: "1px solid #29243a", borderRadius: 14 }}/>
+                          <CartesianGrid stroke="rgba(20,18,15,0.06)" vertical={false}/>
+                          <XAxis dataKey="month" stroke="#8a847b" fontSize={12} tickLine={false} axisLine={false}/>
+                          <YAxis stroke="#8a847b" fontSize={12} tickLine={false} axisLine={false}/>
+                          <Tooltip contentStyle={{ background: "#fffdf9", border: "1px solid #e5dfd3", borderRadius: 14, color: "#14151a", boxShadow: "0 10px 25px rgba(20,18,15,0.08)" }}/>
                           <Legend />
-                          <Line type="monotone" dataKey="spent" stroke="#8b5cf6" strokeWidth={3} dot={false}/>
-                          <Line type="monotone" dataKey="saved" stroke="#4ade80" strokeWidth={3} dot={false}/>
+                          <Line type="monotone" dataKey="spent" stroke="#ff6b4a" strokeWidth={3} dot={false}/>
+                          <Line type="monotone" dataKey="saved" stroke="#059669" strokeWidth={3} dot={false}/>
                         </LineChart>
                       </ResponsiveContainer>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                  <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
                     <div>
-                      <h2 className="font-bold">Category breakdown</h2>
-                      <p className="mt-1 text-xs text-zinc-600">Where this month&apos;s money went</p>
+                      <h2 className="font-bold text-[#14151a]">Category breakdown</h2>
+                      <p className="mt-1 text-xs text-[#7a756d]">Where this month&apos;s money went</p>
                     </div>
                     <div className="mt-5 space-y-4">
                       {dynamicCategoryBreakdown.map((row) => {
@@ -1141,14 +1141,14 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                           <div key={row.name}>
                             <div className="flex items-center justify-between text-sm">
                               <div className="flex items-center gap-3">
-                                <div className="grid h-8 w-8 place-items-center rounded-lg bg-zinc-900 text-zinc-500"><Icon size={15}/></div>
-                                <span className="text-zinc-300">{row.name}</span>
+                                <div className="grid h-8 w-8 place-items-center rounded-lg bg-[#f4efe6] text-[#7a756d]"><Icon size={15}/></div>
+                                <span className="text-[#45423e]">{row.name}</span>
                               </div>
-                              <span className="font-semibold">{money(row.value)}</span>
+                              <span className="font-semibold text-[#14151a]">{money(row.value)}</span>
                             </div>
                             <div className="mt-2 flex items-center gap-3">
-                              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-zinc-900"><div className="h-full rounded-full bg-violet-500" style={{ width: `${Math.min(pct, 100)}%` }}/></div>
-                              <span className="w-9 text-right text-xs text-zinc-600">{pct}%</span>
+                              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#e8e1d2]"><div className="h-full rounded-full bg-[#ff6b4a]" style={{ width: `${Math.min(pct, 100)}%` }}/></div>
+                              <span className="w-9 text-right text-xs text-[#7a756d]">{pct}%</span>
                             </div>
                           </div>
                         );
@@ -1158,43 +1158,43 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 </section>
 
                 <section className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                  <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h2 className="font-bold">Recent transactions</h2>
-                        <p className="mt-1 text-xs text-zinc-600">Latest recorded activity</p>
+                        <h2 className="font-bold text-[#14151a]">Recent transactions</h2>
+                        <p className="mt-1 text-xs text-[#7a756d]">Latest recorded activity</p>
                       </div>
-                      <button className="text-xs font-semibold text-violet-300" onClick={() => setActive("Transactions")}>View all</button>
+                      <button className="text-xs font-semibold text-[#ff6b4a] hover:text-[#ff5733]" onClick={() => setActive("Transactions")}>View all</button>
                     </div>
-                    <div className="mt-5 divide-y divide-zinc-900">
+                    <div className="mt-5 divide-y divide-[#e5dfd3]">
                       {allExpenses.length === 0 ? (
-                        <div className="py-8 text-center text-sm text-zinc-500">
+                        <div className="py-8 text-center text-sm text-[#7a756d]">
                           No recent transactions found. Add an expense to see it here!
                         </div>
                       ) : (
                         allExpenses.slice(0, 6).map((e) => {
                           const Icon = iconForCategory[e.category] ?? CircleDollarSign;
                           return (
-                            <div key={e.id} className="flex items-center justify-between py-4 group">
+                            <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#f7f2e7]/60 -mx-4 px-4 rounded-xl transition-colors group">
                               <div className="flex items-center gap-3">
-                                <div className="grid h-10 w-10 place-items-center rounded-xl bg-zinc-900 text-zinc-500"><Icon size={17}/></div>
+                                <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#f4efe6] text-[#7a756d]"><Icon size={17}/></div>
                                 <div>
-                                  <div className="text-sm font-semibold flex items-center gap-2">
+                                  <div className="text-sm font-semibold flex items-center gap-2 text-[#14151a]">
                                     {e.title}
-                                    {e.is_recurring && <span className="inline-flex items-center rounded bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-300 ring-1 ring-inset ring-violet-500/20">Recurring</span>}
-                                    {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/20">Imported</span>}
-                                    {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/20">Bill</span>}
+                                    {e.is_recurring && <span className="inline-flex items-center rounded bg-[#ff6b4a]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#ff6b4a] ring-1 ring-inset ring-[#ff6b4a]/25">Recurring</span>}
+                                    {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-700 border border-blue-500/20">Imported</span>}
+                                    {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 border border-emerald-500/20">Bill</span>}
                                   </div>
-                                  <div className="mt-1 text-xs text-zinc-600">{e.category} • {e.payment_method} • {e.date}</div>
+                                  <div className="mt-1 text-xs text-[#7a756d]">{e.category} • {e.payment_method} • {e.date}</div>
                                 </div>
                               </div>
                               <div className="flex items-center gap-3">
-                                <div className="text-sm font-bold">{money(e.amount)}</div>
+                                <div className="text-sm font-bold text-[#14151a]">{money(e.amount)}</div>
                                 <button
                                   onClick={() => deleteExpense(e.id)}
                                   aria-label={`Delete ${e.title}`}
                                   title="Delete transaction"
-                                  className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                                  className="p-1.5 text-[#8a847b] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                                 >
                                   <Trash2 size={16} />
                                 </button>
@@ -1206,97 +1206,97 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center gap-3">
-                      <div className="grid h-10 w-10 place-items-center rounded-xl bg-violet-500/10 text-violet-300"><Sparkles size={18}/></div>
+                      <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#FF6B4A]/10 text-[#FF6B4A]"><Sparkles size={18}/></div>
                       <div>
-                        <h2 className="font-bold">Monthly insight</h2>
-                        <p className="text-xs text-zinc-600">Generated from your activity</p>
+                        <h2 className="font-bold text-[#14151A]">Monthly insight</h2>
+                        <p className="text-xs text-[#7A756D]">Generated from your activity</p>
                       </div>
                     </div>
-                    <div className="mt-5 space-y-4 text-sm leading-6 text-zinc-400">
-                      <p><span className="text-white">{dynamicCategoryBreakdown.length > 0 ? dynamicCategoryBreakdown[0].name : "No expenses yet"}</span> is currently your largest expense category this month.</p>
-                      <p>Your current savings rate stands at <span className="text-violet-300">{savingsRate}%</span>.</p>
+                    <div className="mt-5 space-y-4 text-sm leading-6 text-[#45423E]">
+                      <p><span className="text-[#14151A] font-semibold">{dynamicCategoryBreakdown.length > 0 ? dynamicCategoryBreakdown[0].name : "No expenses yet"}</span> is currently your largest expense category this month.</p>
+                      <p>Your current savings rate stands at <span className="text-[#FF6B4A] font-semibold">{savingsRate}%</span>.</p>
                       {dynamicCategoryBreakdown.length > 1 && (
-                        <p><span className="text-white">{dynamicCategoryBreakdown[1].name}</span> is your second highest expense. Keep an eye on it to maximize your savings.</p>
+                        <p><span className="text-[#14151A] font-semibold">{dynamicCategoryBreakdown[1].name}</span> is your second highest expense. Keep an eye on it to maximize your savings.</p>
                       )}
                     </div>
-                    <div className="mt-6 rounded-xl border border-emerald-500/15 bg-emerald-500/5 p-4">
-                      <div className="flex items-center gap-2 text-sm font-semibold text-emerald-300"><ArrowUpRight size={16}/> New achievement</div>
-                      <div className="mt-2 text-sm text-zinc-400">{Number(savingsRate) >= 20 ? "Consistent Saver — you're saving more than 20% of your income!" : "Keep it up — you're on the path to better financial health."}</div>
+                    <div className="mt-6 rounded-xl border border-emerald-600/20 bg-emerald-500/10 p-4">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700"><ArrowUpRight size={16}/> New achievement</div>
+                      <div className="mt-2 text-sm text-[#45423E]">{Number(savingsRate) >= 20 ? "Consistent Saver — you're saving more than 20% of your income!" : "Keep it up — you're on the path to better financial health."}</div>
                     </div>
                   </div>
                 </section>
               </>
             ) : active === "Transactions" ? (
               <section className="space-y-6">
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h2 className="font-bold">Spending trend</h2>
-                      <p className="mt-1 text-xs text-zinc-600">
+                      <h2 className="font-bold text-[#14151A]">Spending trend</h2>
+                      <p className="mt-1 text-xs text-[#7A756D]">
                         {dynamicMonthlyTrend.length < 2 ? "First month tracking" : "Last six months"}
                       </p>
                     </div>
                     {dynamicMonthlyTrend.length < 2 ? (
-                      <div className="rounded-lg bg-violet-500/10 px-3 py-1.5 text-xs text-violet-300 border border-violet-500/20 font-medium">
+                      <div className="rounded-lg bg-[#FF6B4A]/10 px-3 py-1.5 text-xs text-[#FF6B4A] border border-[#FF6B4A]/25 font-semibold">
                         Comparison unlocks next month
                       </div>
                     ) : (
-                      <div className="rounded-lg bg-zinc-900 px-3 py-2 text-xs text-zinc-500">Monthly</div>
+                      <div className="rounded-lg bg-[#F4EFE6] px-3 py-2 text-xs font-medium text-[#45423E]">Monthly</div>
                     )}
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={dynamicMonthlyTrend}>
-                        <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip contentStyle={{ background: "#111018", border: "1px solid #29243a", borderRadius: 14 }}/>
+                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
                         <Legend />
-                        <Line type="monotone" dataKey="spent" stroke="#8b5cf6" strokeWidth={3} dot={false}/>
-                        <Line type="monotone" dataKey="saved" stroke="#4ade80" strokeWidth={3} dot={false}/>
+                        <Line type="monotone" dataKey="spent" stroke="#FF6B4A" strokeWidth={3} dot={false}/>
+                        <Line type="monotone" dataKey="saved" stroke="#16a34a" strokeWidth={3} dot={false}/>
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
                     <div>
-                      <h2 className="font-bold">All Transactions</h2>
-                      <p className="mt-1 text-xs text-zinc-600">Your entire expense history</p>
+                      <h2 className="font-bold text-[#14151A]">All Transactions</h2>
+                      <p className="mt-1 text-xs text-[#7A756D]">Your entire expense history</p>
                     </div>
                   </div>
-                  <div className="divide-y divide-zinc-900">
+                  <div className="divide-y divide-[#E5DFD3]">
                     {allExpenses.length === 0 ? (
-                      <div className="py-12 text-center text-zinc-500">
+                      <div className="py-12 text-center text-[#7A756D]">
                         No transactions found. Start tracking your expenses today!
                       </div>
                     ) : (
                       allExpenses.map((e) => {
                         const Icon = iconForCategory[e.category] ?? CircleDollarSign;
                         return (
-                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-zinc-900/50 -mx-4 px-4 rounded-xl transition-colors group">
+                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#F7F2E7] -mx-4 px-4 rounded-xl transition-colors group">
                             <div className="flex items-center gap-3">
-                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-zinc-900 text-zinc-500"><Icon size={17}/></div>
+                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#F4EFE6] text-[#7A756D]"><Icon size={17}/></div>
                               <div>
-                                <div className="text-sm font-semibold flex items-center gap-2">
+                                <div className="text-sm font-semibold flex items-center gap-2 text-[#14151A]">
                                   {e.title} 
-                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-300 ring-1 ring-inset ring-violet-500/20">Recurring</span>}
-                                  {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-300 border border-blue-500/20">Imported</span>}
-                                  {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/20">Bill</span>}
+                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-[#FF6B4A]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#FF6B4A] ring-1 ring-inset ring-[#FF6B4A]/25">Recurring</span>}
+                                  {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-700 border border-blue-500/20">Imported</span>}
+                                  {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 border border-emerald-500/20">Bill</span>}
                                 </div>
-                                <div className="mt-1 text-xs text-zinc-600">{e.category} • {e.payment_method} • {e.date}</div>
+                                <div className="mt-1 text-xs text-[#7A756D]">{e.category} • {e.payment_method} • {e.date}</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-3">
-                              <div className="text-sm font-bold">{money(e.amount)}</div>
+                              <div className="text-sm font-bold text-[#14151A]">{money(e.amount)}</div>
                               <button
                                 onClick={() => deleteExpense(e.id)}
                                 aria-label={`Delete ${e.title}`}
                                 title="Delete transaction"
-                                className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                                className="p-1.5 text-[#7A756D] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               >
                                 <Trash2 size={16} />
                               </button>
@@ -1319,64 +1319,64 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-black">Savings Analysis</h2>
-                    <p className="mt-1 text-sm text-zinc-500">Track and forecast your savings</p>
+                    <h2 className="text-2xl font-black text-[#14151A]">Savings Analysis</h2>
+                    <p className="mt-1 text-sm text-[#7A756D]">Track and forecast your savings</p>
                   </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-center">
-                    <h3 className="text-sm font-semibold text-zinc-400">Total Savings (This Month)</h3>
-                    <div className="mt-4 text-4xl font-black text-emerald-400">{money(saved)}</div>
-                    <div className="mt-2 text-sm text-zinc-500">
-                      Your current savings rate is <span className="font-bold text-white">{savingsRate}%</span>. 
+                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm flex flex-col justify-center">
+                    <h3 className="text-sm font-semibold text-[#7A756D]">Total Savings (This Month)</h3>
+                    <div className="mt-4 text-4xl font-black text-emerald-600">{money(saved)}</div>
+                    <div className="mt-2 text-sm text-[#45423E]">
+                      Your current savings rate is <span className="font-bold text-[#14151A]">{savingsRate}%</span>. 
                       {dynamicMonthlyTrend.length >= 2 ? (
-                        <span className="block mt-1">Last month you saved <strong className="text-white">{money(dynamicMonthlyTrend[dynamicMonthlyTrend.length - 2].saved)}</strong>.</span>
+                        <span className="block mt-1">Last month you saved <strong className="text-[#14151A]">{money(dynamicMonthlyTrend[dynamicMonthlyTrend.length - 2].saved)}</strong>.</span>
                       ) : (
-                        <span className="block mt-1 text-zinc-500">First month tracking — month-over-month comparisons unlock next month.</span>
+                        <span className="block mt-1 text-[#7A756D]">First month tracking — month-over-month comparisons unlock next month.</span>
                       )}
                     </div>
                   </div>
                   
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
-                    <h3 className="text-sm font-semibold text-zinc-400">1-Year Forecast</h3>
-                    <div className="mt-4 text-4xl font-black text-violet-400">{money(saved > 0 ? saved * 12 : 0)}</div>
-                    <div className="mt-2 text-sm text-zinc-500">
+                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm">
+                    <h3 className="text-sm font-semibold text-[#7A756D]">1-Year Forecast</h3>
+                    <div className="mt-4 text-4xl font-black text-[#FF6B4A]">{money(saved > 0 ? saved * 12 : 0)}</div>
+                    <div className="mt-2 text-sm text-[#45423E]">
                       By keeping up this month's average, you can accumulate up to this amount in a year!
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
                     <div>
-                      <h2 className="font-bold">Historical Savings Trend</h2>
-                      <p className="mt-1 text-xs text-zinc-600">Your savings over the past 6 months</p>
+                      <h2 className="font-bold text-[#14151A]">Historical Savings Trend</h2>
+                      <p className="mt-1 text-xs text-[#7A756D]">Your savings over the past 6 months</p>
                     </div>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={dynamicMonthlyTrend}>
-                        <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip cursor={{ fill: 'rgba(255,255,255,0.05)' }} contentStyle={{ background: "#111018", border: "1px solid #29243a", borderRadius: 14 }}/>
+                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip cursor={{ fill: 'rgba(20,21,26,0.04)' }} contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
                         <Legend />
-                        <Bar name="Saved Amount" dataKey="saved" fill="#4ade80" radius={[4, 4, 0, 0]} />
+                        <Bar name="Saved Amount" dataKey="saved" fill="#16a34a" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-emerald-500/15 bg-gradient-to-br from-emerald-500/10 via-zinc-950 to-zinc-950 p-6">
+                <div className="rounded-2xl border border-emerald-600/20 bg-gradient-to-br from-emerald-500/10 via-[#FFFDF9] to-[#F7F2E7] p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-500/20 text-emerald-400"><Target size={18}/></div>
+                    <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-600/15 text-emerald-700"><Target size={18}/></div>
                     <div>
-                      <h2 className="font-bold">Smart Analysis</h2>
-                      <p className="text-xs text-emerald-500/70">Actionable insights</p>
+                      <h2 className="font-bold text-[#14151A]">Smart Analysis</h2>
+                      <p className="text-xs text-emerald-700 font-medium">Actionable insights</p>
                     </div>
                   </div>
-                  <div className="space-y-4 text-sm leading-6 text-zinc-300">
+                  <div className="space-y-4 text-sm leading-6 text-[#45423E]">
                     <p>
                       {Number(savingsRate) >= 20 
                         ? `Excellent job! You are saving ${savingsRate}%, which exceeds the recommended 20% target.` 
@@ -1385,7 +1385,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     {dynamicCategoryBreakdown.length > 0 && (
                       <p>
                         Your largest expense category is <strong>{dynamicCategoryBreakdown[0].name}</strong> ({money(dynamicCategoryBreakdown[0].value)}). 
-                        Cutting this down by just 10% would instantly boost your annual savings by <span className="font-bold text-emerald-400">{money(dynamicCategoryBreakdown[0].value * 0.1 * 12)}</span>.
+                        Cutting this down by just 10% would instantly boost your annual savings by <span className="font-bold text-emerald-600">{money(dynamicCategoryBreakdown[0].value * 0.1 * 12)}</span>.
                       </p>
                     )}
                   </div>
@@ -1394,8 +1394,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Investments" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black">Investments</h2>
-                  <button onClick={() => { setNewExpense({...newExpense, category: 'Invest'}); setShowExpense(true); }} className="flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-violet-400">
+                  <h2 className="text-2xl font-black text-[#14151A]">Investments</h2>
+                  <button onClick={() => { setNewExpense({...newExpense, category: 'Invest'}); setShowExpense(true); }} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">
                     <Plus size={17}/> Add Investment
                   </button>
                 </div>
@@ -1405,57 +1405,57 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <MetricCard label="All-time Investments" value={money(allExpenses.filter(e => e.category === 'Invest').reduce((sum, e) => sum + e.amount, 0))} icon={PiggyBank}/>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
                     <div>
-                      <h2 className="font-bold">Investment Growth</h2>
-                      <p className="mt-1 text-xs text-zinc-600">Your historical investments</p>
+                      <h2 className="font-bold text-[#14151A]">Investment Growth</h2>
+                      <p className="mt-1 text-xs text-[#7A756D]">Your historical investments</p>
                     </div>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={dynamicInvestmentTrend}>
-                        <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip contentStyle={{ background: "#111018", border: "1px solid #29243a", borderRadius: 14 }}/>
+                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
                         <Legend />
-                        <Line type="monotone" name="Invested" dataKey="invested" stroke="#10b981" strokeWidth={3} dot={false}/>
+                        <Line type="monotone" name="Invested" dataKey="invested" stroke="#16a34a" strokeWidth={3} dot={false}/>
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
-                  <h2 className="font-bold">Investment History</h2>
-                  <p className="mt-1 mb-5 text-xs text-zinc-600">All your investment transactions</p>
-                  <div className="divide-y divide-zinc-900">
+                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                  <h2 className="font-bold text-[#14151A]">Investment History</h2>
+                  <p className="mt-1 mb-5 text-xs text-[#7A756D]">All your investment transactions</p>
+                  <div className="divide-y divide-[#E5DFD3]">
                     {allExpenses.filter(e => e.category === 'Invest').length === 0 ? (
-                      <div className="py-12 text-center text-zinc-500">
+                      <div className="py-12 text-center text-[#7A756D]">
                         No investments found. Start investing for your future!
                       </div>
                     ) : (
                       allExpenses.filter(e => e.category === 'Invest').map((e) => {
                         const Icon = iconForCategory[e.category] ?? CircleDollarSign;
                         return (
-                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-zinc-900/50 -mx-4 px-4 rounded-xl transition-colors group">
+                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#F7F2E7] -mx-4 px-4 rounded-xl transition-colors group">
                             <div className="flex items-center gap-3">
-                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-zinc-900 text-zinc-500"><Icon size={17}/></div>
+                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#F4EFE6] text-[#7A756D]"><Icon size={17}/></div>
                               <div>
-                                <div className="text-sm font-semibold flex items-center gap-2">
+                                <div className="text-sm font-semibold flex items-center gap-2 text-[#14151A]">
                                   {e.title}
-                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-300 ring-1 ring-inset ring-violet-500/20">Recurring</span>}
+                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-[#FF6B4A]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#FF6B4A] ring-1 ring-inset ring-[#FF6B4A]/25">Recurring</span>}
                                 </div>
-                                <div className="mt-1 text-xs text-zinc-600">{e.date} • {e.payment_method}</div>
+                                <div className="mt-1 text-xs text-[#7A756D]">{e.date} • {e.payment_method}</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-3">
-                              <div className="text-sm font-bold">{money(e.amount)}</div>
+                              <div className="text-sm font-bold text-[#14151A]">{money(e.amount)}</div>
                               <button
                                 onClick={() => deleteExpense(e.id)}
                                 aria-label={`Delete ${e.title}`}
                                 title="Delete investment"
-                                className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                                className="p-1.5 text-[#7A756D] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               >
                                 <Trash2 size={16} />
                               </button>
@@ -1471,10 +1471,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-black">Active EMIs & Loans</h2>
-                    <p className="mt-1 text-sm text-zinc-500">Track monthly EMIs, interest breakdowns, and auto-deductions</p>
+                    <h2 className="text-2xl font-black text-[#14151A]">Active EMIs & Loans</h2>
+                    <p className="mt-1 text-sm text-[#7A756D]">Track monthly EMIs, interest breakdowns, and auto-deductions</p>
                   </div>
-                  <button onClick={() => setShowEmiModal(true)} className="flex items-center gap-2 rounded-xl bg-violet-500 px-4 py-2.5 text-sm font-bold text-white hover:bg-violet-400 shadow-lg shadow-violet-500/20">
+                  <button onClick={() => setShowEmiModal(true)} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">
                     <Plus size={17}/> Add EMI
                   </button>
                 </div>
@@ -1488,7 +1488,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     return sum + totalInt;
                   }, 0);
                   const totalRemainingSum = emis.reduce((sum, e) => {
-                    const start = new Date(e.startDate);
+                    const start = new Date(emiDateSafe(e.startDate));
                     const now = new Date();
                     let monthsPassed = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
                     if (now.getDate() < e.deductionDate) {
@@ -1499,6 +1499,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     const remPrincipal = Math.max(0, Math.round(e.principal * (remainingMonths / e.tenureMonths)));
                     return sum + remPrincipal;
                   }, 0);
+
+                  function emiDateSafe(dateVal: any) {
+                    return dateVal || new Date().toISOString();
+                  }
 
                   return (
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -1512,17 +1516,17 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {emis.length === 0 ? (
-                    <div className="col-span-full rounded-2xl border border-zinc-800 bg-zinc-950 p-12 text-center text-zinc-500">
-                      <CreditCard size={36} className="mx-auto mb-3 text-zinc-600 opacity-60" />
-                      <div className="text-base font-semibold text-zinc-400">No Active EMIs</div>
-                      <p className="mt-1 text-sm text-zinc-600">Add an EMI or loan to track monthly auto-deductions and interest amounts.</p>
-                      <button onClick={() => setShowEmiModal(true)} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-violet-500/10 border border-violet-500/20 px-4 py-2 text-sm font-semibold text-violet-300 hover:bg-violet-500/20">
+                    <div className="col-span-full rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-12 text-center text-[#7A756D] shadow-sm">
+                      <CreditCard size={36} className="mx-auto mb-3 text-[#7A756D] opacity-60" />
+                      <div className="text-base font-semibold text-[#14151A]">No Active EMIs</div>
+                      <p className="mt-1 text-sm text-[#7A756D]">Add an EMI or loan to track monthly auto-deductions and interest amounts.</p>
+                      <button onClick={() => setShowEmiModal(true)} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#FF6B4A]/10 border border-[#FF6B4A]/25 px-4 py-2 text-sm font-semibold text-[#FF6B4A] hover:bg-[#FF6B4A]/20 transition-all">
                         <Plus size={15}/> Add Your First EMI
                       </button>
                     </div>
                   ) : (
                     emis.map((emi) => {
-                      const start = new Date(emi.startDate);
+                      const start = new Date(emi.startDate || new Date());
                       const now = new Date();
                       let monthsPassed = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
                       if (now.getDate() < emi.deductionDate) {
@@ -1539,51 +1543,51 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       const remainingBalance = Math.max(0, Math.round(emi.principal * (remainingMonths / (emi.tenureMonths || 1))));
 
                       return (
-                        <div key={emi.id} className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 group transition-all hover:border-violet-500/30">
+                        <div key={emi.id} className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 shadow-sm group transition-all hover:border-[#FF6B4A]/40">
                           <div className="flex items-center justify-between">
                             <div>
-                              <h3 className="font-bold text-zinc-100">{emi.title}</h3>
+                              <h3 className="font-bold text-[#14151A]">{emi.title}</h3>
                               {emi.interestRate !== undefined && (
-                                <span className="inline-block mt-0.5 text-xs text-violet-400 font-medium">
+                                <span className="inline-block mt-0.5 text-xs text-[#FF6B4A] font-medium">
                                   {emi.interestRate > 0 ? `${emi.interestRate}% p.a. interest` : "0% No-Cost EMI"}
                                 </span>
                               )}
                             </div>
                             <div className="flex items-center gap-2">
-                              <div className="grid h-8 w-8 place-items-center rounded-lg bg-violet-500/10 text-violet-400"><CreditCard size={15}/></div>
+                              <div className="grid h-8 w-8 place-items-center rounded-lg bg-[#FF6B4A]/10 text-[#FF6B4A]"><CreditCard size={15}/></div>
                               <button
                                 onClick={() => deleteEmi(emi.id)}
                                 aria-label={`Delete EMI ${emi.title}`}
                                 title="Delete EMI"
-                                className="p-1.5 text-zinc-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                                className="p-1.5 text-[#7A756D] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               >
                                 <Trash2 size={15} />
                               </button>
                             </div>
                           </div>
                           
-                          <div className="mt-4 text-2xl font-black text-white">
+                          <div className="mt-4 text-2xl font-black text-[#14151A]">
                             {money(emi.monthlyAmount)}
-                            <span className="text-xs font-normal text-zinc-500"> /mo</span>
+                            <span className="text-xs font-normal text-[#7A756D]"> /mo</span>
                           </div>
                           
-                          <div className="mt-4 mb-2 h-2 w-full overflow-hidden rounded-full bg-zinc-900">
-                            <div className="h-full rounded-full bg-gradient-to-r from-violet-600 to-violet-400 transition-all" style={{ width: `${pct}%` }} />
+                          <div className="mt-4 mb-2 h-2 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                            <div className="h-full rounded-full bg-gradient-to-r from-[#FF6B4A] to-[#FF8566] transition-all" style={{ width: `${pct}%` }} />
                           </div>
-                          <div className="flex justify-between text-xs text-zinc-500 mb-4">
+                          <div className="flex justify-between text-xs text-[#7A756D] mb-4">
                             <span>{paidMonths} of {emi.tenureMonths} paid ({pct.toFixed(0)}%)</span>
                             <span>{remainingMonths} months left</span>
                           </div>
 
-                          <div className="space-y-2 text-xs text-zinc-400 divide-y divide-zinc-900">
-                            <div className="flex justify-between pt-1.5"><span>Product Principal</span><span className="text-zinc-200 font-medium">{money(emi.principal)}</span></div>
-                            <div className="flex justify-between pt-1.5"><span>Total Interest</span><span className="text-rose-400 font-medium">{money(totalInterest)}</span></div>
-                            <div className="flex justify-between pt-1.5"><span>Interest Paid So Far</span><span className="text-amber-400 font-medium">{money(interestPaid)}</span></div>
-                            <div className="flex justify-between pt-1.5"><span>Total Payable</span><span className="text-zinc-200 font-medium">{money(totalPayable)}</span></div>
-                            <div className="flex justify-between pt-1.5"><span>Outstanding Balance</span><span className="text-emerald-400 font-semibold">{money(remainingBalance)}</span></div>
+                          <div className="space-y-2 text-xs text-[#45423E] divide-y divide-[#E5DFD3]">
+                            <div className="flex justify-between pt-1.5"><span>Product Principal</span><span className="text-[#14151A] font-medium">{money(emi.principal)}</span></div>
+                            <div className="flex justify-between pt-1.5"><span>Total Interest</span><span className="text-rose-600 font-medium">{money(totalInterest)}</span></div>
+                            <div className="flex justify-between pt-1.5"><span>Interest Paid So Far</span><span className="text-amber-700 font-medium">{money(interestPaid)}</span></div>
+                            <div className="flex justify-between pt-1.5"><span>Total Payable</span><span className="text-[#14151A] font-medium">{money(totalPayable)}</span></div>
+                            <div className="flex justify-between pt-1.5"><span>Outstanding Balance</span><span className="text-emerald-700 font-semibold">{money(remainingBalance)}</span></div>
                             <div className="flex justify-between pt-1.5 items-center">
                               <span>Auto-deduct</span>
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-violet-500/10 text-violet-300 font-medium border border-violet-500/20 text-[11px]">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FF6B4A]/10 text-[#FF6B4A] font-medium border border-[#FF6B4A]/20 text-[11px]">
                                 Day {emi.deductionDate} of month
                               </span>
                             </div>
@@ -1598,51 +1602,51 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-black">Financial Health Report</h2>
-                    <p className="mt-1 text-sm text-zinc-500">Based on the 50/30/20 Rule</p>
+                    <h2 className="text-2xl font-black text-[#14151A]">Financial Health Report</h2>
+                    <p className="mt-1 text-sm text-[#7A756D]">Based on the 50/30/20 Rule</p>
                   </div>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                  <div className="col-span-1 rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-center items-center text-center">
-                    <h3 className="text-sm font-semibold text-zinc-400">Financial Score</h3>
-                    <div className="mt-4 text-6xl font-black">{financialReportData.score}</div>
+                  <div className="col-span-1 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm flex flex-col justify-center items-center text-center">
+                    <h3 className="text-sm font-semibold text-[#7A756D]">Financial Score</h3>
+                    <div className="mt-4 text-6xl font-black text-[#14151A]">{financialReportData.score}</div>
                     <div className={`mt-2 font-bold ${financialReportData.statusColor}`}>{financialReportData.status}</div>
-                    <p className="mt-4 text-xs text-zinc-500 leading-relaxed">
+                    <p className="mt-4 text-xs text-[#7A756D] leading-relaxed">
                       This score evaluates your adherence to the 50/30/20 budget framework.
                     </p>
                   </div>
                   
-                  <div className="col-span-2 rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col lg:flex-row gap-8 items-center">
+                  <div className="col-span-2 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm flex flex-col lg:flex-row gap-8 items-center">
                     <div className="flex-1 w-full space-y-6">
-                      <h3 className="font-bold mb-6">Current Month Breakdown</h3>
+                      <h3 className="font-bold text-[#14151A] mb-6">Current Month Breakdown</h3>
                       <div>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium text-zinc-300">Needs (Target 50%)</span>
-                          <span className="text-zinc-500">{financialReportData.needsPct.toFixed(1)}% • {money(financialReportData.needsSum)}</span>
+                          <span className="font-medium text-[#45423E]">Needs (Target 50%)</span>
+                          <span className="text-[#7A756D]">{financialReportData.needsPct.toFixed(1)}% • {money(financialReportData.needsSum)}</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-900">
-                          <div className={`h-full rounded-full ${financialReportData.needsPct > 50 ? 'bg-red-500' : 'bg-emerald-500'}`} style={{ width: `${Math.min(100, financialReportData.needsPct)}%` }} />
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                          <div className={`h-full rounded-full ${financialReportData.needsPct > 50 ? 'bg-rose-500' : 'bg-emerald-600'}`} style={{ width: `${Math.min(100, financialReportData.needsPct)}%` }} />
                         </div>
                       </div>
 
                       <div>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium text-zinc-300">Wants (Target 30%)</span>
-                          <span className="text-zinc-500">{financialReportData.wantsPct.toFixed(1)}% • {money(financialReportData.wantsSum)}</span>
+                          <span className="font-medium text-[#45423E]">Wants (Target 30%)</span>
+                          <span className="text-[#7A756D]">{financialReportData.wantsPct.toFixed(1)}% • {money(financialReportData.wantsSum)}</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-900">
-                          <div className={`h-full rounded-full ${financialReportData.wantsPct > 30 ? 'bg-red-500' : 'bg-emerald-500'}`} style={{ width: `${Math.min(100, financialReportData.wantsPct)}%` }} />
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                          <div className={`h-full rounded-full ${financialReportData.wantsPct > 30 ? 'bg-rose-500' : 'bg-emerald-600'}`} style={{ width: `${Math.min(100, financialReportData.wantsPct)}%` }} />
                         </div>
                       </div>
 
                       <div>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium text-zinc-300">Savings & Investments (Target 20%)</span>
-                          <span className="text-zinc-500">{financialReportData.investPct.toFixed(1)}% • {money(financialReportData.investSum)}</span>
+                          <span className="font-medium text-[#45423E]">Savings & Investments (Target 20%)</span>
+                          <span className="text-[#7A756D]">{financialReportData.investPct.toFixed(1)}% • {money(financialReportData.investSum)}</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-900">
-                          <div className={`h-full rounded-full ${financialReportData.investPct < 20 ? 'bg-yellow-500' : 'bg-emerald-500'}`} style={{ width: `${Math.min(100, financialReportData.investPct)}%` }} />
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                          <div className={`h-full rounded-full ${financialReportData.investPct < 20 ? 'bg-amber-600' : 'bg-emerald-600'}`} style={{ width: `${Math.min(100, financialReportData.investPct)}%` }} />
                         </div>
                       </div>
                     </div>
@@ -1652,9 +1656,9 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         <PieChart>
                           <Pie 
                             data={[
-                              { name: 'Needs', value: financialReportData.needsSum, color: '#10b981' },
+                              { name: 'Needs', value: financialReportData.needsSum, color: '#16a34a' },
                               { name: 'Wants', value: financialReportData.wantsSum, color: '#f59e0b' },
-                              { name: 'Savings', value: financialReportData.investSum, color: '#8b5cf6' }
+                              { name: 'Savings', value: financialReportData.investSum, color: '#FF6B4A' }
                             ].filter(d => d.value > 0)} 
                             dataKey="value" 
                             cx="50%" cy="50%" 
@@ -1663,37 +1667,37 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                           >
                             {
                               [
-                                { name: 'Needs', value: financialReportData.needsSum, color: '#10b981' },
+                                { name: 'Needs', value: financialReportData.needsSum, color: '#16a34a' },
                                 { name: 'Wants', value: financialReportData.wantsSum, color: '#f59e0b' },
-                                { name: 'Savings', value: financialReportData.investSum, color: '#8b5cf6' }
+                                { name: 'Savings', value: financialReportData.investSum, color: '#FF6B4A' }
                               ].filter(d => d.value > 0).map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)
                             }
                           </Pie>
-                          <Tooltip contentStyle={{ background: "#111018", border: "1px solid #29243a", borderRadius: 14 }}/>
+                          <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
                         </PieChart>
                       </ResponsiveContainer>
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-5 lg:p-6">
+                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
                     <div>
-                      <h2 className="font-bold">Comprehensive Growth Timeline</h2>
-                      <p className="mt-1 text-xs text-zinc-600">Comparing Income vs Expenses vs Investments</p>
+                      <h2 className="font-bold text-[#14151A]">Comprehensive Growth Timeline</h2>
+                      <p className="mt-1 text-xs text-[#7A756D]">Comparing Income vs Expenses vs Investments</p>
                     </div>
                   </div>
                   <div className="mt-6 h-80">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={comprehensiveTrendData}>
-                        <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#71717a" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip contentStyle={{ background: "#111018", border: "1px solid #29243a", borderRadius: 14 }}/>
+                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
                         <Legend />
-                        <Line type="monotone" dataKey="Income" stroke="#4ade80" strokeWidth={2} dot={false}/>
-                        <Line type="monotone" dataKey="Expenses" stroke="#f87171" strokeWidth={2} dot={false}/>
-                        <Line type="monotone" dataKey="Investments" stroke="#818cf8" strokeWidth={2} dot={false}/>
+                        <Line type="monotone" dataKey="Income" stroke="#16a34a" strokeWidth={2.5} dot={false}/>
+                        <Line type="monotone" dataKey="Expenses" stroke="#e11d48" strokeWidth={2.5} dot={false}/>
+                        <Line type="monotone" dataKey="Investments" stroke="#FF6B4A" strokeWidth={2.5} dot={false}/>
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -1703,13 +1707,13 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-black">Achievements</h2>
-                    <p className="mt-1 text-sm text-zinc-500">Track your financial milestones and badges.</p>
+                    <h2 className="text-2xl font-black text-[#14151A]">Achievements</h2>
+                    <p className="mt-1 text-sm text-[#7A756D]">Track your financial milestones and badges.</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4">
-                  <h3 className="font-bold text-zinc-300">Earned Badges</h3>
+                  <h3 className="font-bold text-[#14151A]">Earned Badges</h3>
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {BADGES.filter(b => !!unlockedBadges[b.id]).map((badge) => {
                       const BadgeIcon = badge.icon;
@@ -1717,21 +1721,21 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         <button
                           key={badge.id}
                           onClick={() => setShowBadgeModal({ show: true, badgeId: badge.id })}
-                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-zinc-800 bg-zinc-950 hover:border-violet-500/50 hover:bg-zinc-900`}
+                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-[#E5DFD3] bg-[#FFFDF9] shadow-sm hover:border-[#FF6B4A]/50 hover:bg-[#F7F2E7]`}
                         >
                           <div className={`mb-4 grid h-12 w-12 place-items-center rounded-full ${badge.color.replace('text-', 'bg-').replace('400', '500/10')}`}>
                             <BadgeIcon className={badge.color} size={24} />
                           </div>
-                          <h3 className={`text-sm font-bold text-zinc-200`}>{badge.name}</h3>
+                          <h3 className={`text-sm font-bold text-[#14151A]`}>{badge.name}</h3>
                         </button>
                       );
                     })}
                   </div>
-                  {BADGES.filter(b => !!unlockedBadges[b.id]).length === 0 && <p className="text-zinc-500 text-sm">You haven't earned any badges yet. Keep tracking!</p>}
+                  {BADGES.filter(b => !!unlockedBadges[b.id]).length === 0 && <p className="text-[#7A756D] text-sm">You haven't earned any badges yet. Keep tracking!</p>}
                 </div>
 
                 <div className="mt-10 space-y-4">
-                  <h3 className="font-bold text-zinc-300">Locked Badges</h3>
+                  <h3 className="font-bold text-[#14151A]">Locked Badges</h3>
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {BADGES.filter(b => !unlockedBadges[b.id]).map((badge) => {
                       const BadgeIcon = badge.icon;
@@ -1739,12 +1743,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         <button
                           key={badge.id}
                           onClick={() => setShowBadgeModal({ show: true, badgeId: badge.id })}
-                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-zinc-900 bg-[#0a080d] opacity-50 hover:opacity-100 hover:border-zinc-700`}
+                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-[#E5DFD3]/80 bg-[#F4EFE6]/70 opacity-60 hover:opacity-100 hover:border-[#FF6B4A]/40`}
                         >
-                          <div className={`mb-4 grid h-12 w-12 place-items-center rounded-full bg-zinc-900`}>
-                            <BadgeIcon className="text-zinc-600" size={24} />
+                          <div className={`mb-4 grid h-12 w-12 place-items-center rounded-full bg-[#E5DFD3]/50`}>
+                            <BadgeIcon className="text-[#7A756D]" size={24} />
                           </div>
-                          <h3 className={`text-sm font-bold text-zinc-600 group-hover:text-zinc-400`}>{badge.name}</h3>
+                          <h3 className={`text-sm font-bold text-[#7A756D] group-hover:text-[#14151A]`}>{badge.name}</h3>
                         </button>
                       );
                     })}
@@ -1755,35 +1759,35 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-black">Settings</h2>
-                    <p className="mt-1 text-sm text-zinc-500">Manage your account and preferences.</p>
+                    <h2 className="text-2xl font-black text-[#14151A]">Settings</h2>
+                    <p className="mt-1 text-sm text-[#7A756D]">Manage your account and preferences.</p>
                   </div>
                 </div>
                 
                 <div className="max-w-xl space-y-6">
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-4">
-                    <h3 className="font-bold">Profile Information</h3>
-                    <p className="text-sm text-zinc-500">Update your details. These numbers power your Financial Score and Savings Analysis.</p>
+                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm space-y-4">
+                    <h3 className="font-bold text-[#14151A]">Profile Information</h3>
+                    <p className="text-sm text-[#7A756D]">Update your details. These numbers power your Financial Score and Savings Analysis.</p>
                     
                     <div className="grid gap-4 sm:grid-cols-2">
                       <label className="block text-sm">
-                        <span className="mb-2 block text-zinc-500">Full Name</span>
-                        <input className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={editSettings.name} onChange={(e) => setEditSettings({...editSettings, name: e.target.value})} />
+                        <span className="mb-2 block text-[#7A756D]">Full Name</span>
+                        <input className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.name} onChange={(e) => setEditSettings({...editSettings, name: e.target.value})} />
                       </label>
                       <label className="block text-sm">
-                        <span className="mb-2 block text-zinc-500">Date of Birth</span>
+                        <span className="mb-2 block text-[#7A756D]">Date of Birth</span>
                         <DatePicker value={editSettings.dob} onChange={(date) => setEditSettings({...editSettings, dob: date})} />
                       </label>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-3">
                       <label className="text-sm">
-                        <span className="mb-2 block text-zinc-500">Age</span>
-                        <input type="number" className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={editSettings.age} onChange={(e) => setEditSettings({...editSettings, age: e.target.value})} placeholder="e.g. 28" />
+                        <span className="mb-2 block text-[#7A756D]">Age</span>
+                        <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.age} onChange={(e) => setEditSettings({...editSettings, age: e.target.value})} placeholder="e.g. 28" />
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-zinc-500">Gender</span>
-                        <select className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={editSettings.gender} onChange={(e) => setEditSettings({...editSettings, gender: e.target.value})}>
+                        <span className="mb-2 block text-[#7A756D]">Gender</span>
+                        <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.gender} onChange={(e) => setEditSettings({...editSettings, gender: e.target.value})}>
                           <option value="">Select...</option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
@@ -1791,26 +1795,26 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         </select>
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-zinc-500">Occupation</span>
-                        <input className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={editSettings.occupation} onChange={(e) => setEditSettings({...editSettings, occupation: e.target.value})} placeholder="e.g. Engineer" />
+                        <span className="mb-2 block text-[#7A756D]">Occupation</span>
+                        <input className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.occupation} onChange={(e) => setEditSettings({...editSettings, occupation: e.target.value})} placeholder="e.g. Engineer" />
                       </label>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-3">
                       <label className="text-sm">
-                        <span className="mb-2 block text-zinc-500">User Type</span>
-                        <select className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500 text-zinc-300" value={editSettings.userType} onChange={(e) => setEditSettings({...editSettings, userType: e.target.value})}>
+                        <span className="mb-2 block text-[#7A756D]">User Type</span>
+                        <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] text-[#14151A] transition-all" value={editSettings.userType} onChange={(e) => setEditSettings({...editSettings, userType: e.target.value})}>
                           <option value="Professional">Professional</option>
                           <option value="Student">Student</option>
                         </select>
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-zinc-500">{editSettings.userType === "Student" ? "Pocket Money" : "Monthly Income"}</span>
-                        <input type="number" className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={editSettings.income} onChange={(e) => setEditSettings({...editSettings, income: e.target.value})} />
+                        <span className="mb-2 block text-[#7A756D]">{editSettings.userType === "Student" ? "Pocket Money" : "Monthly Income"}</span>
+                        <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.income} onChange={(e) => setEditSettings({...editSettings, income: e.target.value})} />
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-zinc-500">Monthly Investment Goal</span>
-                        <input type="number" className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={editSettings.monthlyInvestment} onChange={(e) => setEditSettings({...editSettings, monthlyInvestment: e.target.value})} />
+                        <span className="mb-2 block text-[#7A756D]">Monthly Investment Goal</span>
+                        <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.monthlyInvestment} onChange={(e) => setEditSettings({...editSettings, monthlyInvestment: e.target.value})} />
                       </label>
                     </div>
 
@@ -1850,38 +1854,38 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                         alert('Settings saved successfully!');
                       }}
-                      className="mt-4 rounded-xl bg-violet-500 px-6 py-2.5 font-bold text-white hover:bg-violet-400 transition-colors"
+                      className="mt-4 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-6 py-2.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#FF6B4A]/20 transition-all"
                     >
                       Save Changes
                     </button>
                   </div>
 
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
-                    <h3 className="font-bold">Legal &amp; Policies</h3>
-                    <p className="mt-1 text-sm text-zinc-500 mb-4">Review our terms of use, privacy standards, and support center.</p>
+                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm">
+                    <h3 className="font-bold text-[#14151A]">Legal &amp; Policies</h3>
+                    <p className="mt-1 text-sm text-[#7A756D] mb-4">Review our terms of use, privacy standards, and support center.</p>
                     <div className="grid gap-2.5 sm:grid-cols-2 text-sm">
-                      <Link href="/terms" target="_blank" className="flex items-center justify-between rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-3.5 text-zinc-300 hover:border-violet-500/40 hover:text-white transition-all">
+                      <Link href="/terms" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
                         <span>Terms &amp; Conditions</span>
-                        <ExternalLink size={14} className="text-zinc-500" />
+                        <ExternalLink size={14} className="text-[#7A756D]" />
                       </Link>
-                      <Link href="/privacy" target="_blank" className="flex items-center justify-between rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-3.5 text-zinc-300 hover:border-violet-500/40 hover:text-white transition-all">
+                      <Link href="/privacy" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
                         <span>Privacy Policy</span>
-                        <ExternalLink size={14} className="text-zinc-500" />
+                        <ExternalLink size={14} className="text-[#7A756D]" />
                       </Link>
-                      <Link href="/disclaimer" target="_blank" className="flex items-center justify-between rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-3.5 text-zinc-300 hover:border-violet-500/40 hover:text-white transition-all">
+                      <Link href="/disclaimer" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
                         <span>Financial Disclaimer</span>
-                        <ExternalLink size={14} className="text-zinc-500" />
+                        <ExternalLink size={14} className="text-[#7A756D]" />
                       </Link>
-                      <Link href="/contact" target="_blank" className="flex items-center justify-between rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-3.5 text-zinc-300 hover:border-violet-500/40 hover:text-white transition-all">
+                      <Link href="/contact" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
                         <span>Help &amp; Support FAQ</span>
-                        <ExternalLink size={14} className="text-zinc-500" />
+                        <ExternalLink size={14} className="text-[#7A756D]" />
                       </Link>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
-                    <h3 className="font-bold">Data Management</h3>
-                    <p className="mt-1 text-sm text-zinc-500 mb-6">Reset all your locally stored data. This action cannot be undone.</p>
+                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm">
+                    <h3 className="font-bold text-[#14151A]">Data Management</h3>
+                    <p className="mt-1 text-sm text-[#7A756D] mb-6">Reset all your locally stored data. This action cannot be undone.</p>
                     <button 
                       onClick={() => {
                         if (confirm("Are you sure you want to completely reset all your data? This will log you out.")) {
@@ -1889,7 +1893,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                           window.location.href = "/";
                         }
                       }}
-                      className="rounded-xl bg-red-500/10 px-4 py-2 font-bold text-red-500 hover:bg-red-500/20 transition-colors"
+                      className="rounded-xl bg-rose-50 border border-rose-200 px-4 py-2 font-bold text-rose-700 hover:bg-rose-100 transition-colors"
                     >
                       Factory Reset Data
                     </button>
@@ -1902,26 +1906,26 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       </div>
 
       {showExpense && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="w-full max-w-lg rounded-3xl border border-zinc-800 bg-[#0d0b12] p-6 shadow-2xl">
+            <div className="w-full max-w-lg rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs uppercase tracking-[0.16em] text-zinc-600">Transaction</div>
-                <h2 className="mt-1 text-2xl font-black">Add expense</h2>
+                <div className="text-xs uppercase tracking-[0.16em] text-[#7A756D]">Transaction</div>
+                <h2 className="mt-1 text-2xl font-black text-[#14151A]">Add expense</h2>
               </div>
-              <button onClick={() => setShowExpense(false)} className="text-zinc-500 hover:text-white"><X/></button>
+              <button onClick={() => setShowExpense(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
             </div>
 
-            <div className="mt-4 flex items-center justify-between rounded-2xl border border-violet-500/20 bg-violet-500/10 p-3 text-xs text-violet-300">
+            <div className="mt-4 flex items-center justify-between rounded-2xl border border-[#FF6B4A]/25 bg-[#FF6B4A]/10 p-3 text-xs text-[#FF6B4A]">
               <div className="flex items-center gap-2">
-                <Sparkles size={15} className="text-violet-400 shrink-0" />
-                <span>Have a receipt or bill? Auto-extract amounts and category.</span>
+                <Sparkles size={15} className="text-[#FF6B4A] shrink-0" />
+                <span className="font-medium text-[#45423E]">Have a receipt or bill? Auto-extract amounts and category.</span>
               </div>
               <button
                 type="button"
                 onClick={() => { setShowExpense(false); setShowBillModal(true); }}
-                className="rounded-lg bg-violet-500 px-2.5 py-1 text-xs font-bold text-white hover:bg-violet-400 transition-colors shrink-0"
+                className="rounded-lg bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-2.5 py-1 text-xs font-bold text-white hover:brightness-105 shadow-sm transition-all shrink-0"
               >
                 Upload Bill
               </button>
@@ -1929,19 +1933,19 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
             <div className="mt-4 grid gap-4">
               <label className="text-sm">
-                <span className="mb-2 block text-zinc-500">Title</span>
-                <input className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={newExpense.title} onChange={(e) => setNewExpense({ ...newExpense, title: e.target.value })} placeholder="Dinner with friends"/>
+                <span className="mb-2 block text-[#7A756D]">Title</span>
+                <input className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.title} onChange={(e) => setNewExpense({ ...newExpense, title: e.target.value })} placeholder="Dinner with friends"/>
               </label>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="text-sm">
-                  <span className="mb-2 block text-zinc-500">Amount</span>
-                  <input type="number" className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={newExpense.amount} onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })} placeholder="850"/>
+                  <span className="mb-2 block text-[#7A756D]">Amount</span>
+                  <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.amount} onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })} placeholder="850"/>
                 </label>
 
                 <label className="text-sm">
-                  <span className="mb-2 block text-zinc-500">Category</span>
-                  <select className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={newExpense.category} onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}>
+                  <span className="mb-2 block text-[#7A756D]">Category</span>
+                  <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.category} onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}>
                     {categories.map((category) => <option key={category}>{category}</option>)}
                   </select>
                 </label>
@@ -1949,22 +1953,22 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="text-sm">
-                  <span className="mb-2 block text-zinc-500">Date</span>
+                  <span className="mb-2 block text-[#7A756D]">Date</span>
                   <DatePicker value={newExpense.date} onChange={(date) => setNewExpense({ ...newExpense, date })} />
                 </label>
 
                 <label className="text-sm">
-                  <span className="mb-2 block text-zinc-500">Payment method</span>
-                  <select className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500" value={newExpense.payment_method} onChange={(e) => setNewExpense({ ...newExpense, payment_method: e.target.value })}>
+                  <span className="mb-2 block text-[#7A756D]">Payment method</span>
+                  <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.payment_method} onChange={(e) => setNewExpense({ ...newExpense, payment_method: e.target.value })}>
                     {["UPI", "Cash", "Card", "Bank"].map((x) => <option key={x}>{x}</option>)}
                   </select>
                 </label>
               </div>
 
-              <label className="mt-2 flex items-center gap-3 text-sm text-zinc-300">
+              <label className="mt-2 flex items-center gap-3 text-sm text-[#45423E]">
                 <input 
                   type="checkbox" 
-                  className="h-4 w-4 rounded border-zinc-700 bg-zinc-900 text-violet-500 focus:ring-violet-500 focus:ring-offset-zinc-950" 
+                  className="h-4 w-4 rounded border-[#E5DFD3] bg-[#F4EFE6] text-[#FF6B4A] focus:ring-[#FF6B4A] focus:ring-offset-[#FFFDF9]" 
                   checked={newExpense.is_recurring} 
                   onChange={(e) => setNewExpense({ ...newExpense, is_recurring: e.target.checked })}
                 />
@@ -1972,25 +1976,25 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               </label>
 
               <button 
-                onClick={addExpense} className="mt-2 rounded-xl bg-violet-500 px-4 py-3.5 font-bold text-white hover:bg-violet-400">Add expense</button>
+                onClick={addExpense} className="mt-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">Add expense</button>
             </div>
             </div>
           </div>
         </div>
       )}
 
-      <button onClick={() => setShowExpense(true)} className="fixed bottom-5 right-5 grid h-14 w-14 place-items-center rounded-2xl bg-violet-500 text-white shadow-xl shadow-violet-900/25 sm:hidden"><Plus/></button>
+      <button onClick={() => setShowExpense(true)} className="fixed bottom-5 right-5 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] text-white shadow-xl shadow-[#FF6B4A]/30 sm:hidden hover:brightness-105 transition-all"><Plus/></button>
 
       {showEmiModal && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="w-full max-w-lg rounded-3xl border border-zinc-800 bg-[#0d0b12] p-6 shadow-2xl">
+            <div className="w-full max-w-lg rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs uppercase tracking-[0.16em] text-zinc-600">EMI</div>
-                <h2 className="mt-1 text-2xl font-black">Add New EMI</h2>
+                <div className="text-xs uppercase tracking-[0.16em] text-[#7A756D]">EMI</div>
+                <h2 className="mt-1 text-2xl font-black text-[#14151A]">Add New EMI</h2>
               </div>
-              <button onClick={() => setShowEmiModal(false)} className="text-zinc-500 hover:text-white"><X/></button>
+              <button onClick={() => setShowEmiModal(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
             </div>
 
             {(() => {
@@ -2005,9 +2009,9 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               return (
                 <div className="mt-6 grid gap-4">
                   <label className="text-sm">
-                    <span className="mb-2 block text-zinc-400">Loan / EMI Name</span>
+                    <span className="mb-2 block text-[#7A756D]">Loan / EMI Name</span>
                     <input
-                      className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 focus:border-violet-500"
+                      className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
                       value={newEmi.title}
                       onChange={(e) => setNewEmi({ ...newEmi, title: e.target.value })}
                       placeholder="e.g. MacBook Pro EMI, Car Loan"
@@ -2016,10 +2020,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="text-sm">
-                      <span className="mb-2 block text-zinc-400">Product Principal (₹)</span>
+                      <span className="mb-2 block text-[#7A756D]">Product Principal (₹)</span>
                       <input
                         type="number"
-                        className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 focus:border-violet-500"
+                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
                         value={newEmi.principal}
                         onChange={(e) => setNewEmi({ ...newEmi, principal: e.target.value })}
                         placeholder="100000"
@@ -2028,11 +2032,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                     <label className="text-sm">
                       <div className="mb-2 flex items-center justify-between">
-                        <span className="text-zinc-400">Interest Rate (% p.a.)</span>
+                        <span className="text-[#7A756D]">Interest Rate (% p.a.)</span>
                         <button
                           type="button"
                           onClick={() => setNewEmi({ ...newEmi, interestRate: "0" })}
-                          className="text-[11px] text-violet-400 hover:text-violet-300 font-medium"
+                          className="text-[11px] text-[#FF6B4A] hover:text-[#FF8566] font-semibold"
                         >
                           0% No-Cost
                         </button>
@@ -2040,7 +2044,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       <input
                         type="number"
                         step="0.1"
-                        className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 focus:border-violet-500"
+                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
                         value={newEmi.interestRate}
                         onChange={(e) => setNewEmi({ ...newEmi, interestRate: e.target.value, isCustomEmi: false })}
                         placeholder="10.5"
@@ -2063,8 +2067,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         onClick={() => setNewEmi({ ...newEmi, interestRate: preset.rate, isCustomEmi: false })}
                         className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all ${
                           newEmi.interestRate === preset.rate && !newEmi.isCustomEmi
-                            ? "border-violet-500 bg-violet-500/20 text-violet-300 font-semibold"
-                            : "border-zinc-800 bg-zinc-900/60 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+                            ? "border-[#FF6B4A] bg-[#FF6B4A]/15 text-[#FF6B4A] font-semibold"
+                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#7A756D] hover:border-[#FF6B4A]/30 hover:text-[#14151A]"
                         }`}
                       >
                         {preset.label}
@@ -2074,10 +2078,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="text-sm">
-                      <span className="mb-2 block text-zinc-400">Time Period (Months)</span>
+                      <span className="mb-2 block text-[#7A756D]">Time Period (Months)</span>
                       <input
                         type="number"
-                        className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 focus:border-violet-500"
+                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
                         value={newEmi.tenureMonths}
                         onChange={(e) => setNewEmi({ ...newEmi, tenureMonths: e.target.value })}
                         placeholder="12"
@@ -2086,11 +2090,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                     <label className="text-sm">
                       <div className="mb-2 flex items-center justify-between">
-                        <span className="text-zinc-400">Monthly EMI (₹)</span>
+                        <span className="text-[#7A756D]">Monthly EMI (₹)</span>
                         <button
                           type="button"
                           onClick={() => setNewEmi({ ...newEmi, isCustomEmi: !newEmi.isCustomEmi, monthlyAmount: String(liveCalc.monthlyEmi) })}
-                          className="text-[11px] text-violet-400 hover:text-violet-300 font-medium"
+                          className="text-[11px] text-[#FF6B4A] hover:text-[#FF8566] font-semibold"
                         >
                           {newEmi.isCustomEmi ? "Auto Calculate" : "Edit Manually"}
                         </button>
@@ -2098,10 +2102,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       <input
                         type="number"
                         readOnly={!newEmi.isCustomEmi}
-                        className={`w-full rounded-xl border px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 transition-all ${
+                        className={`w-full rounded-xl border px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] transition-all ${
                           newEmi.isCustomEmi
-                            ? "border-violet-500 bg-zinc-950 focus:border-violet-400"
-                            : "border-zinc-800/80 bg-zinc-900/60 text-violet-300 font-semibold cursor-default"
+                            ? "border-[#FF6B4A] bg-[#FFFDF9] focus:border-[#FF8566]"
+                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#FF6B4A] font-semibold cursor-default"
                         }`}
                         value={newEmi.isCustomEmi ? newEmi.monthlyAmount : (liveCalc.monthlyEmi > 0 ? liveCalc.monthlyEmi : "")}
                         onChange={(e) => setNewEmi({ ...newEmi, monthlyAmount: e.target.value, isCustomEmi: true })}
@@ -2112,12 +2116,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="text-sm">
-                      <span className="mb-2 block text-zinc-400">Months Paid So Far</span>
+                      <span className="mb-2 block text-[#7A756D]">Months Paid So Far</span>
                       <input
                         type="number"
                         min="0"
                         max={newEmi.tenureMonths || "120"}
-                        className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 focus:border-violet-500"
+                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
                         value={newEmi.monthsPaid}
                         onChange={(e) => setNewEmi({ ...newEmi, monthsPaid: e.target.value })}
                         placeholder="0"
@@ -2125,12 +2129,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     </label>
 
                     <label className="text-sm">
-                      <span className="mb-2 block text-zinc-400">Deduction Day (1-31)</span>
+                      <span className="mb-2 block text-[#7A756D]">Deduction Day (1-31)</span>
                       <input
                         type="number"
                         min="1"
                         max="31"
-                        className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none text-zinc-100 placeholder-zinc-500 focus:border-violet-500"
+                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
                         value={newEmi.deductionDate}
                         onChange={(e) => setNewEmi({ ...newEmi, deductionDate: e.target.value })}
                         placeholder="5"
@@ -2140,29 +2144,29 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   {/* Live Calculation Breakdown Widget */}
                   {Number(newEmi.principal) > 0 && Number(newEmi.tenureMonths) > 0 && (
-                    <div className="rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-500/10 via-zinc-900/80 to-zinc-950 p-4 space-y-2.5">
-                      <div className="text-xs uppercase tracking-wider font-bold text-violet-400 flex items-center justify-between">
+                    <div className="rounded-2xl border border-[#FF6B4A]/25 bg-gradient-to-br from-[#FFF2EE] via-[#FFFDF9] to-[#F7F2E7] p-4 space-y-2.5">
+                      <div className="text-xs uppercase tracking-wider font-bold text-[#FF6B4A] flex items-center justify-between">
                         <span>Loan Breakdown Preview</span>
-                        <span className="text-[11px] font-normal text-zinc-400">
+                        <span className="text-[11px] font-normal text-[#7A756D]">
                           {liveCalc.effectiveRate > 0 ? `${liveCalc.effectiveRate}% p.a.` : "0% No-Cost"}
                         </span>
                       </div>
                       <div className="grid grid-cols-3 gap-2 pt-1 text-center">
-                        <div className="rounded-xl bg-zinc-950/60 p-2.5 border border-zinc-800/60">
-                          <div className="text-[11px] text-zinc-500">Monthly EMI</div>
-                          <div className="mt-1 text-sm font-black text-white">{money(liveCalc.monthlyEmi)}</div>
+                        <div className="rounded-xl bg-[#FFFDF9] p-2.5 border border-[#E5DFD3]">
+                          <div className="text-[11px] text-[#7A756D]">Monthly EMI</div>
+                          <div className="mt-1 text-sm font-black text-[#14151A]">{money(liveCalc.monthlyEmi)}</div>
                         </div>
-                        <div className="rounded-xl bg-zinc-950/60 p-2.5 border border-zinc-800/60">
-                          <div className="text-[11px] text-zinc-500">Total Interest</div>
-                          <div className="mt-1 text-sm font-black text-rose-400">{money(liveCalc.totalInterest)}</div>
+                        <div className="rounded-xl bg-[#FFFDF9] p-2.5 border border-[#E5DFD3]">
+                          <div className="text-[11px] text-[#7A756D]">Total Interest</div>
+                          <div className="mt-1 text-sm font-black text-rose-600">{money(liveCalc.totalInterest)}</div>
                         </div>
-                        <div className="rounded-xl bg-zinc-950/60 p-2.5 border border-zinc-800/60">
-                          <div className="text-[11px] text-zinc-500">Total Payable</div>
-                          <div className="mt-1 text-sm font-black text-emerald-400">{money(liveCalc.totalPayable)}</div>
+                        <div className="rounded-xl bg-[#FFFDF9] p-2.5 border border-[#E5DFD3]">
+                          <div className="text-[11px] text-[#7A756D]">Total Payable</div>
+                          <div className="mt-1 text-sm font-black text-emerald-700">{money(liveCalc.totalPayable)}</div>
                         </div>
                       </div>
-                      <div className="text-xs text-zinc-400 pt-1">
-                        Auto-deducts <strong className="text-white">{money(liveCalc.monthlyEmi)}</strong> on day <strong className="text-violet-300">{newEmi.deductionDate || 1}</strong> of each month.
+                      <div className="text-xs text-[#45423E] pt-1">
+                        Auto-deducts <strong className="text-[#14151A]">{money(liveCalc.monthlyEmi)}</strong> on day <strong className="text-[#FF6B4A]">{newEmi.deductionDate || 1}</strong> of each month.
                       </div>
                     </div>
                   )}
@@ -2170,7 +2174,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <button
                     onClick={addEmi}
                     disabled={!newEmi.title || !Number(newEmi.principal) || liveCalc.monthlyEmi <= 0}
-                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-violet-500 px-4 py-3.5 font-bold text-white hover:bg-violet-400 disabled:opacity-50 transition-all shadow-lg shadow-violet-500/20"
+                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white hover:brightness-105 disabled:opacity-50 transition-all shadow-lg shadow-[#FF6B4A]/20"
                   >
                     Save EMI Record
                   </button>
@@ -2183,14 +2187,14 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       )}
 
       {showBadgeModal.show && showBadgeModal.badgeId && (
-        <div className="fixed inset-0 z-[60] overflow-y-auto bg-black/80 backdrop-blur-md">
+        <div className="fixed inset-0 z-[60] overflow-y-auto bg-black/50 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="relative w-full max-w-sm overflow-hidden rounded-[2rem] border border-zinc-800 bg-[#0d0b12] p-8 text-center shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="relative w-full max-w-sm overflow-hidden rounded-[2rem] border border-[#E5DFD3] bg-[#FFFDF9] p-8 text-center shadow-2xl animate-in zoom-in-95 duration-200">
               
               {/* Glowing Background Effect */}
               <div className={`absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[3rem] ${BADGES.find(b => b.id === showBadgeModal.badgeId)?.color.replace('text-', 'bg-').replace('400', '500/20')}`} />
               
-              <button onClick={() => setShowBadgeModal({ show: false, badgeId: null })} className="absolute right-5 top-5 text-zinc-500 hover:text-white z-10"><X size={20}/></button>
+              <button onClick={() => setShowBadgeModal({ show: false, badgeId: null })} className="absolute right-5 top-5 text-[#7A756D] hover:text-[#14151A] z-10"><X size={20}/></button>
 
               <div className="relative z-10 flex flex-col items-center">
                 {(() => {
@@ -2201,26 +2205,26 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   return (
                     <>
-                      <div className={`mb-6 grid h-24 w-24 place-items-center rounded-full ${isUnlocked ? badge.color.replace('text-', 'bg-').replace('400', '500/10') : 'bg-zinc-900'} ring-1 ring-inset ${isUnlocked ? badge.color.replace('text-', 'ring-').replace('400', '500/30') : 'ring-zinc-800'}`}>
-                        <BadgeIcon className={isUnlocked ? badge.color : "text-zinc-600"} size={48} />
+                      <div className={`mb-6 grid h-24 w-24 place-items-center rounded-full ${isUnlocked ? badge.color.replace('text-', 'bg-').replace('400', '500/15') : 'bg-[#F4EFE6]'} ring-1 ring-inset ${isUnlocked ? badge.color.replace('text-', 'ring-').replace('400', '500/30') : 'ring-[#E5DFD3]'}`}>
+                        <BadgeIcon className={isUnlocked ? badge.color : "text-[#7A756D]"} size={48} />
                       </div>
                       
-                      <div className={`text-xs uppercase tracking-[0.2em] font-bold mb-2 ${isUnlocked ? 'text-zinc-500' : 'text-zinc-600'}`}>
+                      <div className={`text-xs uppercase tracking-[0.2em] font-bold mb-2 ${isUnlocked ? 'text-[#7A756D]' : 'text-[#7A756D]'}`}>
                         {isUnlocked ? "Achievement Unlocked" : "Locked Badge"}
                       </div>
-                      <h2 className={`text-3xl font-black mb-3 ${isUnlocked ? badge.color : "text-zinc-300"}`}>{badge.name}</h2>
-                      <p className="text-zinc-400 leading-relaxed mb-6">
+                      <h2 className={`text-3xl font-black mb-3 ${isUnlocked ? badge.color : "text-[#45423E]"}`}>{badge.name}</h2>
+                      <p className="text-[#45423E] leading-relaxed mb-6">
                         {badge.description}
                       </p>
                       
                       {isUnlocked ? (
-                        <div className="w-full rounded-xl bg-zinc-900/50 p-4 border border-zinc-800/50">
-                          <div className="text-xs text-zinc-500 mb-1">EARNED ON</div>
-                          <div className="font-medium text-zinc-300">{dateStr}</div>
+                        <div className="w-full rounded-xl bg-[#F7F2E7] p-4 border border-[#E5DFD3]">
+                          <div className="text-xs text-[#7A756D] mb-1">EARNED ON</div>
+                          <div className="font-semibold text-[#14151A]">{dateStr}</div>
                         </div>
                       ) : (
-                        <div className="w-full rounded-xl bg-zinc-900/30 p-4 border border-zinc-800/30 border-dashed">
-                          <div className="text-sm font-medium text-zinc-500">Keep tracking to unlock this badge!</div>
+                        <div className="w-full rounded-xl bg-[#F4EFE6]/60 p-4 border border-[#E5DFD3] border-dashed">
+                          <div className="text-sm font-medium text-[#7A756D]">Keep tracking to unlock this badge!</div>
                         </div>
                       )}
                     </>
@@ -2232,18 +2236,18 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
         </div>
       )}
       {showGoalModal && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="w-full max-w-sm rounded-3xl border border-zinc-800 bg-[#0d0b12] p-6 shadow-2xl">
+            <div className="w-full max-w-sm rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-black">Set Monthly Goal</h2>
-                <button onClick={() => setShowGoalModal(false)} className="text-zinc-500 hover:text-white"><X/></button>
+                <h2 className="text-xl font-black text-[#14151A]">Set Monthly Goal</h2>
+                <button onClick={() => setShowGoalModal(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
               </div>
 
               <div className="space-y-4">
                 <label className="block text-sm">
-                  <span className="mb-2 block text-zinc-500">Goal Category</span>
-                  <select className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 outline-none focus:border-violet-500 text-zinc-300" value={newGoal.category} onChange={(e) => setNewGoal({ ...newGoal, category: e.target.value })}>
+                  <span className="mb-2 block text-[#7A756D]">Goal Category</span>
+                  <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] text-[#14151A] transition-all" value={newGoal.category} onChange={(e) => setNewGoal({ ...newGoal, category: e.target.value })}>
                     <option value="Invest">Invest</option>
                     <option value="Save">Save</option>
                     <option value="Food">Food (Limit Spend)</option>
@@ -2251,10 +2255,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   </select>
                 </label>
                 <label className="block text-sm">
-                  <span className="mb-2 block text-zinc-500">Target Amount</span>
-                  <div className="flex items-center rounded-xl border border-zinc-800 bg-zinc-950 px-3">
-                    <span className="text-zinc-500">₹</span>
-                    <input type="number" className="w-full bg-transparent px-2 py-3 outline-none" value={newGoal.amount} onChange={(e) => setNewGoal({ ...newGoal, amount: e.target.value })} placeholder="5000" />
+                  <span className="mb-2 block text-[#7A756D]">Target Amount</span>
+                  <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
+                    <span className="text-[#7A756D]">₹</span>
+                    <input type="number" className="w-full bg-transparent px-2 py-3 outline-none text-[#14151A]" value={newGoal.amount} onChange={(e) => setNewGoal({ ...newGoal, amount: e.target.value })} placeholder="5000" />
                   </div>
                 </label>
                 <button 
@@ -2264,7 +2268,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       setShowGoalModal(false);
                     }
                   }}
-                  className="mt-2 w-full rounded-xl bg-violet-500 px-4 py-3 font-bold text-white hover:bg-violet-400"
+                  className="mt-2 w-full rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3 font-bold text-white hover:brightness-105 shadow-lg shadow-[#FF6B4A]/20 transition-all"
                 >
                   Save Goal
                 </button>
@@ -2318,15 +2322,15 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       />
 
       {toast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-zinc-700 bg-zinc-900/95 px-5 py-3.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
-          <div className={`grid h-7 w-7 place-items-center rounded-lg ${toast.type === "success" ? "bg-emerald-500/20 text-emerald-400" : "bg-violet-500/20 text-violet-400"}`}>
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9]/95 px-5 py-3.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
+          <div className={`grid h-7 w-7 place-items-center rounded-lg ${toast.type === "success" ? "bg-emerald-500/15 text-emerald-700" : "bg-[#FF6B4A]/15 text-[#FF6B4A]"}`}>
             <CheckCircle2 size={16} />
           </div>
-          <p className="text-sm font-medium text-zinc-200">{toast.message}</p>
+          <p className="text-sm font-medium text-[#14151A]">{toast.message}</p>
           <button 
             onClick={() => setToast(null)} 
             aria-label="Dismiss notification"
-            className="ml-2 text-zinc-500 hover:text-zinc-300"
+            className="ml-2 text-[#7A756D] hover:text-[#14151A]"
           >
             <X size={14} />
           </button>
