@@ -12,15 +12,15 @@ export default function AppleIcon() {
       <div
         style={{
           fontSize: 108,
-          background: "linear-gradient(135deg, #FAF6EE 0%, #F4EFE6 100%)",
+          background: "linear-gradient(135deg, #121316 0%, #26201B 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#FF6B4A",
+          color: "#E07A28",
           borderRadius: 40,
-          border: "4px solid #FF6B4A",
+          border: "4px solid #E07A28",
           fontWeight: 900,
           fontFamily: "system-ui, sans-serif"
         }}

@@ -90,16 +90,16 @@ export default function ImportHistoryView({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-3xl border border-[#FF6B4A]/25 bg-gradient-to-r from-[#FF6B4A]/10 via-[#FFFDF9] to-[#FFFDF9] p-6 sm:p-8 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-3xl border border-[#E07A28]/25 bg-gradient-to-r from-[#E07A28]/10 via-[#1D1815] to-[#1D1815] p-6 sm:p-8 shadow-sm">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-[#14151A]">
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-[#F6F2EB]">
             Statement &amp; History Imports
           </h2>
         </div>
 
         <button
           onClick={onOpenImportModal}
-          className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-6 py-3.5 text-sm font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#FF6B4A]/25 shrink-0"
+          className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-6 py-3.5 text-sm font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#E07A28]/25 shrink-0"
         >
           <UploadCloud size={18} /> Import Statement
         </button>
@@ -107,44 +107,44 @@ export default function ImportHistoryView({
 
       {/* Summary KPI row */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-        <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 sm:p-5 shadow-sm">
-          <div className="text-xs text-[#7A756D]">Statements Processed</div>
-          <div className="mt-2 text-2xl font-black text-[#14151A]">{batches.length}</div>
+        <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-4 sm:p-5 shadow-sm">
+          <div className="text-xs text-[#8C8176]">Statements Processed</div>
+          <div className="mt-2 text-2xl font-black text-[#F6F2EB]">{batches.length}</div>
         </div>
 
-        <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 sm:p-5 shadow-sm">
-          <div className="text-xs text-[#7A756D]">Expenses Created</div>
+        <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-4 sm:p-5 shadow-sm">
+          <div className="text-xs text-[#8C8176]">Expenses Created</div>
           <div className="mt-2 text-2xl font-black text-emerald-700">{totalImportedExpenses}</div>
         </div>
 
-        <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 sm:p-5 col-span-2 sm:col-span-1 shadow-sm">
-          <div className="text-xs text-[#7A756D]">Reversibility</div>
-          <div className="mt-2 text-2xl font-black text-[#FF6B4A]">Reversible</div>
+        <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-4 sm:p-5 col-span-2 sm:col-span-1 shadow-sm">
+          <div className="text-xs text-[#8C8176]">Reversibility</div>
+          <div className="mt-2 text-2xl font-black text-[#E07A28]">Reversible</div>
         </div>
       </div>
 
       {/* Batches List */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-[#14151A]">Imported Statements</h3>
+        <h3 className="text-lg font-bold text-[#F6F2EB]">Imported Statements</h3>
 
         {loading ? (
-          <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-12 text-center text-xs text-[#7A756D]">
+          <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-12 text-center text-xs text-[#8C8176]">
             Loading your statement import history...
           </div>
         ) : batches.length === 0 ? (
-          <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-[#E5DFD3] bg-[#FFFDF9]/60 p-12 text-center space-y-4">
-            <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#FF6B4A]/10 text-[#FF6B4A]">
+          <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-[#382D25] bg-[#1D1815]/60 p-12 text-center space-y-4">
+            <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#E07A28]/10 text-[#E07A28]">
               <FileSpreadsheet size={32} />
             </div>
             <div>
-              <h4 className="font-bold text-[#14151A]">No statements imported yet</h4>
-              <p className="mt-1 text-xs text-[#7A756D] max-w-sm">
+              <h4 className="font-bold text-[#F6F2EB]">No statements imported yet</h4>
+              <p className="mt-1 text-xs text-[#8C8176] max-w-sm">
                 Upload bank statements from HDFC, ICICI, SBI or exports from Google Pay and PhonePe to ingest months of expenses in seconds.
               </p>
             </div>
             <button
               onClick={onOpenImportModal}
-              className="rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-5 py-2.5 text-xs font-bold text-white hover:brightness-105 transition-all shadow-md shadow-[#FF6B4A]/20"
+              className="rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-5 py-2.5 text-xs font-bold text-white hover:brightness-105 transition-all shadow-md shadow-[#E07A28]/20"
             >
               Upload First Statement
             </button>
@@ -161,25 +161,25 @@ export default function ImportHistoryView({
                   key={batch.id}
                   className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border p-5 transition-all shadow-sm ${
                     isCancelled
-                      ? "border-[#E5DFD3]/50 bg-[#F4EFE6]/50 opacity-60"
-                      : "border-[#E5DFD3] bg-[#FFFDF9] hover:border-[#FF6B4A]/40"
+                      ? "border-[#382D25]/50 bg-[#26201B]/50 opacity-60"
+                      : "border-[#382D25] bg-[#1D1815] hover:border-[#E07A28]/40"
                   }`}
                 >
                   <div className="flex items-start gap-3.5">
-                    <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#F4EFE6] text-[#FF6B4A] shrink-0 border border-[#E5DFD3]">
+                    <div className="grid h-11 w-11 place-items-center rounded-xl bg-[#26201B] text-[#E07A28] shrink-0 border border-[#382D25]">
                       <Icon size={20} />
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-[#14151A] text-sm">{batch.source_name}</span>
-                        <span className="text-xs text-[#7A756D] truncate max-w-xs">{batch.original_filename}</span>
+                        <span className="font-bold text-[#F6F2EB] text-sm">{batch.source_name}</span>
+                        <span className="text-xs text-[#8C8176] truncate max-w-xs">{batch.original_filename}</span>
                         {isCancelled && (
-                          <span className="rounded px-2 py-0.5 text-[10px] font-bold bg-[#F4EFE6] text-[#7A756D]">
+                          <span className="rounded px-2 py-0.5 text-[10px] font-bold bg-[#26201B] text-[#8C8176]">
                             Cancelled / Undone
                           </span>
                         )}
                       </div>
-                      <div className="mt-1 text-xs text-[#7A756D] flex flex-wrap items-center gap-3">
+                      <div className="mt-1 text-xs text-[#8C8176] flex flex-wrap items-center gap-3">
                         <span>Total: <strong>{batch.total_rows}</strong></span>
                         <span>Expenses created: <strong className="text-emerald-700">{batch.created_expenses}</strong></span>
                         <span>Duplicates: <strong>{batch.duplicate_count}</strong></span>
@@ -192,7 +192,7 @@ export default function ImportHistoryView({
                     {!isCancelled && batch.created_expenses > 0 && (
                       <button
                         onClick={() => setUndoTarget(batch)}
-                        className="flex items-center gap-1.5 rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3.5 py-2 text-xs font-semibold text-rose-700 hover:bg-rose-50 hover:border-rose-300 transition-all"
+                        className="flex items-center gap-1.5 rounded-xl border border-[#382D25] bg-[#26201B] px-3.5 py-2 text-xs font-semibold text-rose-700 hover:bg-rose-50 hover:border-rose-300 transition-all"
                       >
                         <RotateCcw size={13} /> Undo Import
                       </button>
@@ -209,16 +209,16 @@ export default function ImportHistoryView({
       {undoTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setUndoTarget(null)} />
-          <div className="relative w-full max-w-md rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl z-10 space-y-4 animate-in zoom-in-95 duration-150">
+          <div className="relative w-full max-w-md rounded-3xl border border-[#382D25] bg-[#1D1815] p-6 shadow-2xl z-10 space-y-4 animate-in zoom-in-95 duration-150">
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-rose-500/15 text-rose-600">
               <RotateCcw size={24} />
             </div>
 
             <div>
-              <h3 className="text-lg font-bold text-[#14151A]">Undo Statement Import?</h3>
-              <p className="mt-1.5 text-xs text-[#7A756D] leading-relaxed">
+              <h3 className="text-lg font-bold text-[#F6F2EB]">Undo Statement Import?</h3>
+              <p className="mt-1.5 text-xs text-[#8C8176] leading-relaxed">
                 This will safely remove all <strong>{undoTarget.created_expenses}</strong> expenses created by{" "}
-                <span className="text-[#14151A] font-semibold">{undoTarget.source_name} ({undoTarget.original_filename})</span>.
+                <span className="text-[#F6F2EB] font-semibold">{undoTarget.source_name} ({undoTarget.original_filename})</span>.
               </p>
               <div className="mt-3 rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-3 text-xs text-emerald-800">
                 ✓ Your manually added expenses and other statements will remain untouched.
@@ -229,7 +229,7 @@ export default function ImportHistoryView({
               <button
                 onClick={() => setUndoTarget(null)}
                 disabled={isUndoing}
-                className="rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-2.5 text-xs font-semibold text-[#14151A] hover:bg-[#EAE4D7]"
+                className="rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-2.5 text-xs font-semibold text-[#F6F2EB] hover:bg-[#28211B]"
               >
                 Cancel
               </button>

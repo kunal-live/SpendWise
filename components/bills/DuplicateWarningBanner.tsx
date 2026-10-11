@@ -32,7 +32,7 @@ export default function DuplicateWarningBanner({
             {message}
           </p>
           {details && (
-            <div className="mt-2.5 flex flex-wrap gap-2 text-[11px] text-amber-950 bg-[#FFFDF9]/80 p-2.5 rounded-xl border border-amber-500/25">
+            <div className="mt-2.5 flex flex-wrap gap-2 text-[11px] text-amber-950 bg-[#1D1815]/80 p-2.5 rounded-xl border border-amber-500/25">
               <span><strong>Merchant:</strong> {details.merchant}</span>
               <span>•</span>
               <span><strong>Amount:</strong> ₹{details.amount.toLocaleString("en-IN")}</span>
@@ -59,7 +59,7 @@ export default function DuplicateWarningBanner({
               <button
                 type="button"
                 onClick={onViewExisting}
-                className="rounded-xl bg-[#F4EFE6] border border-[#E5DFD3] hover:bg-[#EAE4D7] px-3.5 py-1.5 text-xs font-semibold text-[#14151A] transition-colors"
+                className="rounded-xl bg-[#26201B] border border-[#382D25] hover:bg-[#28211B] px-3.5 py-1.5 text-xs font-semibold text-[#F6F2EB] transition-colors"
               >
                 View Existing
               </button>
@@ -68,7 +68,7 @@ export default function DuplicateWarningBanner({
               <button
                 type="button"
                 onClick={onCancel}
-                className="text-xs text-[#7A756D] hover:text-[#14151A] transition-colors"
+                className="text-xs text-[#8C8176] hover:text-[#F6F2EB] transition-colors"
               >
                 Cancel Upload
               </button>

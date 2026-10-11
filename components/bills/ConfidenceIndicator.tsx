@@ -49,12 +49,12 @@ export default function ConfidenceIndicator({
       <span className="hidden sm:inline font-normal opacity-80">({config.label})</span>
 
       {reason && (
-        <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-64 -translate-x-1/2 rounded-xl border border-[#E5DFD3] bg-[#FFFDF9] p-3 text-xs font-normal text-[#45423E] opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100 z-50">
-          <div className="font-semibold text-[#14151A] mb-1 flex items-center gap-1.5">
-            <HelpCircle size={13} className="text-[#FF6B4A]" />
+        <div className="pointer-events-none absolute bottom-full left-1/2 mb-2 w-64 -translate-x-1/2 rounded-xl border border-[#382D25] bg-[#1D1815] p-3 text-xs font-normal text-[#C6BCB3] opacity-0 shadow-xl transition-opacity duration-200 group-hover:opacity-100 z-50">
+          <div className="font-semibold text-[#F6F2EB] mb-1 flex items-center gap-1.5">
+            <HelpCircle size={13} className="text-[#E07A28]" />
             Why this category?
           </div>
-          <p className="text-[#7A756D] leading-relaxed">{reason}</p>
+          <p className="text-[#8C8176] leading-relaxed">{reason}</p>
         </div>
       )}
     </div>

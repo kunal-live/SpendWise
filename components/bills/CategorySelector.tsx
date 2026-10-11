@@ -42,18 +42,18 @@ export default function CategorySelector({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 text-left outline-none transition-all hover:border-[#FF6B4A]/50 focus:border-[#FF6B4A] focus:bg-[#FFFDF9]"
+        className="flex w-full items-center justify-between rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 text-left outline-none transition-all hover:border-[#E07A28]/50 focus:border-[#E07A28] focus:bg-[#1D1815]"
       >
         <div className="flex items-center gap-3">
           <span
             className="h-3 w-3 rounded-full"
-            style={{ backgroundColor: (selected as any).color || "#FF6B4A" }}
+            style={{ backgroundColor: (selected as any).color || "#E07A28" }}
           />
           <div>
-            <div className="text-sm font-semibold text-[#14151A] flex items-center gap-2">
+            <div className="text-sm font-semibold text-[#F6F2EB] flex items-center gap-2">
               {selected.name}
               {suggestedCategory && value.toLowerCase() === suggestedCategory.toLowerCase() && (
-                <span className="inline-flex items-center gap-1 rounded-md bg-[#FF6B4A]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#FF6B4A] ring-1 ring-inset ring-[#FF6B4A]/25">
+                <span className="inline-flex items-center gap-1 rounded-md bg-[#E07A28]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#E07A28] ring-1 ring-inset ring-[#E07A28]/25">
                   <Sparkles size={10} /> Auto-suggested
                 </span>
               )}
@@ -65,12 +65,12 @@ export default function CategorySelector({
             )}
           </div>
         </div>
-        <ChevronDown size={16} className={`text-[#7A756D] transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown size={16} className={`text-[#8C8176] transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full mt-2 z-50 max-h-64 overflow-y-auto rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-2 shadow-2xl backdrop-blur-xl">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[#7A756D] px-3 py-1.5">
+        <div className="absolute left-0 right-0 top-full mt-2 z-50 max-h-64 overflow-y-auto rounded-2xl border border-[#382D25] bg-[#1D1815] p-2 shadow-2xl backdrop-blur-xl">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[#8C8176] px-3 py-1.5">
             Select Category
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
@@ -88,23 +88,23 @@ export default function CategorySelector({
                   }}
                   className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-left text-xs transition-colors ${
                     isSelected
-                      ? "bg-[#FF6B4A]/15 text-[#FF6B4A] font-semibold"
-                      : "text-[#45423E] hover:bg-[#F4EFE6] hover:text-[#14151A]"
+                      ? "bg-[#E07A28]/15 text-[#E07A28] font-semibold"
+                      : "text-[#C6BCB3] hover:bg-[#28211B] hover:text-[#F6F2EB]"
                   }`}
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <span
                       className="h-2.5 w-2.5 shrink-0 rounded-full"
-                      style={{ backgroundColor: cat.color || "#FF6B4A" }}
+                      style={{ backgroundColor: cat.color || "#E07A28" }}
                     />
                     <span className="truncate">{cat.name}</span>
                     {isSuggested && (
-                      <span className="shrink-0 text-[10px] text-[#FF6B4A] font-normal">
+                      <span className="shrink-0 text-[10px] text-[#E07A28] font-normal">
                         (Suggested)
                       </span>
                     )}
                   </div>
-                  {isSelected && <Check size={14} className="text-[#FF6B4A] shrink-0" />}
+                  {isSelected && <Check size={14} className="text-[#E07A28] shrink-0" />}
                 </button>
               );
             })}

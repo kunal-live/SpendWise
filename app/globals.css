@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #faf6ee;
-  --surface: #fffdf9;
-  --surface-2: #f4efe6;
-  --border: #e5dfd3;
-  --border-subtle: #ede7dc;
-  --coral: #ff6b4a;
-  --coral-bright: #ff8566;
-  --coral-dark: #ff5733;
-  --ivory: #faf6ee;
-  --ivory-muted: #8a847b;
-  --text: #14151a;
-  --text-secondary: #45423e;
-  --muted: #7a756d;
-  --green: #059669;
-  --red: #e11d48;
+  --bg: #121316;
+  --surface: #1d1815;
+  --surface-2: #26201b;
+  --border: #3d3128;
+  --border-subtle: #302720;
+  --amber: #e07a28;
+  --amber-bright: #f08c3a;
+  --amber-dark: #c25b15;
+  --charcoal: #121316;
+  --charcoal-surface: #17181c;
+  --earth-brown: #1d1815;
+  --earth-brown-light: #26201b;
+  --text: #f6f2eb;
+  --text-secondary: #c6bcb3;
+  --muted: #8c8176;
+  --green: #10b981;
+  --red: #f43f5e;
 }
 
 * {
@@ -25,8 +27,8 @@
 html, body {
   margin: 0;
   min-height: 100%;
-  background: var(--bg);
-  color: var(--text);
+  background: #121316;
+  color: #f6f2eb;
 }
 
 body {
@@ -40,20 +42,20 @@ button, input, select {
 
 .glow {
   box-shadow:
-    0 0 0 1px rgba(255, 107, 74, 0.28),
-    0 8px 30px rgba(255, 107, 74, 0.15);
+    0 0 0 1px rgba(224, 122, 40, 0.35),
+    0 8px 30px rgba(224, 122, 40, 0.2);
 }
 
-.glow-ivory {
+.glow-amber {
   box-shadow:
-    0 0 0 1px rgba(229, 223, 211, 0.8),
-    0 10px 30px rgba(40, 32, 20, 0.05);
+    0 0 0 1px rgba(224, 122, 40, 0.4),
+    0 10px 30px rgba(224, 122, 40, 0.22);
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(20, 18, 15, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 18, 15, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(224, 122, 40, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(224, 122, 40, 0.035) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -61,15 +63,16 @@ button, input, select {
   width: 6px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #d4ccc0;
+  background: #3d3128;
   border-radius: 999px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #ff6b4a;
+  background: #e07a28;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0.65;
+  filter: invert(0.8);
+  opacity: 0.7;
   cursor: pointer;
 }
 input[type="date"]::-webkit-calendar-picker-indicator:hover {

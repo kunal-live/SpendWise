@@ -14,7 +14,7 @@ export default function Image() {
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #FAF6EE 0%, #F4EFE6 50%, #EDE6D8 100%)",
+          background: "linear-gradient(135deg, #121316 0%, #26201B 50%, #EDE6D8 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -24,7 +24,7 @@ export default function Image() {
           fontFamily: "system-ui, sans-serif",
           position: "relative",
           padding: 60,
-          border: "8px solid #FF6B4A"
+          border: "8px solid #E07A28"
         }}
       >
         {/* Glow */}
@@ -49,7 +49,7 @@ export default function Image() {
             background: "rgba(255, 107, 74, 0.12)",
             border: "1px solid rgba(255, 107, 74, 0.35)",
             borderRadius: 50,
-            color: "#FF6B4A",
+            color: "#E07A28",
             fontSize: 20,
             fontWeight: 700,
             letterSpacing: "0.05em",
@@ -65,19 +65,19 @@ export default function Image() {
             display: "flex",
             fontSize: 76,
             fontWeight: 900,
-            color: "#14151A",
+            color: "#F6F2EB",
             letterSpacing: "-0.03em",
             marginBottom: 20,
           }}
         >
-          SPEND<span style={{ color: "#FF6B4A" }}>WISE</span>
+          SPEND<span style={{ color: "#E07A28" }}>WISE</span>
         </div>
 
         {/* Tagline */}
         <div
           style={{
             fontSize: 28,
-            color: "#45423E",
+            color: "#C6BCB3",
             textAlign: "center",
             maxWidth: 800,
             lineHeight: 1.4,
@@ -93,7 +93,7 @@ export default function Image() {
             gap: 36,
             marginTop: 48,
             fontSize: 18,
-            color: "#7A756D",
+            color: "#8C8176",
             fontWeight: 600,
           }}
         >

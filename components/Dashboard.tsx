@@ -111,20 +111,20 @@ function MetricCard({
   const deltaColor = 
     deltaType === "positive" ? "text-emerald-600 font-medium" :
     deltaType === "negative" ? "text-rose-600 font-medium" :
-    "text-[#7a756d] font-normal";
+    "text-[#8C8176] font-normal";
 
   return (
     <div 
-      className={`rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 shadow-sm transition-all ${onClick ? 'cursor-pointer hover:border-[#ff6b4a]/40 hover:shadow-md hover:bg-white' : ''}`}
+      className={`rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 shadow-sm transition-all ${onClick ? 'cursor-pointer hover:border-[#E07A28]/40 hover:shadow-md hover:bg-[#26201B]' : ''}`}
       onClick={onClick}
     >
       <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-[#7a756d]">{label}</span>
-        <div className="grid h-9 w-9 place-items-center rounded-xl bg-[#ff6b4a]/10 text-[#ff6b4a]">
+        <span className="text-sm font-medium text-[#8C8176]">{label}</span>
+        <div className="grid h-9 w-9 place-items-center rounded-xl bg-[#E07A28]/10 text-[#E07A28]">
           <Icon size={18} />
         </div>
       </div>
-      <div className="mt-4 text-2xl font-black tracking-tight text-[#14151a]">{value}</div>
+      <div className="mt-4 text-2xl font-black tracking-tight text-[#F6F2EB]">{value}</div>
       {delta && <div className={`mt-1 text-xs ${deltaColor}`}>{delta}</div>}
     </div>
   );
@@ -917,21 +917,21 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
   ] as const;
   if (!onboardingData) {
     return (
-      <div className="grid min-h-screen place-items-center bg-[#faf6ee] text-[#45423e]">
+      <div className="grid min-h-screen place-items-center bg-[#121316] text-[#C6BCB3]">
         Loading your dashboard...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#faf6ee] text-[#14151a]">
+    <div className="min-h-screen bg-[#121316] text-[#F6F2EB]">
       <div className="flex min-h-screen">
-        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-[#e5dfd3] bg-[#f7f2e7] p-6 transition-transform lg:static lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-[#382D25] bg-[#17181C] p-6 transition-transform lg:static lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-2xl font-black tracking-tight text-[#14151a]">SPEND<span className="text-[#ff6b4a]">WISE</span></div>
+              <div className="text-2xl font-black tracking-tight text-[#F6F2EB]">SPEND<span className="text-[#E07A28]">WISE</span></div>
             </div>
-            <button className="lg:hidden text-[#7a756d] hover:text-[#14151a]" onClick={() => setMobileOpen(false)}><X /></button>
+            <button className="lg:hidden text-[#8C8176] hover:text-[#F6F2EB]" onClick={() => setMobileOpen(false)}><X /></button>
           </div>
 
           <div className="mt-10 space-y-2">
@@ -939,7 +939,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <button
                 key={label}
                 onClick={() => { setActive(label); setMobileOpen(false); }}
-                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === label ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}
+                className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === label ? "bg-[#E07A28]/12 text-[#E07A28] ring-1 ring-[#E07A28]/25" : "text-[#B8AEA3] hover:bg-[#28211B] hover:text-[#F6F2EB]"}`}
               >
                 <Icon size={18} />
                 {label}
@@ -947,76 +947,76 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ))}
           </div>
 
-          <div className="mt-8 border-t border-[#e5dfd3] pt-5 space-y-2">
-            <button onClick={() => { setActive("Reports"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Reports" ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}><ShieldCheck size={18}/> Financial Score</button>
-            <button onClick={() => { setActive("Achievements"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Achievements" ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}><Sparkles size={18}/> Achievements</button>
-            <button onClick={() => { setActive("Settings"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Settings" ? "bg-[#ff6b4a]/12 text-[#ff6b4a] ring-1 ring-[#ff6b4a]/25" : "text-[#66615c] hover:bg-[#ede5d8] hover:text-[#14151a]"}`}><Settings size={18}/> Settings</button>
+          <div className="mt-8 border-t border-[#382D25] pt-5 space-y-2">
+            <button onClick={() => { setActive("Reports"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Reports" ? "bg-[#E07A28]/12 text-[#E07A28] ring-1 ring-[#E07A28]/25" : "text-[#B8AEA3] hover:bg-[#28211B] hover:text-[#F6F2EB]"}`}><ShieldCheck size={18}/> Financial Score</button>
+            <button onClick={() => { setActive("Achievements"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Achievements" ? "bg-[#E07A28]/12 text-[#E07A28] ring-1 ring-[#E07A28]/25" : "text-[#B8AEA3] hover:bg-[#28211B] hover:text-[#F6F2EB]"}`}><Sparkles size={18}/> Achievements</button>
+            <button onClick={() => { setActive("Settings"); setMobileOpen(false); }} className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${active === "Settings" ? "bg-[#E07A28]/12 text-[#E07A28] ring-1 ring-[#E07A28]/25" : "text-[#B8AEA3] hover:bg-[#28211B] hover:text-[#F6F2EB]"}`}><Settings size={18}/> Settings</button>
           </div>
 
-          <div className="mt-4 border-t border-[#e5dfd3]/80 pt-3 pb-24 px-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-[#8a847b]">
-            <Link href="/terms" target="_blank" className="hover:text-[#14151a]">Terms</Link>
+          <div className="mt-4 border-t border-[#382D25]/80 pt-3 pb-24 px-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-[#8C8176]">
+            <Link href="/terms" target="_blank" className="hover:text-[#F6F2EB]">Terms</Link>
             <span>•</span>
-            <Link href="/privacy" target="_blank" className="hover:text-[#14151a]">Privacy</Link>
+            <Link href="/privacy" target="_blank" className="hover:text-[#F6F2EB]">Privacy</Link>
             <span>•</span>
-            <Link href="/disclaimer" target="_blank" className="hover:text-[#14151a]">Disclaimer</Link>
+            <Link href="/disclaimer" target="_blank" className="hover:text-[#F6F2EB]">Disclaimer</Link>
             <span>•</span>
-            <Link href="/contact" target="_blank" className="hover:text-[#14151a]">Support</Link>
+            <Link href="/contact" target="_blank" className="hover:text-[#F6F2EB]">Support</Link>
           </div>
 
-          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-4 shadow-sm">
-            <div className="text-xs text-[#8a847b] uppercase tracking-wider font-semibold">SIGNED IN AS</div>
-            <div className="mt-1 truncate text-sm text-[#14151a] font-medium">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "demo@spendwise.app"}</div>
-            <button onClick={signOut} className="mt-4 flex items-center gap-2 text-sm text-[#7a756d] hover:text-rose-600 transition-colors"><LogOut size={16}/> Sign out</button>
+          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-[#382D25] bg-[#1D1815] p-4 shadow-sm">
+            <div className="text-xs text-[#8C8176] uppercase tracking-wider font-semibold">SIGNED IN AS</div>
+            <div className="mt-1 truncate text-sm text-[#F6F2EB] font-medium">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "demo@spendwise.app"}</div>
+            <button onClick={signOut} className="mt-4 flex items-center gap-2 text-sm text-[#8C8176] hover:text-rose-600 transition-colors"><LogOut size={16}/> Sign out</button>
           </div>
         </aside>
 
         {mobileOpen && <button aria-label="Close menu" className="fixed inset-0 z-30 bg-black/40 lg:hidden" onClick={() => setMobileOpen(false)} />}
 
         <main className="min-w-0 flex-1">
-          <header className="sticky top-0 z-20 border-b border-[#e5dfd3] bg-[#faf6ee]/90 backdrop-blur">
+          <header className="sticky top-0 z-20 border-b border-[#382D25] bg-[#121316]/90 backdrop-blur">
             <div className="flex items-center justify-between px-5 py-4 lg:px-8">
               <div className="flex items-center gap-3">
-                <button className="lg:hidden text-[#7a756d] hover:text-[#14151a]" onClick={() => setMobileOpen(true)}><Menu /></button>
+                <button className="lg:hidden text-[#8C8176] hover:text-[#F6F2EB]" onClick={() => setMobileOpen(true)}><Menu /></button>
                 <div>
-                  <div className="text-xl font-bold text-[#14151a]">{active}</div>
+                  <div className="text-xl font-bold text-[#F6F2EB]">{active}</div>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <button 
                   onClick={() => setShowImportModal(true)} 
-                  className="hidden items-center gap-2 rounded-xl border border-[#ff6b4a]/30 bg-[#ff6b4a]/10 px-4 py-2.5 text-sm font-bold text-[#ff6b4a] hover:bg-[#ff6b4a]/15 sm:flex transition-all"
+                  className="hidden items-center gap-2 rounded-xl border border-[#E07A28]/30 bg-[#E07A28]/10 px-4 py-2.5 text-sm font-bold text-[#E07A28] hover:bg-[#E07A28]/15 sm:flex transition-all"
                 >
-                  <FileSpreadsheet size={16} className="text-[#ff6b4a]" /> Import statement
+                  <FileSpreadsheet size={16} className="text-[#E07A28]" /> Import statement
                 </button>
                 <button 
                   onClick={() => setShowBillModal(true)} 
-                  className="hidden items-center gap-2 rounded-xl border border-[#ff6b4a]/30 bg-[#ff6b4a]/10 px-4 py-2.5 text-sm font-bold text-[#ff6b4a] hover:bg-[#ff6b4a]/15 sm:flex transition-all"
+                  className="hidden items-center gap-2 rounded-xl border border-[#E07A28]/30 bg-[#E07A28]/10 px-4 py-2.5 text-sm font-bold text-[#E07A28] hover:bg-[#E07A28]/15 sm:flex transition-all"
                 >
-                  <Sparkles size={16} className="text-[#ff6b4a]" /> Upload bill
+                  <Sparkles size={16} className="text-[#E07A28]" /> Upload bill
                 </button>
-                <button onClick={() => setShowExpense(true)} className="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-[#ff6b4a] to-[#ff5733] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-[#ff6b4a]/25 hover:brightness-105 sm:flex transition-all">
+                <button onClick={() => setShowExpense(true)} className="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-[#E07A28]/25 hover:brightness-105 sm:flex transition-all">
                   <Plus size={17}/> Add expense
                 </button>
                 <div className="relative">
                   <button 
                     onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                    className="grid h-10 w-10 place-items-center rounded-full bg-[#ff6b4a]/15 text-sm font-black text-[#ff6b4a] hover:bg-[#ff6b4a]/25 transition-colors"
+                    className="grid h-10 w-10 place-items-center rounded-full bg-[#E07A28]/15 text-sm font-black text-[#E07A28] hover:bg-[#E07A28]/25 transition-colors"
                   >
                     {(onboardingData?.name?.[0] ?? onboardingData?.username?.[0] ?? userEmail?.[0] ?? "U").toUpperCase()}
                   </button>
                   
                   {profileMenuOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-2 shadow-xl">
+                    <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-[#382D25] bg-[#1D1815] p-2 shadow-xl">
                       <div className="px-3 py-2">
-                        <div className="text-xs text-[#7a756d]">Signed in as</div>
-                        <div className="truncate text-sm font-semibold text-[#14151a]">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "Guest User"}</div>
+                        <div className="text-xs text-[#8C8176]">Signed in as</div>
+                        <div className="truncate text-sm font-semibold text-[#F6F2EB]">{onboardingData?.name || onboardingData?.username || onboardingData?.email || userEmail || "Guest User"}</div>
                         {onboardingData?.email && (
-                          <div className="truncate text-xs text-[#7a756d]">{onboardingData.email}</div>
+                          <div className="truncate text-xs text-[#8C8176]">{onboardingData.email}</div>
                         )}
                       </div>
-                      <div className="my-1 h-px bg-[#e5dfd3]" />
-                      <button onClick={() => { setActive("Settings"); setProfileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-[#45423e] hover:bg-[#f4efe6] hover:text-[#14151a]">
+                      <div className="my-1 h-px bg-[#382D25]" />
+                      <button onClick={() => { setActive("Settings"); setProfileMenuOpen(false); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-[#C6BCB3] hover:bg-[#28211B] hover:text-[#F6F2EB]">
                         <Settings size={16} /> Settings
                       </button>
                       <button onClick={signOut} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-rose-600 hover:bg-rose-50 hover:text-rose-700">
@@ -1031,22 +1031,22 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
           <div className="mx-auto max-w-7xl p-5 lg:p-8">
             {active === "Dashboard" && (
-              <section className="mb-8 rounded-3xl border border-[#ff6b4a]/25 bg-gradient-to-br from-[#fff2ee] via-[#fffdf9] to-[#f7f2e7] p-6 lg:p-8 shadow-sm">
+              <section className="mb-8 rounded-3xl border border-[#E07A28]/25 bg-gradient-to-br from-[#241B16] via-[#1D1815] to-[#17181C] p-6 lg:p-8 shadow-sm">
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                   <div>
-                    <h1 className="text-3xl font-black tracking-tight text-[#14151a] lg:text-4xl">Your money, under control.</h1>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[#45423e]">
+                    <h1 className="text-3xl font-black tracking-tight text-[#F6F2EB] lg:text-4xl">Your money, under control.</h1>
+                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[#C6BCB3]">
                       You have spent {money(totalSpent)} this month and invested {money(investment)}. Your current projected savings are {money(saved)}.
                     </p>
                   </div>
 
-                  <div className="w-full max-w-sm rounded-2xl border border-[#e5dfd3] bg-[#fffdf9]/95 p-5 shadow-sm">
+                  <div className="w-full max-w-sm rounded-2xl border border-[#382D25] bg-[#1D1815]/95 p-5 shadow-sm">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-[#7a756d]">Financial health</span>
-                      <span className="font-black text-[#ff6b4a]">82 / 100</span>
+                      <span className="text-sm font-medium text-[#8C8176]">Financial health</span>
+                      <span className="font-black text-[#E07A28]">82 / 100</span>
                     </div>
-                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#e8e1d2]">
-                      <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#ff6b4a] to-[#ff8566]" />
+                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#332A22]">
+                      <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#E07A28] to-[#F08C3A]" />
                     </div>
                   </div>
                 </div>
@@ -1056,27 +1056,27 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             {active === "Dashboard" ? (
               <>
                 {!monthlyGoal ? (
-                  <section className="mb-6 flex items-center justify-between rounded-2xl border border-dashed border-[#e5dfd3] bg-[#fffdf9]/70 p-6 shadow-sm">
+                  <section className="mb-6 flex items-center justify-between rounded-2xl border border-dashed border-[#382D25] bg-[#1D1815]/70 p-6 shadow-sm">
                     <div>
-                      <h3 className="font-bold text-[#14151a]">Set a Monthly Goal</h3>
+                      <h3 className="font-bold text-[#F6F2EB]">Set a Monthly Goal</h3>
                     </div>
-                    <button onClick={() => setShowGoalModal(true)} className="rounded-xl bg-gradient-to-r from-[#ff6b4a] to-[#ff5733] px-4 py-2 text-sm font-bold text-white hover:brightness-105 shadow-md shadow-[#ff6b4a]/20 transition-all">
+                    <button onClick={() => setShowGoalModal(true)} className="rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-2 text-sm font-bold text-white hover:brightness-105 shadow-md shadow-[#E07A28]/20 transition-all">
                       Set Goal
                     </button>
                   </section>
                 ) : (
-                  <section className="mb-6 rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-6 shadow-sm">
+                  <section className="mb-6 rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <h3 className="font-bold text-[#14151a]">Monthly Goal: {monthlyGoal.category}</h3>
-                        <p className="mt-1 text-sm text-[#7a756d]">Target: {money(Number(monthlyGoal.amount))}</p>
+                        <h3 className="font-bold text-[#F6F2EB]">Monthly Goal: {monthlyGoal.category}</h3>
+                        <p className="mt-1 text-sm text-[#8C8176]">Target: {money(Number(monthlyGoal.amount))}</p>
                       </div>
-                      <button onClick={() => setShowGoalModal(true)} className="text-sm font-medium text-[#ff6b4a] hover:text-[#ff5733]">Edit Goal</button>
+                      <button onClick={() => setShowGoalModal(true)} className="text-sm font-medium text-[#E07A28] hover:text-[#C25B15]">Edit Goal</button>
                     </div>
-                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#e8e1d2]">
-                      <div className="h-full rounded-full bg-gradient-to-r from-[#ff6b4a] to-[#ff8566] transition-all" style={{ width: `${Math.min(((monthlyGoal.category === 'Invest' ? investment : monthlyGoal.category === 'Save' ? saved : totalSpent) / Number(monthlyGoal.amount)) * 100, 100)}%` }} />
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-[#332A22]">
+                      <div className="h-full rounded-full bg-gradient-to-r from-[#E07A28] to-[#F08C3A] transition-all" style={{ width: `${Math.min(((monthlyGoal.category === 'Invest' ? investment : monthlyGoal.category === 'Save' ? saved : totalSpent) / Number(monthlyGoal.amount)) * 100, 100)}%` }} />
                     </div>
-                    <div className="mt-2 text-xs font-medium text-[#7a756d]">
+                    <div className="mt-2 text-xs font-medium text-[#8C8176]">
                       {money(monthlyGoal.category === 'Invest' ? investment : monthlyGoal.category === 'Save' ? saved : totalSpent)} / {money(Number(monthlyGoal.amount))} achieved
                     </div>
                   </section>
@@ -1090,29 +1090,29 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 </section>
 
                 <section className="mt-6 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
-                  <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center justify-between">
-                      <h2 className="font-bold text-[#14151a]">Spending trend</h2>
-                      <div className="rounded-lg bg-[#f4efe6] px-3 py-1.5 text-xs text-[#7a756d]">Monthly</div>
+                      <h2 className="font-bold text-[#F6F2EB]">Spending trend</h2>
+                      <div className="rounded-lg bg-[#26201B] px-3 py-1.5 text-xs text-[#8C8176]">Monthly</div>
                     </div>
                     <div className="mt-6 h-72">
                       <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={dynamicMonthlyTrend}>
-                          <CartesianGrid stroke="rgba(20,18,15,0.06)" vertical={false}/>
-                          <XAxis dataKey="month" stroke="#8a847b" fontSize={12} tickLine={false} axisLine={false}/>
-                          <YAxis stroke="#8a847b" fontSize={12} tickLine={false} axisLine={false}/>
-                          <Tooltip contentStyle={{ background: "#fffdf9", border: "1px solid #e5dfd3", borderRadius: 14, color: "#14151a", boxShadow: "0 10px 25px rgba(20,18,15,0.08)" }}/>
+                          <CartesianGrid stroke="rgba(246,242,235,0.08)" vertical={false}/>
+                          <XAxis dataKey="month" stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                          <YAxis stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                          <Tooltip contentStyle={{ background: "#1D1815", border: "1px solid #382D25", borderRadius: 14, color: "#F6F2EB", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}/>
                           <Legend />
-                          <Line type="monotone" dataKey="spent" stroke="#ff6b4a" strokeWidth={3} dot={false}/>
+                          <Line type="monotone" dataKey="spent" stroke="#E07A28" strokeWidth={3} dot={false}/>
                           <Line type="monotone" dataKey="saved" stroke="#059669" strokeWidth={3} dot={false}/>
                         </LineChart>
                       </ResponsiveContainer>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                     <div>
-                      <h2 className="font-bold text-[#14151a]">Category breakdown</h2>
+                      <h2 className="font-bold text-[#F6F2EB]">Category breakdown</h2>
                     </div>
                     <div className="mt-5 space-y-4">
                       {dynamicCategoryBreakdown.map((row) => {
@@ -1122,14 +1122,14 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                           <div key={row.name}>
                             <div className="flex items-center justify-between text-sm">
                               <div className="flex items-center gap-3">
-                                <div className="grid h-8 w-8 place-items-center rounded-lg bg-[#f4efe6] text-[#7a756d]"><Icon size={15}/></div>
-                                <span className="text-[#45423e]">{row.name}</span>
+                                <div className="grid h-8 w-8 place-items-center rounded-lg bg-[#26201B] text-[#8C8176]"><Icon size={15}/></div>
+                                <span className="text-[#C6BCB3]">{row.name}</span>
                               </div>
-                              <span className="font-semibold text-[#14151a]">{money(row.value)}</span>
+                              <span className="font-semibold text-[#F6F2EB]">{money(row.value)}</span>
                             </div>
                             <div className="mt-2 flex items-center gap-3">
-                              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#e8e1d2]"><div className="h-full rounded-full bg-[#ff6b4a]" style={{ width: `${Math.min(pct, 100)}%` }}/></div>
-                              <span className="w-9 text-right text-xs text-[#7a756d]">{pct}%</span>
+                              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#332A22]"><div className="h-full rounded-full bg-[#E07A28]" style={{ width: `${Math.min(pct, 100)}%` }}/></div>
+                              <span className="w-9 text-right text-xs text-[#8C8176]">{pct}%</span>
                             </div>
                           </div>
                         );
@@ -1139,40 +1139,40 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 </section>
 
                 <section className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                  <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center justify-between">
-                      <h2 className="font-bold text-[#14151a]">Recent transactions</h2>
-                      <button className="text-xs font-semibold text-[#ff6b4a] hover:text-[#ff5733]" onClick={() => setActive("Transactions")}>View all</button>
+                      <h2 className="font-bold text-[#F6F2EB]">Recent transactions</h2>
+                      <button className="text-xs font-semibold text-[#E07A28] hover:text-[#C25B15]" onClick={() => setActive("Transactions")}>View all</button>
                     </div>
-                    <div className="mt-5 divide-y divide-[#e5dfd3]">
+                    <div className="mt-5 divide-y divide-[#382D25]">
                       {allExpenses.length === 0 ? (
-                        <div className="py-8 text-center text-sm text-[#7a756d]">
+                        <div className="py-8 text-center text-sm text-[#8C8176]">
                           No recent transactions found. Add an expense to see it here!
                         </div>
                       ) : (
                         allExpenses.slice(0, 6).map((e) => {
                           const Icon = iconForCategory[e.category] ?? CircleDollarSign;
                           return (
-                            <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#f7f2e7]/60 -mx-4 px-4 rounded-xl transition-colors group">
+                            <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#28211B]/60 -mx-4 px-4 rounded-xl transition-colors group">
                               <div className="flex items-center gap-3">
-                                <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#f4efe6] text-[#7a756d]"><Icon size={17}/></div>
+                                <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#26201B] text-[#8C8176]"><Icon size={17}/></div>
                                 <div>
-                                  <div className="text-sm font-semibold flex items-center gap-2 text-[#14151a]">
+                                  <div className="text-sm font-semibold flex items-center gap-2 text-[#F6F2EB]">
                                     {e.title}
-                                    {e.is_recurring && <span className="inline-flex items-center rounded bg-[#ff6b4a]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#ff6b4a] ring-1 ring-inset ring-[#ff6b4a]/25">Recurring</span>}
+                                    {e.is_recurring && <span className="inline-flex items-center rounded bg-[#E07A28]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#E07A28] ring-1 ring-inset ring-[#E07A28]/25">Recurring</span>}
                                     {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-700 border border-blue-500/20">Imported</span>}
                                     {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 border border-emerald-500/20">Bill</span>}
                                   </div>
-                                  <div className="mt-1 text-xs text-[#7a756d]">{e.category} • {e.payment_method} • {e.date}</div>
+                                  <div className="mt-1 text-xs text-[#8C8176]">{e.category} • {e.payment_method} • {e.date}</div>
                                 </div>
                               </div>
                               <div className="flex items-center gap-3">
-                                <div className="text-sm font-bold text-[#14151a]">{money(e.amount)}</div>
+                                <div className="text-sm font-bold text-[#F6F2EB]">{money(e.amount)}</div>
                                 <button
                                   onClick={() => deleteExpense(e.id)}
                                   aria-label={`Delete ${e.title}`}
                                   title="Delete transaction"
-                                  className="p-1.5 text-[#8a847b] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                  className="p-1.5 text-[#8C8176] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                                 >
                                   <Trash2 size={16} />
                                 </button>
@@ -1184,80 +1184,80 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center gap-3">
-                      <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#FF6B4A]/10 text-[#FF6B4A]"><Sparkles size={18}/></div>
-                      <h2 className="font-bold text-[#14151A]">Monthly insight</h2>
+                      <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#E07A28]/10 text-[#E07A28]"><Sparkles size={18}/></div>
+                      <h2 className="font-bold text-[#F6F2EB]">Monthly insight</h2>
                     </div>
-                    <div className="mt-5 space-y-4 text-sm leading-6 text-[#45423E]">
-                      <p><span className="text-[#14151A] font-semibold">{dynamicCategoryBreakdown.length > 0 ? dynamicCategoryBreakdown[0].name : "No expenses yet"}</span> is currently your largest expense category this month.</p>
-                      <p>Your current savings rate stands at <span className="text-[#FF6B4A] font-semibold">{savingsRate}%</span>.</p>
+                    <div className="mt-5 space-y-4 text-sm leading-6 text-[#C6BCB3]">
+                      <p><span className="text-[#F6F2EB] font-semibold">{dynamicCategoryBreakdown.length > 0 ? dynamicCategoryBreakdown[0].name : "No expenses yet"}</span> is currently your largest expense category this month.</p>
+                      <p>Your current savings rate stands at <span className="text-[#E07A28] font-semibold">{savingsRate}%</span>.</p>
                       {dynamicCategoryBreakdown.length > 1 && (
-                        <p><span className="text-[#14151A] font-semibold">{dynamicCategoryBreakdown[1].name}</span> is your second highest expense. Keep an eye on it to maximize your savings.</p>
+                        <p><span className="text-[#F6F2EB] font-semibold">{dynamicCategoryBreakdown[1].name}</span> is your second highest expense. Keep an eye on it to maximize your savings.</p>
                       )}
                     </div>
                     <div className="mt-6 rounded-xl border border-emerald-600/20 bg-emerald-500/10 p-4">
                       <div className="flex items-center gap-2 text-sm font-semibold text-emerald-700"><ArrowUpRight size={16}/> New achievement</div>
-                      <div className="mt-2 text-sm text-[#45423E]">{Number(savingsRate) >= 20 ? "Consistent Saver — you're saving more than 20% of your income!" : "Keep it up — you're on the path to better financial health."}</div>
+                      <div className="mt-2 text-sm text-[#C6BCB3]">{Number(savingsRate) >= 20 ? "Consistent Saver — you're saving more than 20% of your income!" : "Keep it up — you're on the path to better financial health."}</div>
                     </div>
                   </div>
                 </section>
               </>
             ) : active === "Transactions" ? (
               <section className="space-y-6">
-                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                   <div className="flex items-center justify-between">
-                    <h2 className="font-bold text-[#14151A]">Spending trend</h2>
-                    <div className="rounded-lg bg-[#F4EFE6] px-3 py-1.5 text-xs font-medium text-[#45423E]">Monthly</div>
+                    <h2 className="font-bold text-[#F6F2EB]">Spending trend</h2>
+                    <div className="rounded-lg bg-[#26201B] px-3 py-1.5 text-xs font-medium text-[#C6BCB3]">Monthly</div>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={dynamicMonthlyTrend}>
-                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
+                        <CartesianGrid stroke="rgba(246,242,235,0.08)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip contentStyle={{ background: "#1D1815", border: "1px solid #382D25", borderRadius: 14, color: "#F6F2EB", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}/>
                         <Legend />
-                        <Line type="monotone" dataKey="spent" stroke="#FF6B4A" strokeWidth={3} dot={false}/>
+                        <Line type="monotone" dataKey="spent" stroke="#E07A28" strokeWidth={3} dot={false}/>
                         <Line type="monotone" dataKey="saved" stroke="#16a34a" strokeWidth={3} dot={false}/>
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <h2 className="font-bold text-[#14151A]">All Transactions</h2>
+                    <h2 className="font-bold text-[#F6F2EB]">All Transactions</h2>
                   </div>
-                  <div className="divide-y divide-[#E5DFD3]">
+                  <div className="divide-y divide-[#382D25]">
                     {allExpenses.length === 0 ? (
-                      <div className="py-12 text-center text-[#7A756D]">
+                      <div className="py-12 text-center text-[#8C8176]">
                         No transactions found. Start tracking your expenses today!
                       </div>
                     ) : (
                       allExpenses.map((e) => {
                         const Icon = iconForCategory[e.category] ?? CircleDollarSign;
                         return (
-                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#F7F2E7] -mx-4 px-4 rounded-xl transition-colors group">
+                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#28211B] -mx-4 px-4 rounded-xl transition-colors group">
                             <div className="flex items-center gap-3">
-                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#F4EFE6] text-[#7A756D]"><Icon size={17}/></div>
+                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#26201B] text-[#8C8176]"><Icon size={17}/></div>
                               <div>
-                                <div className="text-sm font-semibold flex items-center gap-2 text-[#14151A]">
+                                <div className="text-sm font-semibold flex items-center gap-2 text-[#F6F2EB]">
                                   {e.title} 
-                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-[#FF6B4A]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#FF6B4A] ring-1 ring-inset ring-[#FF6B4A]/25">Recurring</span>}
+                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-[#E07A28]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#E07A28] ring-1 ring-inset ring-[#E07A28]/25">Recurring</span>}
                                   {e.source === "import" && <span className="inline-flex items-center rounded bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-medium text-blue-700 border border-blue-500/20">Imported</span>}
                                   {e.source === "bill_upload" && <span className="inline-flex items-center rounded bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 border border-emerald-500/20">Bill</span>}
                                 </div>
-                                <div className="mt-1 text-xs text-[#7A756D]">{e.category} • {e.payment_method} • {e.date}</div>
+                                <div className="mt-1 text-xs text-[#8C8176]">{e.category} • {e.payment_method} • {e.date}</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-3">
-                              <div className="text-sm font-bold text-[#14151A]">{money(e.amount)}</div>
+                              <div className="text-sm font-bold text-[#F6F2EB]">{money(e.amount)}</div>
                               <button
                                 onClick={() => deleteExpense(e.id)}
                                 aria-label={`Delete ${e.title}`}
                                 title="Delete transaction"
-                                className="p-1.5 text-[#7A756D] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                className="p-1.5 text-[#8C8176] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               >
                                 <Trash2 size={16} />
                               </button>
@@ -1287,43 +1287,43 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Budgets" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-[#14151A]">Savings Analysis</h2>
+                  <h2 className="text-2xl font-black text-[#F6F2EB]">Savings Analysis</h2>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm flex flex-col justify-center">
-                    <h3 className="text-sm font-semibold text-[#7A756D]">Total Savings (This Month)</h3>
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm flex flex-col justify-center">
+                    <h3 className="text-sm font-semibold text-[#8C8176]">Total Savings (This Month)</h3>
                     <div className="mt-4 text-4xl font-black text-emerald-600">{money(saved)}</div>
-                    <div className="mt-2 text-sm text-[#45423E]">
-                      Your current savings rate is <span className="font-bold text-[#14151A]">{savingsRate}%</span>. 
+                    <div className="mt-2 text-sm text-[#C6BCB3]">
+                      Your current savings rate is <span className="font-bold text-[#F6F2EB]">{savingsRate}%</span>. 
                       {dynamicMonthlyTrend.length >= 2 ? (
-                        <span className="block mt-1">Last month you saved <strong className="text-[#14151A]">{money(dynamicMonthlyTrend[dynamicMonthlyTrend.length - 2].saved)}</strong>.</span>
+                        <span className="block mt-1">Last month you saved <strong className="text-[#F6F2EB]">{money(dynamicMonthlyTrend[dynamicMonthlyTrend.length - 2].saved)}</strong>.</span>
                       ) : (
-                        <span className="block mt-1 text-[#7A756D]">First month tracking — month-over-month comparisons unlock next month.</span>
+                        <span className="block mt-1 text-[#8C8176]">First month tracking — month-over-month comparisons unlock next month.</span>
                       )}
                     </div>
                   </div>
                   
-                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm">
-                    <h3 className="text-sm font-semibold text-[#7A756D]">1-Year Forecast</h3>
-                    <div className="mt-4 text-4xl font-black text-[#FF6B4A]">{money(saved > 0 ? saved * 12 : 0)}</div>
-                    <div className="mt-2 text-sm text-[#45423E]">
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm">
+                    <h3 className="text-sm font-semibold text-[#8C8176]">1-Year Forecast</h3>
+                    <div className="mt-4 text-4xl font-black text-[#E07A28]">{money(saved > 0 ? saved * 12 : 0)}</div>
+                    <div className="mt-2 text-sm text-[#C6BCB3]">
                       By keeping up this month's average, you can accumulate up to this amount in a year!
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <h2 className="font-bold text-[#14151A]">Historical Savings Trend</h2>
+                    <h2 className="font-bold text-[#F6F2EB]">Historical Savings Trend</h2>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={dynamicMonthlyTrend}>
-                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip cursor={{ fill: 'rgba(20,21,26,0.04)' }} contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
+                        <CartesianGrid stroke="rgba(246,242,235,0.08)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip cursor={{ fill: 'rgba(246,242,235,0.05)' }} contentStyle={{ background: "#1D1815", border: "1px solid #382D25", borderRadius: 14, color: "#F6F2EB", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}/>
                         <Legend />
                         <Bar name="Saved Amount" dataKey="saved" fill="#16a34a" radius={[4, 4, 0, 0]} />
                       </BarChart>
@@ -1331,12 +1331,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-emerald-600/20 bg-gradient-to-br from-emerald-500/10 via-[#FFFDF9] to-[#F7F2E7] p-6 shadow-sm">
+                <div className="rounded-2xl border border-emerald-600/20 bg-gradient-to-br from-emerald-950/40 via-[#1D1815] to-[#17181C] p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-600/15 text-emerald-700"><Target size={18}/></div>
-                    <h2 className="font-bold text-[#14151A]">Smart Analysis</h2>
+                    <h2 className="font-bold text-[#F6F2EB]">Smart Analysis</h2>
                   </div>
-                  <div className="space-y-4 text-sm leading-6 text-[#45423E]">
+                  <div className="space-y-4 text-sm leading-6 text-[#C6BCB3]">
                     <p>
                       {Number(savingsRate) >= 20 
                         ? `Excellent job! You are saving ${savingsRate}%, which exceeds the recommended 20% target.` 
@@ -1354,8 +1354,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Investments" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-[#14151A]">Investments</h2>
-                  <button onClick={() => { setNewExpense({...newExpense, category: 'Invest'}); setShowExpense(true); }} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">
+                  <h2 className="text-2xl font-black text-[#F6F2EB]">Investments</h2>
+                  <button onClick={() => { setNewExpense({...newExpense, category: 'Invest'}); setShowExpense(true); }} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#E07A28]/20 hover:brightness-105 transition-all">
                     <Plus size={17}/> Add Investment
                   </button>
                 </div>
@@ -1365,17 +1365,17 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <MetricCard label="All-time Investments" value={money(allExpenses.filter(e => e.category === 'Invest').reduce((sum, e) => sum + e.amount, 0))} icon={PiggyBank}/>
                 </div>
 
-                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <h2 className="font-bold text-[#14151A]">Investment Growth</h2>
+                    <h2 className="font-bold text-[#F6F2EB]">Investment Growth</h2>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={dynamicInvestmentTrend}>
-                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
+                        <CartesianGrid stroke="rgba(246,242,235,0.08)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip contentStyle={{ background: "#1D1815", border: "1px solid #382D25", borderRadius: 14, color: "#F6F2EB", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}/>
                         <Legend />
                         <Line type="monotone" name="Invested" dataKey="invested" stroke="#16a34a" strokeWidth={3} dot={false}/>
                       </LineChart>
@@ -1383,35 +1383,35 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
-                  <h2 className="font-bold text-[#14151A] mb-5">Investment History</h2>
-                  <div className="divide-y divide-[#E5DFD3]">
+                <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
+                  <h2 className="font-bold text-[#F6F2EB] mb-5">Investment History</h2>
+                  <div className="divide-y divide-[#382D25]">
                     {allExpenses.filter(e => e.category === 'Invest').length === 0 ? (
-                      <div className="py-12 text-center text-[#7A756D]">
+                      <div className="py-12 text-center text-[#8C8176]">
                         No investments found. Start investing for your future!
                       </div>
                     ) : (
                       allExpenses.filter(e => e.category === 'Invest').map((e) => {
                         const Icon = iconForCategory[e.category] ?? CircleDollarSign;
                         return (
-                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#F7F2E7] -mx-4 px-4 rounded-xl transition-colors group">
+                          <div key={e.id} className="flex items-center justify-between py-4 hover:bg-[#28211B] -mx-4 px-4 rounded-xl transition-colors group">
                             <div className="flex items-center gap-3">
-                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#F4EFE6] text-[#7A756D]"><Icon size={17}/></div>
+                              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#26201B] text-[#8C8176]"><Icon size={17}/></div>
                               <div>
-                                <div className="text-sm font-semibold flex items-center gap-2 text-[#14151A]">
+                                <div className="text-sm font-semibold flex items-center gap-2 text-[#F6F2EB]">
                                   {e.title}
-                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-[#FF6B4A]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#FF6B4A] ring-1 ring-inset ring-[#FF6B4A]/25">Recurring</span>}
+                                  {e.is_recurring && <span className="inline-flex items-center rounded bg-[#E07A28]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#E07A28] ring-1 ring-inset ring-[#E07A28]/25">Recurring</span>}
                                 </div>
-                                <div className="mt-1 text-xs text-[#7A756D]">{e.date} • {e.payment_method}</div>
+                                <div className="mt-1 text-xs text-[#8C8176]">{e.date} • {e.payment_method}</div>
                               </div>
                             </div>
                             <div className="flex items-center gap-3">
-                              <div className="text-sm font-bold text-[#14151A]">{money(e.amount)}</div>
+                              <div className="text-sm font-bold text-[#F6F2EB]">{money(e.amount)}</div>
                               <button
                                 onClick={() => deleteExpense(e.id)}
                                 aria-label={`Delete ${e.title}`}
                                 title="Delete investment"
-                                className="p-1.5 text-[#7A756D] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                className="p-1.5 text-[#8C8176] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               >
                                 <Trash2 size={16} />
                               </button>
@@ -1426,8 +1426,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "EMIs" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-[#14151A]">Active EMIs & Loans</h2>
-                  <button onClick={() => setShowEmiModal(true)} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">
+                  <h2 className="text-2xl font-black text-[#F6F2EB]">Active EMIs & Loans</h2>
+                  <button onClick={() => setShowEmiModal(true)} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#E07A28]/20 hover:brightness-105 transition-all">
                     <Plus size={17}/> Add EMI
                   </button>
                 </div>
@@ -1469,11 +1469,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {emis.length === 0 ? (
-                    <div className="col-span-full rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-12 text-center text-[#7A756D] shadow-sm">
-                      <CreditCard size={36} className="mx-auto mb-3 text-[#7A756D] opacity-60" />
-                      <div className="text-base font-semibold text-[#14151A]">No Active EMIs</div>
-                      <p className="mt-1 text-sm text-[#7A756D]">Add an EMI or loan to track monthly auto-deductions and interest amounts.</p>
-                      <button onClick={() => setShowEmiModal(true)} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#FF6B4A]/10 border border-[#FF6B4A]/25 px-4 py-2 text-sm font-semibold text-[#FF6B4A] hover:bg-[#FF6B4A]/20 transition-all">
+                    <div className="col-span-full rounded-2xl border border-[#382D25] bg-[#1D1815] p-12 text-center text-[#8C8176] shadow-sm">
+                      <CreditCard size={36} className="mx-auto mb-3 text-[#8C8176] opacity-60" />
+                      <div className="text-base font-semibold text-[#F6F2EB]">No Active EMIs</div>
+                      <p className="mt-1 text-sm text-[#8C8176]">Add an EMI or loan to track monthly auto-deductions and interest amounts.</p>
+                      <button onClick={() => setShowEmiModal(true)} className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#E07A28]/10 border border-[#E07A28]/25 px-4 py-2 text-sm font-semibold text-[#E07A28] hover:bg-[#E07A28]/20 transition-all">
                         <Plus size={15}/> Add Your First EMI
                       </button>
                     </div>
@@ -1496,51 +1496,51 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       const remainingBalance = Math.max(0, Math.round(emi.principal * (remainingMonths / (emi.tenureMonths || 1))));
 
                       return (
-                        <div key={emi.id} className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 shadow-sm group transition-all hover:border-[#FF6B4A]/40">
+                        <div key={emi.id} className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 shadow-sm group transition-all hover:border-[#E07A28]/40">
                           <div className="flex items-center justify-between">
                             <div>
-                              <h3 className="font-bold text-[#14151A]">{emi.title}</h3>
+                              <h3 className="font-bold text-[#F6F2EB]">{emi.title}</h3>
                               {emi.interestRate !== undefined && (
-                                <span className="inline-block mt-0.5 text-xs text-[#FF6B4A] font-medium">
+                                <span className="inline-block mt-0.5 text-xs text-[#E07A28] font-medium">
                                   {emi.interestRate > 0 ? `${emi.interestRate}% p.a. interest` : "0% No-Cost EMI"}
                                 </span>
                               )}
                             </div>
                             <div className="flex items-center gap-2">
-                              <div className="grid h-8 w-8 place-items-center rounded-lg bg-[#FF6B4A]/10 text-[#FF6B4A]"><CreditCard size={15}/></div>
+                              <div className="grid h-8 w-8 place-items-center rounded-lg bg-[#E07A28]/10 text-[#E07A28]"><CreditCard size={15}/></div>
                               <button
                                 onClick={() => deleteEmi(emi.id)}
                                 aria-label={`Delete EMI ${emi.title}`}
                                 title="Delete EMI"
-                                className="p-1.5 text-[#7A756D] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                className="p-1.5 text-[#8C8176] hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                               >
                                 <Trash2 size={15} />
                               </button>
                             </div>
                           </div>
                           
-                          <div className="mt-4 text-2xl font-black text-[#14151A]">
+                          <div className="mt-4 text-2xl font-black text-[#F6F2EB]">
                             {money(emi.monthlyAmount)}
-                            <span className="text-xs font-normal text-[#7A756D]"> /mo</span>
+                            <span className="text-xs font-normal text-[#8C8176]"> /mo</span>
                           </div>
                           
-                          <div className="mt-4 mb-2 h-2 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
-                            <div className="h-full rounded-full bg-gradient-to-r from-[#FF6B4A] to-[#FF8566] transition-all" style={{ width: `${pct}%` }} />
+                          <div className="mt-4 mb-2 h-2 w-full overflow-hidden rounded-full bg-[#26201B]">
+                            <div className="h-full rounded-full bg-gradient-to-r from-[#E07A28] to-[#F08C3A] transition-all" style={{ width: `${pct}%` }} />
                           </div>
-                          <div className="flex justify-between text-xs text-[#7A756D] mb-4">
+                          <div className="flex justify-between text-xs text-[#8C8176] mb-4">
                             <span>{paidMonths} of {emi.tenureMonths} paid ({pct.toFixed(0)}%)</span>
                             <span>{remainingMonths} months left</span>
                           </div>
 
-                          <div className="space-y-2 text-xs text-[#45423E] divide-y divide-[#E5DFD3]">
-                            <div className="flex justify-between pt-1.5"><span>Product Principal</span><span className="text-[#14151A] font-medium">{money(emi.principal)}</span></div>
+                          <div className="space-y-2 text-xs text-[#C6BCB3] divide-y divide-[#382D25]">
+                            <div className="flex justify-between pt-1.5"><span>Product Principal</span><span className="text-[#F6F2EB] font-medium">{money(emi.principal)}</span></div>
                             <div className="flex justify-between pt-1.5"><span>Total Interest</span><span className="text-rose-600 font-medium">{money(totalInterest)}</span></div>
                             <div className="flex justify-between pt-1.5"><span>Interest Paid So Far</span><span className="text-amber-700 font-medium">{money(interestPaid)}</span></div>
-                            <div className="flex justify-between pt-1.5"><span>Total Payable</span><span className="text-[#14151A] font-medium">{money(totalPayable)}</span></div>
+                            <div className="flex justify-between pt-1.5"><span>Total Payable</span><span className="text-[#F6F2EB] font-medium">{money(totalPayable)}</span></div>
                             <div className="flex justify-between pt-1.5"><span>Outstanding Balance</span><span className="text-emerald-700 font-semibold">{money(remainingBalance)}</span></div>
                             <div className="flex justify-between pt-1.5 items-center">
                               <span>Auto-deduct</span>
-                              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#FF6B4A]/10 text-[#FF6B4A] font-medium border border-[#FF6B4A]/20 text-[11px]">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#E07A28]/10 text-[#E07A28] font-medium border border-[#E07A28]/20 text-[11px]">
                                 Day {emi.deductionDate} of month
                               </span>
                             </div>
@@ -1554,48 +1554,48 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Reports" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-[#14151A]">Financial Health Report</h2>
+                  <h2 className="text-2xl font-black text-[#F6F2EB]">Financial Health Report</h2>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                  <div className="col-span-1 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm flex flex-col justify-center items-center text-center">
-                    <h3 className="text-sm font-semibold text-[#7A756D]">Financial Score</h3>
-                    <div className="mt-4 text-6xl font-black text-[#14151A]">{financialReportData.score}</div>
+                  <div className="col-span-1 rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm flex flex-col justify-center items-center text-center">
+                    <h3 className="text-sm font-semibold text-[#8C8176]">Financial Score</h3>
+                    <div className="mt-4 text-6xl font-black text-[#F6F2EB]">{financialReportData.score}</div>
                     <div className={`mt-2 font-bold ${financialReportData.statusColor}`}>{financialReportData.status}</div>
-                    <p className="mt-4 text-xs text-[#7A756D] leading-relaxed">
+                    <p className="mt-4 text-xs text-[#8C8176] leading-relaxed">
                       This score evaluates your adherence to the 50/30/20 budget framework.
                     </p>
                   </div>
                   
-                  <div className="col-span-2 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm flex flex-col lg:flex-row gap-8 items-center">
+                  <div className="col-span-2 rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm flex flex-col lg:flex-row gap-8 items-center">
                     <div className="flex-1 w-full space-y-6">
-                      <h3 className="font-bold text-[#14151A] mb-6">Current Month Breakdown</h3>
+                      <h3 className="font-bold text-[#F6F2EB] mb-6">Current Month Breakdown</h3>
                       <div>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium text-[#45423E]">Needs (Target 50%)</span>
-                          <span className="text-[#7A756D]">{financialReportData.needsPct.toFixed(1)}% • {money(financialReportData.needsSum)}</span>
+                          <span className="font-medium text-[#C6BCB3]">Needs (Target 50%)</span>
+                          <span className="text-[#8C8176]">{financialReportData.needsPct.toFixed(1)}% • {money(financialReportData.needsSum)}</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#26201B]">
                           <div className={`h-full rounded-full ${financialReportData.needsPct > 50 ? 'bg-rose-500' : 'bg-emerald-600'}`} style={{ width: `${Math.min(100, financialReportData.needsPct)}%` }} />
                         </div>
                       </div>
 
                       <div>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium text-[#45423E]">Wants (Target 30%)</span>
-                          <span className="text-[#7A756D]">{financialReportData.wantsPct.toFixed(1)}% • {money(financialReportData.wantsSum)}</span>
+                          <span className="font-medium text-[#C6BCB3]">Wants (Target 30%)</span>
+                          <span className="text-[#8C8176]">{financialReportData.wantsPct.toFixed(1)}% • {money(financialReportData.wantsSum)}</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#26201B]">
                           <div className={`h-full rounded-full ${financialReportData.wantsPct > 30 ? 'bg-rose-500' : 'bg-emerald-600'}`} style={{ width: `${Math.min(100, financialReportData.wantsPct)}%` }} />
                         </div>
                       </div>
 
                       <div>
                         <div className="flex justify-between text-sm mb-2">
-                          <span className="font-medium text-[#45423E]">Savings & Investments (Target 20%)</span>
-                          <span className="text-[#7A756D]">{financialReportData.investPct.toFixed(1)}% • {money(financialReportData.investSum)}</span>
+                          <span className="font-medium text-[#C6BCB3]">Savings & Investments (Target 20%)</span>
+                          <span className="text-[#8C8176]">{financialReportData.investPct.toFixed(1)}% • {money(financialReportData.investSum)}</span>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#F4EFE6]">
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#26201B]">
                           <div className={`h-full rounded-full ${financialReportData.investPct < 20 ? 'bg-amber-600' : 'bg-emerald-600'}`} style={{ width: `${Math.min(100, financialReportData.investPct)}%` }} />
                         </div>
                       </div>
@@ -1608,7 +1608,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                             data={[
                               { name: 'Needs', value: financialReportData.needsSum, color: '#16a34a' },
                               { name: 'Wants', value: financialReportData.wantsSum, color: '#f59e0b' },
-                              { name: 'Savings', value: financialReportData.investSum, color: '#FF6B4A' }
+                              { name: 'Savings', value: financialReportData.investSum, color: '#E07A28' }
                             ].filter(d => d.value > 0)} 
                             dataKey="value" 
                             cx="50%" cy="50%" 
@@ -1619,32 +1619,32 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                               [
                                 { name: 'Needs', value: financialReportData.needsSum, color: '#16a34a' },
                                 { name: 'Wants', value: financialReportData.wantsSum, color: '#f59e0b' },
-                                { name: 'Savings', value: financialReportData.investSum, color: '#FF6B4A' }
+                                { name: 'Savings', value: financialReportData.investSum, color: '#E07A28' }
                               ].filter(d => d.value > 0).map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)
                             }
                           </Pie>
-                          <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
+                          <Tooltip contentStyle={{ background: "#1D1815", border: "1px solid #382D25", borderRadius: 14, color: "#F6F2EB", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}/>
                         </PieChart>
                       </ResponsiveContainer>
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
+                <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <h2 className="font-bold text-[#14151A]">Comprehensive Growth Timeline</h2>
+                    <h2 className="font-bold text-[#F6F2EB]">Comprehensive Growth Timeline</h2>
                   </div>
                   <div className="mt-6 h-80">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={comprehensiveTrendData}>
-                        <CartesianGrid stroke="rgba(20,21,26,0.07)" vertical={false}/>
-                        <XAxis dataKey="month" stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <YAxis stroke="#7A756D" fontSize={12} tickLine={false} axisLine={false}/>
-                        <Tooltip contentStyle={{ background: "#FFFDF9", border: "1px solid #E5DFD3", borderRadius: 14, color: "#14151A", boxShadow: "0 10px 25px -5px rgba(20,21,26,0.08)" }}/>
+                        <CartesianGrid stroke="rgba(246,242,235,0.08)" vertical={false}/>
+                        <XAxis dataKey="month" stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <YAxis stroke="#8C8176" fontSize={12} tickLine={false} axisLine={false}/>
+                        <Tooltip contentStyle={{ background: "#1D1815", border: "1px solid #382D25", borderRadius: 14, color: "#F6F2EB", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }}/>
                         <Legend />
                         <Line type="monotone" dataKey="Income" stroke="#16a34a" strokeWidth={2.5} dot={false}/>
                         <Line type="monotone" dataKey="Expenses" stroke="#e11d48" strokeWidth={2.5} dot={false}/>
-                        <Line type="monotone" dataKey="Investments" stroke="#FF6B4A" strokeWidth={2.5} dot={false}/>
+                        <Line type="monotone" dataKey="Investments" stroke="#E07A28" strokeWidth={2.5} dot={false}/>
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -1653,11 +1653,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Achievements" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-[#14151A]">Achievements</h2>
+                  <h2 className="text-2xl font-black text-[#F6F2EB]">Achievements</h2>
                 </div>
                 
                 <div className="space-y-4">
-                  <h3 className="font-bold text-[#14151A]">Earned Badges</h3>
+                  <h3 className="font-bold text-[#F6F2EB]">Earned Badges</h3>
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {BADGES.filter(b => !!unlockedBadges[b.id]).map((badge) => {
                       const BadgeIcon = badge.icon;
@@ -1665,21 +1665,21 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         <button
                           key={badge.id}
                           onClick={() => setShowBadgeModal({ show: true, badgeId: badge.id })}
-                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-[#E5DFD3] bg-[#FFFDF9] shadow-sm hover:border-[#FF6B4A]/50 hover:bg-[#F7F2E7]`}
+                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-[#382D25] bg-[#1D1815] shadow-sm hover:border-[#E07A28]/50 hover:bg-[#28211B]`}
                         >
                           <div className={`mb-4 grid h-12 w-12 place-items-center rounded-full ${badge.color.replace('text-', 'bg-').replace('400', '500/10')}`}>
                             <BadgeIcon className={badge.color} size={24} />
                           </div>
-                          <h3 className={`text-sm font-bold text-[#14151A]`}>{badge.name}</h3>
+                          <h3 className={`text-sm font-bold text-[#F6F2EB]`}>{badge.name}</h3>
                         </button>
                       );
                     })}
                   </div>
-                  {BADGES.filter(b => !!unlockedBadges[b.id]).length === 0 && <p className="text-[#7A756D] text-sm">You haven't earned any badges yet. Keep tracking!</p>}
+                  {BADGES.filter(b => !!unlockedBadges[b.id]).length === 0 && <p className="text-[#8C8176] text-sm">You haven't earned any badges yet. Keep tracking!</p>}
                 </div>
 
                 <div className="mt-10 space-y-4">
-                  <h3 className="font-bold text-[#14151A]">Locked Badges</h3>
+                  <h3 className="font-bold text-[#F6F2EB]">Locked Badges</h3>
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                     {BADGES.filter(b => !unlockedBadges[b.id]).map((badge) => {
                       const BadgeIcon = badge.icon;
@@ -1687,12 +1687,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         <button
                           key={badge.id}
                           onClick={() => setShowBadgeModal({ show: true, badgeId: badge.id })}
-                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-[#E5DFD3]/80 bg-[#F4EFE6]/70 opacity-60 hover:opacity-100 hover:border-[#FF6B4A]/40`}
+                          className={`group relative flex flex-col items-center justify-center rounded-2xl border p-6 text-center transition-all border-[#382D25]/80 bg-[#26201B]/70 opacity-60 hover:opacity-100 hover:border-[#E07A28]/40`}
                         >
-                          <div className={`mb-4 grid h-12 w-12 place-items-center rounded-full bg-[#E5DFD3]/50`}>
-                            <BadgeIcon className="text-[#7A756D]" size={24} />
+                          <div className={`mb-4 grid h-12 w-12 place-items-center rounded-full bg-[#382D25]/50`}>
+                            <BadgeIcon className="text-[#8C8176]" size={24} />
                           </div>
-                          <h3 className={`text-sm font-bold text-[#7A756D] group-hover:text-[#14151A]`}>{badge.name}</h3>
+                          <h3 className={`text-sm font-bold text-[#8C8176] group-hover:text-[#F6F2EB]`}>{badge.name}</h3>
                         </button>
                       );
                     })}
@@ -1702,32 +1702,32 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Settings" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-[#14151A]">Settings</h2>
+                  <h2 className="text-2xl font-black text-[#F6F2EB]">Settings</h2>
                 </div>
                 
                 <div className="max-w-xl space-y-6">
-                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm space-y-4">
-                    <h3 className="font-bold text-[#14151A]">Profile Information</h3>
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm space-y-4">
+                    <h3 className="font-bold text-[#F6F2EB]">Profile Information</h3>
                     
                     <div className="grid gap-4 sm:grid-cols-2">
                       <label className="block text-sm">
-                        <span className="mb-2 block text-[#7A756D]">Full Name</span>
-                        <input className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.name} onChange={(e) => setEditSettings({...editSettings, name: e.target.value})} />
+                        <span className="mb-2 block text-[#8C8176]">Full Name</span>
+                        <input className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={editSettings.name} onChange={(e) => setEditSettings({...editSettings, name: e.target.value})} />
                       </label>
                       <label className="block text-sm">
-                        <span className="mb-2 block text-[#7A756D]">Date of Birth</span>
+                        <span className="mb-2 block text-[#8C8176]">Date of Birth</span>
                         <DatePicker value={editSettings.dob} onChange={(date) => setEditSettings({...editSettings, dob: date})} />
                       </label>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-3">
                       <label className="text-sm">
-                        <span className="mb-2 block text-[#7A756D]">Age</span>
-                        <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.age} onChange={(e) => setEditSettings({...editSettings, age: e.target.value})} placeholder="e.g. 28" />
+                        <span className="mb-2 block text-[#8C8176]">Age</span>
+                        <input type="number" className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={editSettings.age} onChange={(e) => setEditSettings({...editSettings, age: e.target.value})} placeholder="e.g. 28" />
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-[#7A756D]">Gender</span>
-                        <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.gender} onChange={(e) => setEditSettings({...editSettings, gender: e.target.value})}>
+                        <span className="mb-2 block text-[#8C8176]">Gender</span>
+                        <select className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={editSettings.gender} onChange={(e) => setEditSettings({...editSettings, gender: e.target.value})}>
                           <option value="">Select...</option>
                           <option value="Male">Male</option>
                           <option value="Female">Female</option>
@@ -1735,26 +1735,26 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         </select>
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-[#7A756D]">Occupation</span>
-                        <input className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.occupation} onChange={(e) => setEditSettings({...editSettings, occupation: e.target.value})} placeholder="e.g. Engineer" />
+                        <span className="mb-2 block text-[#8C8176]">Occupation</span>
+                        <input className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={editSettings.occupation} onChange={(e) => setEditSettings({...editSettings, occupation: e.target.value})} placeholder="e.g. Engineer" />
                       </label>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-3">
                       <label className="text-sm">
-                        <span className="mb-2 block text-[#7A756D]">User Type</span>
-                        <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] text-[#14151A] transition-all" value={editSettings.userType} onChange={(e) => setEditSettings({...editSettings, userType: e.target.value})}>
+                        <span className="mb-2 block text-[#8C8176]">User Type</span>
+                        <select className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none focus:border-[#E07A28] focus:bg-[#1D1815] text-[#F6F2EB] transition-all" value={editSettings.userType} onChange={(e) => setEditSettings({...editSettings, userType: e.target.value})}>
                           <option value="Professional">Professional</option>
                           <option value="Student">Student</option>
                         </select>
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-[#7A756D]">{editSettings.userType === "Student" ? "Pocket Money" : "Monthly Income"}</span>
-                        <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.income} onChange={(e) => setEditSettings({...editSettings, income: e.target.value})} />
+                        <span className="mb-2 block text-[#8C8176]">{editSettings.userType === "Student" ? "Pocket Money" : "Monthly Income"}</span>
+                        <input type="number" className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={editSettings.income} onChange={(e) => setEditSettings({...editSettings, income: e.target.value})} />
                       </label>
                       <label className="text-sm">
-                        <span className="mb-2 block text-[#7A756D]">Monthly Investment Goal</span>
-                        <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={editSettings.monthlyInvestment} onChange={(e) => setEditSettings({...editSettings, monthlyInvestment: e.target.value})} />
+                        <span className="mb-2 block text-[#8C8176]">Monthly Investment Goal</span>
+                        <input type="number" className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={editSettings.monthlyInvestment} onChange={(e) => setEditSettings({...editSettings, monthlyInvestment: e.target.value})} />
                       </label>
                     </div>
 
@@ -1794,38 +1794,38 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                         alert('Settings saved successfully!');
                       }}
-                      className="mt-4 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-6 py-2.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#FF6B4A]/20 transition-all"
+                      className="mt-4 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-6 py-2.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#E07A28]/20 transition-all"
                     >
                       Save Changes
                     </button>
                   </div>
 
-                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm">
-                    <h3 className="font-bold text-[#14151A]">Legal &amp; Policies</h3>
-                    <p className="mt-1 text-sm text-[#7A756D] mb-4">Review our terms of use, privacy standards, and support center.</p>
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm">
+                    <h3 className="font-bold text-[#F6F2EB]">Legal &amp; Policies</h3>
+                    <p className="mt-1 text-sm text-[#8C8176] mb-4">Review our terms of use, privacy standards, and support center.</p>
                     <div className="grid gap-2.5 sm:grid-cols-2 text-sm">
-                      <Link href="/terms" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
+                      <Link href="/terms" target="_blank" className="flex items-center justify-between rounded-xl border border-[#382D25] bg-[#17181C] p-3.5 text-[#C6BCB3] hover:border-[#E07A28]/40 hover:text-[#F6F2EB] transition-all">
                         <span>Terms &amp; Conditions</span>
-                        <ExternalLink size={14} className="text-[#7A756D]" />
+                        <ExternalLink size={14} className="text-[#8C8176]" />
                       </Link>
-                      <Link href="/privacy" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
+                      <Link href="/privacy" target="_blank" className="flex items-center justify-between rounded-xl border border-[#382D25] bg-[#17181C] p-3.5 text-[#C6BCB3] hover:border-[#E07A28]/40 hover:text-[#F6F2EB] transition-all">
                         <span>Privacy Policy</span>
-                        <ExternalLink size={14} className="text-[#7A756D]" />
+                        <ExternalLink size={14} className="text-[#8C8176]" />
                       </Link>
-                      <Link href="/disclaimer" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
+                      <Link href="/disclaimer" target="_blank" className="flex items-center justify-between rounded-xl border border-[#382D25] bg-[#17181C] p-3.5 text-[#C6BCB3] hover:border-[#E07A28]/40 hover:text-[#F6F2EB] transition-all">
                         <span>Financial Disclaimer</span>
-                        <ExternalLink size={14} className="text-[#7A756D]" />
+                        <ExternalLink size={14} className="text-[#8C8176]" />
                       </Link>
-                      <Link href="/contact" target="_blank" className="flex items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F7F2E7] p-3.5 text-[#45423E] hover:border-[#FF6B4A]/40 hover:text-[#14151A] transition-all">
+                      <Link href="/contact" target="_blank" className="flex items-center justify-between rounded-xl border border-[#382D25] bg-[#17181C] p-3.5 text-[#C6BCB3] hover:border-[#E07A28]/40 hover:text-[#F6F2EB] transition-all">
                         <span>Help &amp; Support FAQ</span>
-                        <ExternalLink size={14} className="text-[#7A756D]" />
+                        <ExternalLink size={14} className="text-[#8C8176]" />
                       </Link>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm">
-                    <h3 className="font-bold text-[#14151A]">Data Management</h3>
-                    <p className="mt-1 text-sm text-[#7A756D] mb-6">Reset all your locally stored data. This action cannot be undone.</p>
+                  <div className="rounded-2xl border border-[#382D25] bg-[#1D1815] p-6 shadow-sm">
+                    <h3 className="font-bold text-[#F6F2EB]">Data Management</h3>
+                    <p className="mt-1 text-sm text-[#8C8176] mb-6">Reset all your locally stored data. This action cannot be undone.</p>
                     <button 
                       onClick={() => {
                         if (confirm("Are you sure you want to completely reset all your data? This will log you out.")) {
@@ -1848,21 +1848,21 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       {showExpense && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="w-full max-w-lg rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
+            <div className="w-full max-w-lg rounded-3xl border border-[#382D25] bg-[#1D1815] p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black text-[#14151A]">Add expense</h2>
-              <button onClick={() => setShowExpense(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
+              <h2 className="text-2xl font-black text-[#F6F2EB]">Add expense</h2>
+              <button onClick={() => setShowExpense(false)} className="text-[#8C8176] hover:text-[#F6F2EB]"><X/></button>
             </div>
 
-            <div className="mt-4 flex items-center justify-between rounded-2xl border border-[#FF6B4A]/25 bg-[#FF6B4A]/10 p-3 text-xs text-[#FF6B4A]">
+            <div className="mt-4 flex items-center justify-between rounded-2xl border border-[#E07A28]/25 bg-[#E07A28]/10 p-3 text-xs text-[#E07A28]">
               <div className="flex items-center gap-2">
-                <Sparkles size={15} className="text-[#FF6B4A] shrink-0" />
-                <span className="font-medium text-[#45423E]">Have a receipt or bill? Auto-extract amounts and category.</span>
+                <Sparkles size={15} className="text-[#E07A28] shrink-0" />
+                <span className="font-medium text-[#C6BCB3]">Have a receipt or bill? Auto-extract amounts and category.</span>
               </div>
               <button
                 type="button"
                 onClick={() => { setShowExpense(false); setShowBillModal(true); }}
-                className="rounded-lg bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-2.5 py-1 text-xs font-bold text-white hover:brightness-105 shadow-sm transition-all shrink-0"
+                className="rounded-lg bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-2.5 py-1 text-xs font-bold text-white hover:brightness-105 shadow-sm transition-all shrink-0"
               >
                 Upload Bill
               </button>
@@ -1870,19 +1870,19 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
             <div className="mt-4 grid gap-4">
               <label className="text-sm">
-                <span className="mb-2 block text-[#7A756D]">Title</span>
-                <input className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.title} onChange={(e) => setNewExpense({ ...newExpense, title: e.target.value })} placeholder="Dinner with friends"/>
+                <span className="mb-2 block text-[#8C8176]">Title</span>
+                <input className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={newExpense.title} onChange={(e) => setNewExpense({ ...newExpense, title: e.target.value })} placeholder="Dinner with friends"/>
               </label>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="text-sm">
-                  <span className="mb-2 block text-[#7A756D]">Amount</span>
-                  <input type="number" className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.amount} onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })} placeholder="850"/>
+                  <span className="mb-2 block text-[#8C8176]">Amount</span>
+                  <input type="number" className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={newExpense.amount} onChange={(e) => setNewExpense({ ...newExpense, amount: e.target.value })} placeholder="850"/>
                 </label>
 
                 <label className="text-sm">
-                  <span className="mb-2 block text-[#7A756D]">Category</span>
-                  <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.category} onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}>
+                  <span className="mb-2 block text-[#8C8176]">Category</span>
+                  <select className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={newExpense.category} onChange={(e) => setNewExpense({ ...newExpense, category: e.target.value })}>
                     {categories.map((category) => <option key={category}>{category}</option>)}
                   </select>
                 </label>
@@ -1890,22 +1890,22 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="text-sm">
-                  <span className="mb-2 block text-[#7A756D]">Date</span>
+                  <span className="mb-2 block text-[#8C8176]">Date</span>
                   <DatePicker value={newExpense.date} onChange={(date) => setNewExpense({ ...newExpense, date })} />
                 </label>
 
                 <label className="text-sm">
-                  <span className="mb-2 block text-[#7A756D]">Payment method</span>
-                  <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all" value={newExpense.payment_method} onChange={(e) => setNewExpense({ ...newExpense, payment_method: e.target.value })}>
+                  <span className="mb-2 block text-[#8C8176]">Payment method</span>
+                  <select className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all" value={newExpense.payment_method} onChange={(e) => setNewExpense({ ...newExpense, payment_method: e.target.value })}>
                     {["UPI", "Cash", "Card", "Bank"].map((x) => <option key={x}>{x}</option>)}
                   </select>
                 </label>
               </div>
 
-              <label className="mt-2 flex items-center gap-3 text-sm text-[#45423E]">
+              <label className="mt-2 flex items-center gap-3 text-sm text-[#C6BCB3]">
                 <input 
                   type="checkbox" 
-                  className="h-4 w-4 rounded border-[#E5DFD3] bg-[#F4EFE6] text-[#FF6B4A] focus:ring-[#FF6B4A] focus:ring-offset-[#FFFDF9]" 
+                  className="h-4 w-4 rounded border-[#382D25] bg-[#26201B] text-[#E07A28] focus:ring-[#E07A28] focus:ring-offset-[#1D1815]" 
                   checked={newExpense.is_recurring} 
                   onChange={(e) => setNewExpense({ ...newExpense, is_recurring: e.target.checked })}
                 />
@@ -1913,22 +1913,22 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               </label>
 
               <button 
-                onClick={addExpense} className="mt-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">Add expense</button>
+                onClick={addExpense} className="mt-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-3.5 font-bold text-white shadow-lg shadow-[#E07A28]/20 hover:brightness-105 transition-all">Add expense</button>
             </div>
             </div>
           </div>
         </div>
       )}
 
-      <button onClick={() => setShowExpense(true)} className="fixed bottom-5 right-5 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] text-white shadow-xl shadow-[#FF6B4A]/30 sm:hidden hover:brightness-105 transition-all"><Plus/></button>
+      <button onClick={() => setShowExpense(true)} className="fixed bottom-5 right-5 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] text-white shadow-xl shadow-[#E07A28]/30 sm:hidden hover:brightness-105 transition-all"><Plus/></button>
 
       {showEmiModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="w-full max-w-lg rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
+            <div className="w-full max-w-lg rounded-3xl border border-[#382D25] bg-[#1D1815] p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black text-[#14151A]">Add New EMI</h2>
-              <button onClick={() => setShowEmiModal(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
+              <h2 className="text-2xl font-black text-[#F6F2EB]">Add New EMI</h2>
+              <button onClick={() => setShowEmiModal(false)} className="text-[#8C8176] hover:text-[#F6F2EB]"><X/></button>
             </div>
 
             {(() => {
@@ -1943,9 +1943,9 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               return (
                 <div className="mt-6 grid gap-4">
                   <label className="text-sm">
-                    <span className="mb-2 block text-[#7A756D]">Loan / EMI Name</span>
+                    <span className="mb-2 block text-[#8C8176]">Loan / EMI Name</span>
                     <input
-                      className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
+                      className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all"
                       value={newEmi.title}
                       onChange={(e) => setNewEmi({ ...newEmi, title: e.target.value })}
                       placeholder="e.g. MacBook Pro EMI, Car Loan"
@@ -1954,10 +1954,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="text-sm">
-                      <span className="mb-2 block text-[#7A756D]">Product Principal (₹)</span>
+                      <span className="mb-2 block text-[#8C8176]">Product Principal (₹)</span>
                       <input
                         type="number"
-                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
+                        className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all"
                         value={newEmi.principal}
                         onChange={(e) => setNewEmi({ ...newEmi, principal: e.target.value })}
                         placeholder="100000"
@@ -1966,11 +1966,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                     <label className="text-sm">
                       <div className="mb-2 flex items-center justify-between">
-                        <span className="text-[#7A756D]">Interest Rate (% p.a.)</span>
+                        <span className="text-[#8C8176]">Interest Rate (% p.a.)</span>
                         <button
                           type="button"
                           onClick={() => setNewEmi({ ...newEmi, interestRate: "0" })}
-                          className="text-[11px] text-[#FF6B4A] hover:text-[#FF8566] font-semibold"
+                          className="text-[11px] text-[#E07A28] hover:text-[#F08C3A] font-semibold"
                         >
                           0% No-Cost
                         </button>
@@ -1978,7 +1978,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       <input
                         type="number"
                         step="0.1"
-                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
+                        className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all"
                         value={newEmi.interestRate}
                         onChange={(e) => setNewEmi({ ...newEmi, interestRate: e.target.value, isCustomEmi: false })}
                         placeholder="10.5"
@@ -2001,8 +2001,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         onClick={() => setNewEmi({ ...newEmi, interestRate: preset.rate, isCustomEmi: false })}
                         className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all ${
                           newEmi.interestRate === preset.rate && !newEmi.isCustomEmi
-                            ? "border-[#FF6B4A] bg-[#FF6B4A]/15 text-[#FF6B4A] font-semibold"
-                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#7A756D] hover:border-[#FF6B4A]/30 hover:text-[#14151A]"
+                            ? "border-[#E07A28] bg-[#E07A28]/15 text-[#E07A28] font-semibold"
+                            : "border-[#382D25] bg-[#26201B] text-[#8C8176] hover:border-[#E07A28]/30 hover:text-[#F6F2EB]"
                         }`}
                       >
                         {preset.label}
@@ -2012,10 +2012,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="text-sm">
-                      <span className="mb-2 block text-[#7A756D]">Time Period (Months)</span>
+                      <span className="mb-2 block text-[#8C8176]">Time Period (Months)</span>
                       <input
                         type="number"
-                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
+                        className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all"
                         value={newEmi.tenureMonths}
                         onChange={(e) => setNewEmi({ ...newEmi, tenureMonths: e.target.value })}
                         placeholder="12"
@@ -2024,11 +2024,11 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                     <label className="text-sm">
                       <div className="mb-2 flex items-center justify-between">
-                        <span className="text-[#7A756D]">Monthly EMI (₹)</span>
+                        <span className="text-[#8C8176]">Monthly EMI (₹)</span>
                         <button
                           type="button"
                           onClick={() => setNewEmi({ ...newEmi, isCustomEmi: !newEmi.isCustomEmi, monthlyAmount: String(liveCalc.monthlyEmi) })}
-                          className="text-[11px] text-[#FF6B4A] hover:text-[#FF8566] font-semibold"
+                          className="text-[11px] text-[#E07A28] hover:text-[#F08C3A] font-semibold"
                         >
                           {newEmi.isCustomEmi ? "Auto Calculate" : "Edit Manually"}
                         </button>
@@ -2036,10 +2036,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       <input
                         type="number"
                         readOnly={!newEmi.isCustomEmi}
-                        className={`w-full rounded-xl border px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] transition-all ${
+                        className={`w-full rounded-xl border px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] transition-all ${
                           newEmi.isCustomEmi
-                            ? "border-[#FF6B4A] bg-[#FFFDF9] focus:border-[#FF8566]"
-                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#FF6B4A] font-semibold cursor-default"
+                            ? "border-[#E07A28] bg-[#1D1815] focus:border-[#F08C3A]"
+                            : "border-[#382D25] bg-[#26201B] text-[#E07A28] font-semibold cursor-default"
                         }`}
                         value={newEmi.isCustomEmi ? newEmi.monthlyAmount : (liveCalc.monthlyEmi > 0 ? liveCalc.monthlyEmi : "")}
                         onChange={(e) => setNewEmi({ ...newEmi, monthlyAmount: e.target.value, isCustomEmi: true })}
@@ -2050,12 +2050,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="text-sm">
-                      <span className="mb-2 block text-[#7A756D]">Months Paid So Far</span>
+                      <span className="mb-2 block text-[#8C8176]">Months Paid So Far</span>
                       <input
                         type="number"
                         min="0"
                         max={newEmi.tenureMonths || "120"}
-                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
+                        className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all"
                         value={newEmi.monthsPaid}
                         onChange={(e) => setNewEmi({ ...newEmi, monthsPaid: e.target.value })}
                         placeholder="0"
@@ -2063,12 +2063,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     </label>
 
                     <label className="text-sm">
-                      <span className="mb-2 block text-[#7A756D]">Deduction Day (1-31)</span>
+                      <span className="mb-2 block text-[#8C8176]">Deduction Day (1-31)</span>
                       <input
                         type="number"
                         min="1"
                         max="31"
-                        className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none text-[#14151A] placeholder-[#7A756D] focus:border-[#FF6B4A] focus:bg-[#FFFDF9] transition-all"
+                        className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none text-[#F6F2EB] placeholder-[#8C8176] focus:border-[#E07A28] focus:bg-[#1D1815] transition-all"
                         value={newEmi.deductionDate}
                         onChange={(e) => setNewEmi({ ...newEmi, deductionDate: e.target.value })}
                         placeholder="5"
@@ -2078,29 +2078,29 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   {/* Live Calculation Breakdown Widget */}
                   {Number(newEmi.principal) > 0 && Number(newEmi.tenureMonths) > 0 && (
-                    <div className="rounded-2xl border border-[#FF6B4A]/25 bg-gradient-to-br from-[#FFF2EE] via-[#FFFDF9] to-[#F7F2E7] p-4 space-y-2.5">
-                      <div className="text-xs font-semibold text-[#14151A] flex items-center justify-between">
+                    <div className="rounded-2xl border border-[#E07A28]/25 bg-gradient-to-br from-[#241B16] via-[#1D1815] to-[#17181C] p-4 space-y-2.5">
+                      <div className="text-xs font-semibold text-[#F6F2EB] flex items-center justify-between">
                         <span>Loan Breakdown Preview</span>
-                        <span className="text-[11px] font-normal text-[#7A756D]">
+                        <span className="text-[11px] font-normal text-[#8C8176]">
                           {liveCalc.effectiveRate > 0 ? `${liveCalc.effectiveRate}% p.a.` : "0% No-Cost"}
                         </span>
                       </div>
                       <div className="grid grid-cols-3 gap-2 pt-1 text-center">
-                        <div className="rounded-xl bg-[#FFFDF9] p-2.5 border border-[#E5DFD3]">
-                          <div className="text-[11px] text-[#7A756D]">Monthly EMI</div>
-                          <div className="mt-1 text-sm font-black text-[#14151A]">{money(liveCalc.monthlyEmi)}</div>
+                        <div className="rounded-xl bg-[#1D1815] p-2.5 border border-[#382D25]">
+                          <div className="text-[11px] text-[#8C8176]">Monthly EMI</div>
+                          <div className="mt-1 text-sm font-black text-[#F6F2EB]">{money(liveCalc.monthlyEmi)}</div>
                         </div>
-                        <div className="rounded-xl bg-[#FFFDF9] p-2.5 border border-[#E5DFD3]">
-                          <div className="text-[11px] text-[#7A756D]">Total Interest</div>
+                        <div className="rounded-xl bg-[#1D1815] p-2.5 border border-[#382D25]">
+                          <div className="text-[11px] text-[#8C8176]">Total Interest</div>
                           <div className="mt-1 text-sm font-black text-rose-600">{money(liveCalc.totalInterest)}</div>
                         </div>
-                        <div className="rounded-xl bg-[#FFFDF9] p-2.5 border border-[#E5DFD3]">
-                          <div className="text-[11px] text-[#7A756D]">Total Payable</div>
+                        <div className="rounded-xl bg-[#1D1815] p-2.5 border border-[#382D25]">
+                          <div className="text-[11px] text-[#8C8176]">Total Payable</div>
                           <div className="mt-1 text-sm font-black text-emerald-700">{money(liveCalc.totalPayable)}</div>
                         </div>
                       </div>
-                      <div className="text-xs text-[#45423E] pt-1">
-                        Auto-deducts <strong className="text-[#14151A]">{money(liveCalc.monthlyEmi)}</strong> on day <strong className="text-[#FF6B4A]">{newEmi.deductionDate || 1}</strong> of each month.
+                      <div className="text-xs text-[#C6BCB3] pt-1">
+                        Auto-deducts <strong className="text-[#F6F2EB]">{money(liveCalc.monthlyEmi)}</strong> on day <strong className="text-[#E07A28]">{newEmi.deductionDate || 1}</strong> of each month.
                       </div>
                     </div>
                   )}
@@ -2108,7 +2108,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <button
                     onClick={addEmi}
                     disabled={!newEmi.title || !Number(newEmi.principal) || liveCalc.monthlyEmi <= 0}
-                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white hover:brightness-105 disabled:opacity-50 transition-all shadow-lg shadow-[#FF6B4A]/20"
+                    className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-3.5 font-bold text-white hover:brightness-105 disabled:opacity-50 transition-all shadow-lg shadow-[#E07A28]/20"
                   >
                     Save EMI Record
                   </button>
@@ -2123,12 +2123,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       {showBadgeModal.show && showBadgeModal.badgeId && (
         <div className="fixed inset-0 z-[60] overflow-y-auto bg-black/50 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="relative w-full max-w-sm overflow-hidden rounded-[2rem] border border-[#E5DFD3] bg-[#FFFDF9] p-8 text-center shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="relative w-full max-w-sm overflow-hidden rounded-[2rem] border border-[#382D25] bg-[#1D1815] p-8 text-center shadow-2xl animate-in zoom-in-95 duration-200">
               
               {/* Glowing Background Effect */}
               <div className={`absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[3rem] ${BADGES.find(b => b.id === showBadgeModal.badgeId)?.color.replace('text-', 'bg-').replace('400', '500/20')}`} />
               
-              <button onClick={() => setShowBadgeModal({ show: false, badgeId: null })} className="absolute right-5 top-5 text-[#7A756D] hover:text-[#14151A] z-10"><X size={20}/></button>
+              <button onClick={() => setShowBadgeModal({ show: false, badgeId: null })} className="absolute right-5 top-5 text-[#8C8176] hover:text-[#F6F2EB] z-10"><X size={20}/></button>
 
               <div className="relative z-10 flex flex-col items-center">
                 {(() => {
@@ -2139,26 +2139,26 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   return (
                     <>
-                      <div className={`mb-6 grid h-24 w-24 place-items-center rounded-full ${isUnlocked ? badge.color.replace('text-', 'bg-').replace('400', '500/15') : 'bg-[#F4EFE6]'} ring-1 ring-inset ${isUnlocked ? badge.color.replace('text-', 'ring-').replace('400', '500/30') : 'ring-[#E5DFD3]'}`}>
-                        <BadgeIcon className={isUnlocked ? badge.color : "text-[#7A756D]"} size={48} />
+                      <div className={`mb-6 grid h-24 w-24 place-items-center rounded-full ${isUnlocked ? badge.color.replace('text-', 'bg-').replace('400', '500/15') : 'bg-[#26201B]'} ring-1 ring-inset ${isUnlocked ? badge.color.replace('text-', 'ring-').replace('400', '500/30') : 'ring-[#382D25]'}`}>
+                        <BadgeIcon className={isUnlocked ? badge.color : "text-[#8C8176]"} size={48} />
                       </div>
                       
-                      <div className="text-xs font-semibold mb-2 text-[#7A756D]">
+                      <div className="text-xs font-semibold mb-2 text-[#8C8176]">
                         {isUnlocked ? "Achievement Unlocked" : "Locked Badge"}
                       </div>
-                      <h2 className={`text-3xl font-black mb-3 ${isUnlocked ? badge.color : "text-[#45423E]"}`}>{badge.name}</h2>
-                      <p className="text-[#45423E] leading-relaxed mb-6">
+                      <h2 className={`text-3xl font-black mb-3 ${isUnlocked ? badge.color : "text-[#C6BCB3]"}`}>{badge.name}</h2>
+                      <p className="text-[#C6BCB3] leading-relaxed mb-6">
                         {badge.description}
                       </p>
                       
                       {isUnlocked ? (
-                        <div className="w-full rounded-xl bg-[#F7F2E7] p-4 border border-[#E5DFD3]">
-                          <div className="text-xs text-[#7A756D] mb-1">EARNED ON</div>
-                          <div className="font-semibold text-[#14151A]">{dateStr}</div>
+                        <div className="w-full rounded-xl bg-[#17181C] p-4 border border-[#382D25]">
+                          <div className="text-xs text-[#8C8176] mb-1">EARNED ON</div>
+                          <div className="font-semibold text-[#F6F2EB]">{dateStr}</div>
                         </div>
                       ) : (
-                        <div className="w-full rounded-xl bg-[#F4EFE6]/60 p-4 border border-[#E5DFD3] border-dashed">
-                          <div className="text-sm font-medium text-[#7A756D]">Keep tracking to unlock this badge!</div>
+                        <div className="w-full rounded-xl bg-[#26201B]/60 p-4 border border-[#382D25] border-dashed">
+                          <div className="text-sm font-medium text-[#8C8176]">Keep tracking to unlock this badge!</div>
                         </div>
                       )}
                     </>
@@ -2172,16 +2172,16 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       {showGoalModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black/40 backdrop-blur-sm">
           <div className="flex min-h-full items-center justify-center p-5">
-            <div className="w-full max-w-sm rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
+            <div className="w-full max-w-sm rounded-3xl border border-[#382D25] bg-[#1D1815] p-6 shadow-2xl">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-black text-[#14151A]">Set Monthly Goal</h2>
-                <button onClick={() => setShowGoalModal(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
+                <h2 className="text-xl font-black text-[#F6F2EB]">Set Monthly Goal</h2>
+                <button onClick={() => setShowGoalModal(false)} className="text-[#8C8176] hover:text-[#F6F2EB]"><X/></button>
               </div>
 
               <div className="space-y-4">
                 <label className="block text-sm">
-                  <span className="mb-2 block text-[#7A756D]">Goal Category</span>
-                  <select className="w-full rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 outline-none focus:border-[#FF6B4A] focus:bg-[#FFFDF9] text-[#14151A] transition-all" value={newGoal.category} onChange={(e) => setNewGoal({ ...newGoal, category: e.target.value })}>
+                  <span className="mb-2 block text-[#8C8176]">Goal Category</span>
+                  <select className="w-full rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 outline-none focus:border-[#E07A28] focus:bg-[#1D1815] text-[#F6F2EB] transition-all" value={newGoal.category} onChange={(e) => setNewGoal({ ...newGoal, category: e.target.value })}>
                     <option value="Invest">Invest</option>
                     <option value="Save">Save</option>
                     <option value="Food">Food (Limit Spend)</option>
@@ -2189,10 +2189,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   </select>
                 </label>
                 <label className="block text-sm">
-                  <span className="mb-2 block text-[#7A756D]">Target Amount</span>
-                  <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                    <span className="text-[#7A756D]">₹</span>
-                    <input type="number" className="w-full bg-transparent px-2 py-3 outline-none text-[#14151A]" value={newGoal.amount} onChange={(e) => setNewGoal({ ...newGoal, amount: e.target.value })} placeholder="5000" />
+                  <span className="mb-2 block text-[#8C8176]">Target Amount</span>
+                  <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                    <span className="text-[#8C8176]">₹</span>
+                    <input type="number" className="w-full bg-transparent px-2 py-3 outline-none text-[#F6F2EB]" value={newGoal.amount} onChange={(e) => setNewGoal({ ...newGoal, amount: e.target.value })} placeholder="5000" />
                   </div>
                 </label>
                 <button 
@@ -2202,7 +2202,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                       setShowGoalModal(false);
                     }
                   }}
-                  className="mt-2 w-full rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3 font-bold text-white hover:brightness-105 shadow-lg shadow-[#FF6B4A]/20 transition-all"
+                  className="mt-2 w-full rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-3 font-bold text-white hover:brightness-105 shadow-lg shadow-[#E07A28]/20 transition-all"
                 >
                   Save Goal
                 </button>
@@ -2243,15 +2243,15 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       />
 
       {toast && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9]/95 px-5 py-3.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
-          <div className={`grid h-7 w-7 place-items-center rounded-lg ${toast.type === "success" ? "bg-emerald-500/15 text-emerald-700" : "bg-[#FF6B4A]/15 text-[#FF6B4A]"}`}>
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-[#382D25] bg-[#1D1815]/95 px-5 py-3.5 shadow-2xl backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
+          <div className={`grid h-7 w-7 place-items-center rounded-lg ${toast.type === "success" ? "bg-emerald-500/15 text-emerald-700" : "bg-[#E07A28]/15 text-[#E07A28]"}`}>
             <CheckCircle2 size={16} />
           </div>
-          <p className="text-sm font-medium text-[#14151A]">{toast.message}</p>
+          <p className="text-sm font-medium text-[#F6F2EB]">{toast.message}</p>
           <button 
             onClick={() => setToast(null)} 
             aria-label="Dismiss notification"
-            className="ml-2 text-[#7A756D] hover:text-[#14151A]"
+            className="ml-2 text-[#8C8176] hover:text-[#F6F2EB]"
           >
             <X size={14} />
           </button>

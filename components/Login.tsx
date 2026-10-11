@@ -892,65 +892,65 @@ export default function Login() {
 
   if (step === "onboarding_1") {
     return (
-      <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#FAF6EE] text-[#14151A]">
+      <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#121316] text-[#F6F2EB]">
         <div className="w-full max-w-md">
           <div className="mb-10 text-center">
-            <h1 className="text-3xl font-black tracking-tight text-[#14151A]">Welcome to SPEND<span className="text-[#FF6B4A]">WISE</span></h1>
-            <p className="mt-3 text-sm text-[#7A756D]">Let&apos;s set up your profile.</p>
+            <h1 className="text-3xl font-black tracking-tight text-[#F6F2EB]">Welcome to SPEND<span className="text-[#E07A28]">WISE</span></h1>
+            <p className="mt-3 text-sm text-[#8C8176]">Let&apos;s set up your profile.</p>
           </div>
           
-          <div className="rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-7 shadow-xl space-y-4">
+          <div className="rounded-3xl border border-[#382D25] bg-[#1D1815] p-7 shadow-xl space-y-4">
             <label className="block">
-              <span className="mb-2 block text-sm text-[#7A756D]">Your Name</span>
-              <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                <User size={18} className="text-[#7A756D]" />
-                <input className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D]" placeholder="John Doe" value={details.name} onChange={e => setDetails({...details, name: e.target.value})} />
+              <span className="mb-2 block text-sm text-[#8C8176]">Your Name</span>
+              <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                <User size={18} className="text-[#8C8176]" />
+                <input className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176]" placeholder="John Doe" value={details.name} onChange={e => setDetails({...details, name: e.target.value})} />
               </div>
             </label>
             <div className="grid grid-cols-2 gap-4">
               <label className="block">
-                <span className="mb-2 block text-sm text-[#7A756D]">Age</span>
-                <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                  <input type="number" className="w-full bg-transparent py-3.5 outline-none text-[#14151A] placeholder-[#7A756D]" placeholder="25" value={details.age} onChange={e => setDetails({...details, age: e.target.value})} />
+                <span className="mb-2 block text-sm text-[#8C8176]">Age</span>
+                <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                  <input type="number" className="w-full bg-transparent py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176]" placeholder="25" value={details.age} onChange={e => setDetails({...details, age: e.target.value})} />
                 </div>
               </label>
               <label className="block">
-                <span className="mb-2 block text-sm text-[#7A756D]">Date of Birth</span>
+                <span className="mb-2 block text-sm text-[#8C8176]">Date of Birth</span>
                 <DatePicker value={details.dob} onChange={(date) => setDetails({ ...details, dob: date })} />
               </label>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <label className="block">
-                <span className="mb-2 block text-sm text-[#7A756D]">User Type</span>
-                <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                  <select className="w-full bg-transparent py-3.5 outline-none text-[#14151A]" value={details.userType} onChange={e => setDetails({...details, userType: e.target.value})}>
-                    <option value="Professional" className="bg-[#FFFDF9] text-[#14151A]">Professional</option>
-                    <option value="Student" className="bg-[#FFFDF9] text-[#14151A]">Student</option>
+                <span className="mb-2 block text-sm text-[#8C8176]">User Type</span>
+                <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                  <select className="w-full bg-transparent py-3.5 outline-none text-[#F6F2EB]" value={details.userType} onChange={e => setDetails({...details, userType: e.target.value})}>
+                    <option value="Professional" className="bg-[#1D1815] text-[#F6F2EB]">Professional</option>
+                    <option value="Student" className="bg-[#1D1815] text-[#F6F2EB]">Student</option>
                   </select>
                 </div>
               </label>
               <label className="block">
-                <span className="mb-2 block text-sm text-[#7A756D]">{details.userType === "Student" ? "Pocket Money" : "Monthly Income"}</span>
-                <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                  <span className="text-[#7A756D]">₹</span>
-                  <input type="number" className="w-full bg-transparent px-2 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D]" placeholder="60000" value={details.income} onChange={e => setDetails({...details, income: e.target.value})} />
+                <span className="mb-2 block text-sm text-[#8C8176]">{details.userType === "Student" ? "Pocket Money" : "Monthly Income"}</span>
+                <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                  <span className="text-[#8C8176]">₹</span>
+                  <input type="number" className="w-full bg-transparent px-2 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176]" placeholder="60000" value={details.income} onChange={e => setDetails({...details, income: e.target.value})} />
                 </div>
               </label>
             </div>
             <label className="block">
-              <span className="mb-2 block text-sm text-[#7A756D]">Primary Goal</span>
-              <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                <Target size={18} className="text-[#7A756D]" />
-                <select className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A]" value={details.goal} onChange={e => setDetails({...details, goal: e.target.value})}>
-                  <option value="save" className="bg-[#FFFDF9] text-[#14151A]">Save more money</option>
-                  <option value="invest" className="bg-[#FFFDF9] text-[#14151A]">Start investing</option>
-                  <option value="track" className="bg-[#FFFDF9] text-[#14151A]">Track daily expenses</option>
+              <span className="mb-2 block text-sm text-[#8C8176]">Primary Goal</span>
+              <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                <Target size={18} className="text-[#8C8176]" />
+                <select className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB]" value={details.goal} onChange={e => setDetails({...details, goal: e.target.value})}>
+                  <option value="save" className="bg-[#1D1815] text-[#F6F2EB]">Save more money</option>
+                  <option value="invest" className="bg-[#1D1815] text-[#F6F2EB]">Start investing</option>
+                  <option value="track" className="bg-[#1D1815] text-[#F6F2EB]">Track daily expenses</option>
                 </select>
               </div>
             </label>
             <button
               onClick={() => { setStep("onboarding_2"); }}
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#FF6B4A]/25 transition-all"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-3.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#E07A28]/25 transition-all"
             >
               Next Step <ArrowRight size={18} />
             </button>
@@ -962,34 +962,34 @@ export default function Login() {
 
   if (step === "onboarding_2") {
     return (
-      <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#FAF6EE] text-[#14151A]">
+      <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#121316] text-[#F6F2EB]">
         <div className="w-full max-w-md">
           <div className="mb-10 text-center">
-            <h1 className="text-3xl font-black tracking-tight text-[#14151A]">Financial Overview</h1>
-            <p className="mt-3 text-sm text-[#7A756D]">Let&apos;s set your starting numbers.</p>
+            <h1 className="text-3xl font-black tracking-tight text-[#F6F2EB]">Financial Overview</h1>
+            <p className="mt-3 text-sm text-[#8C8176]">Let&apos;s set your starting numbers.</p>
           </div>
           
-          <div className="rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-7 shadow-xl space-y-4">
+          <div className="rounded-3xl border border-[#382D25] bg-[#1D1815] p-7 shadow-xl space-y-4">
             <label className="block">
-              <span className="mb-2 block text-sm text-[#7A756D]">How much did you spend this month till today?</span>
-              <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                <ReceiptText size={18} className="text-[#7A756D]" />
-                <span className="ml-3 text-[#7A756D]">₹</span>
-                <input type="number" className="w-full bg-transparent px-2 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D]" placeholder="0" value={details.currentSpend} onChange={e => setDetails({...details, currentSpend: e.target.value})} />
+              <span className="mb-2 block text-sm text-[#8C8176]">How much did you spend this month till today?</span>
+              <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                <ReceiptText size={18} className="text-[#8C8176]" />
+                <span className="ml-3 text-[#8C8176]">₹</span>
+                <input type="number" className="w-full bg-transparent px-2 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176]" placeholder="0" value={details.currentSpend} onChange={e => setDetails({...details, currentSpend: e.target.value})} />
               </div>
             </label>
             <label className="block">
-              <span className="mb-2 block text-sm text-[#7A756D]">Monthly Investment</span>
-              <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                <TrendingUp size={18} className="text-[#7A756D]" />
-                <span className="ml-3 text-[#7A756D]">₹</span>
-                <input type="number" className="w-full bg-transparent px-2 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D]" placeholder="0" value={details.monthlyInvestment} onChange={e => setDetails({...details, monthlyInvestment: e.target.value})} />
+              <span className="mb-2 block text-sm text-[#8C8176]">Monthly Investment</span>
+              <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                <TrendingUp size={18} className="text-[#8C8176]" />
+                <span className="ml-3 text-[#8C8176]">₹</span>
+                <input type="number" className="w-full bg-transparent px-2 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176]" placeholder="0" value={details.monthlyInvestment} onChange={e => setDetails({...details, monthlyInvestment: e.target.value})} />
               </div>
             </label>
             <button
               onClick={handleCompleteOnboarding}
               disabled={isLoading}
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#FF6B4A]/25 disabled:opacity-50 transition-all"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-3.5 font-bold text-white hover:brightness-105 shadow-lg shadow-[#E07A28]/25 disabled:opacity-50 transition-all"
             >
               {isLoading ? <Loader2 size={18} className="animate-spin" /> : (
                 <>
@@ -1005,23 +1005,23 @@ export default function Login() {
 
   if (mode === "forgot") {
     return (
-      <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#FAF6EE] text-[#14151A]">
+      <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#121316] text-[#F6F2EB]">
         <div className="w-full max-w-md">
           <div className="mb-8 text-center">
-            <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-[#FF6B4A]/15 text-[#FF6B4A] ring-1 ring-[#FF6B4A]/25">
+            <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-[#E07A28]/15 text-[#E07A28] ring-1 ring-[#E07A28]/25">
               <KeyRound size={30} />
             </div>
-            <h1 className="text-3xl font-black tracking-tight text-[#14151A]">Reset <span className="text-[#FF6B4A]">Password</span></h1>
-            <p className="mt-3 text-sm text-[#7A756D]">Enter your email and we&apos;ll send you instructions to reset your password.</p>
+            <h1 className="text-3xl font-black tracking-tight text-[#F6F2EB]">Reset <span className="text-[#E07A28]">Password</span></h1>
+            <p className="mt-3 text-sm text-[#8C8176]">Enter your email and we&apos;ll send you instructions to reset your password.</p>
           </div>
 
-          <div className="rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-7 shadow-xl space-y-4">
+          <div className="rounded-3xl border border-[#382D25] bg-[#1D1815] p-7 shadow-xl space-y-4">
             <label className="block">
-              <span className="mb-2 block text-sm text-[#7A756D]">Email Address</span>
-              <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                <Mail size={18} className="text-[#7A756D]" />
+              <span className="mb-2 block text-sm text-[#8C8176]">Email Address</span>
+              <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                <Mail size={18} className="text-[#8C8176]" />
                 <input
-                  className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D] text-sm"
+                  className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176] text-sm"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -1034,7 +1034,7 @@ export default function Login() {
             <button
               onClick={handleForgotPassword}
               disabled={isLoading}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-3.5 font-bold text-white hover:brightness-105 disabled:opacity-50 transition-all shadow-lg shadow-[#FF6B4A]/25"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] px-4 py-3.5 font-bold text-white hover:brightness-105 disabled:opacity-50 transition-all shadow-lg shadow-[#E07A28]/25"
             >
               {isLoading ? <Loader2 size={18} className="animate-spin" /> : "Send Reset Link"}
             </button>
@@ -1053,7 +1053,7 @@ export default function Login() {
             <button
               type="button"
               onClick={() => { setMode("login"); setMessage(""); }}
-              className="mt-4 flex w-full items-center justify-center gap-2 text-sm text-[#7A756D] hover:text-[#14151A] transition-colors"
+              className="mt-4 flex w-full items-center justify-center gap-2 text-sm text-[#8C8176] hover:text-[#F6F2EB] transition-colors"
             >
               <ArrowLeft size={16} /> Back to Log in
             </button>
@@ -1064,18 +1064,18 @@ export default function Login() {
   }
 
   return (
-    <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#FAF6EE] text-[#14151A]">
+    <main className="grid-bg min-h-screen grid place-items-center px-6 py-12 bg-[#121316] text-[#F6F2EB]">
       <div className="w-full max-w-md">
         <div className="mb-10 text-center">
-          <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-[#FF6B4A]/15 text-[#FF6B4A] ring-1 ring-[#FF6B4A]/25">
+          <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-2xl bg-[#E07A28]/15 text-[#E07A28] ring-1 ring-[#E07A28]/25">
             <WalletCards size={30} />
           </div>
-          <h1 className="text-4xl font-black tracking-tight text-[#14151A]">SPEND<span className="text-[#FF6B4A]">WISE</span></h1>
-          <p className="mt-3 text-sm text-[#7A756D]">Know where your money goes.</p>
+          <h1 className="text-4xl font-black tracking-tight text-[#F6F2EB]">SPEND<span className="text-[#E07A28]">WISE</span></h1>
+          <p className="mt-3 text-sm text-[#8C8176]">Know where your money goes.</p>
         </div>
 
-        <div className="rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-7 shadow-xl">
-          <div className="mb-6 grid grid-cols-2 rounded-xl bg-[#F4EFE6] border border-[#E5DFD3] p-1">
+        <div className="rounded-3xl border border-[#382D25] bg-[#1D1815] p-7 shadow-xl">
+          <div className="mb-6 grid grid-cols-2 rounded-xl bg-[#26201B] border border-[#382D25] p-1">
             {(["login", "signup"] as const).map((item) => (
               <button
                 key={item}
@@ -1084,7 +1084,7 @@ export default function Login() {
                   setMessage("");
                 }}
                 className={`rounded-lg px-4 py-2.5 text-sm font-semibold transition-all ${
-                  mode === item ? "bg-[#FF6B4A] text-white shadow-md shadow-[#FF6B4A]/25" : "text-[#7A756D] hover:text-[#14151A]"
+                  mode === item ? "bg-[#E07A28] text-white shadow-md shadow-[#E07A28]/25" : "text-[#8C8176] hover:text-[#F6F2EB]"
                 }`}
               >
                 {item === "login" ? "Log in" : "Create account"}
@@ -1094,24 +1094,24 @@ export default function Login() {
 
           <button
             onClick={googleLogin}
-            className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#E5DFD3] bg-[#FFFDF9] px-4 py-3.5 font-semibold text-[#14151A] hover:border-[#FF6B4A]/50 hover:bg-[#F7F2E7] transition-colors"
+            className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#382D25] bg-[#1D1815] px-4 py-3.5 font-semibold text-[#F6F2EB] hover:border-[#E07A28]/50 hover:bg-[#28211B] transition-colors"
           >
-            <span className="grid h-6 w-6 place-items-center rounded-full bg-[#14151A] text-xs font-black text-white">G</span>
+            <span className="grid h-6 w-6 place-items-center rounded-full bg-[#F6F2EB] text-xs font-black text-[#121316]">G</span>
             Continue with Google
           </button>
 
           <button
             onClick={guestLogin}
             disabled={isGuestLoading}
-            className="mt-3 flex w-full items-center justify-center gap-3 rounded-xl border border-[#E5DFD3] bg-[#FFFDF9] px-4 py-3.5 font-semibold text-[#45423E] hover:border-[#FF6B4A]/50 hover:bg-[#F7F2E7] disabled:opacity-50 transition-colors"
+            className="mt-3 flex w-full items-center justify-center gap-3 rounded-xl border border-[#382D25] bg-[#1D1815] px-4 py-3.5 font-semibold text-[#C6BCB3] hover:border-[#E07A28]/50 hover:bg-[#28211B] disabled:opacity-50 transition-colors"
           >
             {isGuestLoading ? <Loader2 size={18} className="animate-spin" /> : "Continue as Guest"}
           </button>
 
-          <div className="my-6 flex items-center gap-3 text-xs text-[#7A756D]">
-            <div className="h-px flex-1 bg-[#E5DFD3]" />
+          <div className="my-6 flex items-center gap-3 text-xs text-[#8C8176]">
+            <div className="h-px flex-1 bg-[#382D25]" />
             OR
-            <div className="h-px flex-1 bg-[#E5DFD3]" />
+            <div className="h-px flex-1 bg-[#382D25]" />
           </div>
 
           <form onSubmit={(e) => { e.preventDefault(); handleAuth(); }} className="space-y-4">
@@ -1128,11 +1128,11 @@ export default function Login() {
             </div>
             {mode === "signup" && (
               <label className="block">
-                <span className="mb-2 block text-sm text-[#7A756D]">Full Name</span>
-                <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                  <User size={18} className="text-[#7A756D]" />
+                <span className="mb-2 block text-sm text-[#8C8176]">Full Name</span>
+                <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                  <User size={18} className="text-[#8C8176]" />
                   <input
-                    className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D] text-sm"
+                    className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176] text-sm"
                     type="text"
                     value={fullName}
                     onChange={(e) => {
@@ -1148,19 +1148,19 @@ export default function Login() {
             )}
 
             <label className="block">
-              <span className="mb-2 block text-sm text-[#7A756D]">
+              <span className="mb-2 block text-sm text-[#8C8176]">
                 {mode === "login" ? "Email or Username" : "Email Address"}
               </span>
-              <div className={`flex items-center rounded-xl border bg-[#F4EFE6] px-3 transition-colors ${
+              <div className={`flex items-center rounded-xl border bg-[#26201B] px-3 transition-colors ${
                 mode === "signup" && emailStatus === "available"
-                  ? "border-emerald-600 focus-within:border-emerald-600 focus-within:bg-[#FFFDF9]"
+                  ? "border-emerald-600 focus-within:border-emerald-600 focus-within:bg-[#1D1815]"
                   : mode === "signup" && (emailStatus === "taken" || emailStatus === "invalid")
-                  ? "border-rose-600 focus-within:border-rose-600 focus-within:bg-[#FFFDF9]"
-                  : "border-[#E5DFD3] focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9]"
+                  ? "border-rose-600 focus-within:border-rose-600 focus-within:bg-[#1D1815]"
+                  : "border-[#382D25] focus-within:border-[#E07A28] focus-within:bg-[#1D1815]"
               }`}>
-                <Mail size={18} className="text-[#7A756D]" />
+                <Mail size={18} className="text-[#8C8176]" />
                 <input
-                  className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D] text-sm"
+                  className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176] text-sm"
                   type={mode === "login" ? "text" : "email"}
                   value={email}
                   onChange={(e) => {
@@ -1173,7 +1173,7 @@ export default function Login() {
                   aria-label={mode === "login" ? "Email or Username" : "Email Address"}
                 />
                 {mode === "signup" && emailStatus === "checking" && (
-                  <Loader2 size={16} className="animate-spin text-[#FF6B4A] ml-2 shrink-0" />
+                  <Loader2 size={16} className="animate-spin text-[#E07A28] ml-2 shrink-0" />
                 )}
                 {mode === "signup" && emailStatus === "available" && (
                   <CheckCircle2 size={16} className="text-emerald-600 ml-2 shrink-0" />
@@ -1186,7 +1186,7 @@ export default function Login() {
               {mode === "signup" && email.trim() !== "" && (
                 <div className="mt-1.5 px-0.5">
                   {emailStatus === "checking" && (
-                    <div className="flex items-center gap-1.5 text-xs text-[#FF6B4A]">
+                    <div className="flex items-center gap-1.5 text-xs text-[#E07A28]">
                       <Loader2 size={13} className="animate-spin shrink-0" />
                       <span>Checking email availability...</span>
                     </div>
@@ -1216,19 +1216,19 @@ export default function Login() {
             {mode === "signup" && (
               <label className="block">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-sm text-[#7A756D]">Username</span>
-                  <span className="text-xs text-[#7A756D]">Unique identifier</span>
+                  <span className="text-sm text-[#8C8176]">Username</span>
+                  <span className="text-xs text-[#8C8176]">Unique identifier</span>
                 </div>
-                <div className={`flex items-center rounded-xl border bg-[#F4EFE6] px-3 transition-colors ${
+                <div className={`flex items-center rounded-xl border bg-[#26201B] px-3 transition-colors ${
                   usernameStatus === "available"
-                    ? "border-emerald-600 focus-within:border-emerald-600 focus-within:bg-[#FFFDF9]"
+                    ? "border-emerald-600 focus-within:border-emerald-600 focus-within:bg-[#1D1815]"
                     : (usernameStatus === "taken" || usernameStatus === "invalid")
-                    ? "border-rose-600 focus-within:border-rose-600 focus-within:bg-[#FFFDF9]"
-                    : "border-[#E5DFD3] focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9]"
+                    ? "border-rose-600 focus-within:border-rose-600 focus-within:bg-[#1D1815]"
+                    : "border-[#382D25] focus-within:border-[#E07A28] focus-within:bg-[#1D1815]"
                 }`}>
-                  <User size={18} className="text-[#7A756D]" />
+                  <User size={18} className="text-[#8C8176]" />
                   <input
-                    className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D] text-sm"
+                    className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176] text-sm"
                     type="text"
                     value={username}
                     onChange={(e) => {
@@ -1240,7 +1240,7 @@ export default function Login() {
                     aria-label="Username"
                   />
                   {usernameStatus === "checking" && (
-                    <Loader2 size={16} className="animate-spin text-[#FF6B4A] ml-2 shrink-0" />
+                    <Loader2 size={16} className="animate-spin text-[#E07A28] ml-2 shrink-0" />
                   )}
                   {usernameStatus === "available" && (
                     <CheckCircle2 size={16} className="text-emerald-600 ml-2 shrink-0" />
@@ -1253,7 +1253,7 @@ export default function Login() {
                 {username.trim() !== "" && (
                   <div className="mt-1.5 px-0.5">
                     {usernameStatus === "checking" && (
-                      <div className="flex items-center gap-1.5 text-xs text-[#FF6B4A]">
+                      <div className="flex items-center gap-1.5 text-xs text-[#E07A28]">
                         <Loader2 size={13} className="animate-spin shrink-0" />
                         <span>Checking availability...</span>
                       </div>
@@ -1283,7 +1283,7 @@ export default function Login() {
 
             <label className="block">
               <div className="mb-2 flex items-center justify-between">
-                <span className="text-sm text-[#7A756D]">Password</span>
+                <span className="text-sm text-[#8C8176]">Password</span>
                 {mode === "login" && (
                   <button
                     type="button"
@@ -1291,16 +1291,16 @@ export default function Login() {
                       setMode("forgot");
                       setMessage("");
                     }}
-                    className="text-xs text-[#FF6B4A] hover:text-[#FF8566] font-semibold transition-colors hover:underline"
+                    className="text-xs text-[#E07A28] hover:text-[#F08C3A] font-semibold transition-colors hover:underline"
                   >
                     Forgot password?
                   </button>
                 )}
               </div>
-              <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                <LockKeyhole size={18} className="text-[#7A756D]" />
+              <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                <LockKeyhole size={18} className="text-[#8C8176]" />
                 <input
-                  className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D] text-sm"
+                  className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176] text-sm"
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => {
@@ -1314,7 +1314,7 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-[#7A756D] hover:text-[#14151A] p-1 transition-colors"
+                  className="text-[#8C8176] hover:text-[#F6F2EB] p-1 transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -1324,11 +1324,11 @@ export default function Login() {
 
             {mode === "signup" && (
               <label className="block">
-                <span className="mb-2 block text-sm text-[#7A756D]">Confirm Password</span>
-                <div className="flex items-center rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-3 focus-within:border-[#FF6B4A] focus-within:bg-[#FFFDF9] transition-all">
-                  <LockKeyhole size={18} className="text-[#7A756D]" />
+                <span className="mb-2 block text-sm text-[#8C8176]">Confirm Password</span>
+                <div className="flex items-center rounded-xl border border-[#382D25] bg-[#26201B] px-3 focus-within:border-[#E07A28] focus-within:bg-[#1D1815] transition-all">
+                  <LockKeyhole size={18} className="text-[#8C8176]" />
                   <input
-                    className="w-full bg-transparent px-3 py-3.5 outline-none text-[#14151A] placeholder-[#7A756D] text-sm"
+                    className="w-full bg-transparent px-3 py-3.5 outline-none text-[#F6F2EB] placeholder-[#8C8176] text-sm"
                     type={showConfirmPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => {
@@ -1342,7 +1342,7 @@ export default function Login() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="text-[#7A756D] hover:text-[#14151A] p-1 transition-colors"
+                    className="text-[#8C8176] hover:text-[#F6F2EB] p-1 transition-colors"
                     aria-label={showConfirmPassword ? "Hide password" : "Show password"}
                   >
                     {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
@@ -1353,12 +1353,12 @@ export default function Login() {
 
             {mode === "login" && (
               <div className="flex items-center justify-between text-xs">
-                <label className="flex items-center gap-2 cursor-pointer select-none text-[#7A756D] hover:text-[#14151A]">
+                <label className="flex items-center gap-2 cursor-pointer select-none text-[#8C8176] hover:text-[#F6F2EB]">
                   <input
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="rounded border-[#E5DFD3] bg-[#F4EFE6] text-[#FF6B4A] focus:ring-[#FF6B4A]/20"
+                    className="rounded border-[#382D25] bg-[#26201B] text-[#E07A28] focus:ring-[#E07A28]/20"
                     aria-label="Remember me"
                   />
                   <span>Remember me for 30 days</span>
@@ -1368,21 +1368,21 @@ export default function Login() {
 
             {mode === "signup" && (
               <div className="pt-1">
-                <label className="flex items-start gap-2.5 cursor-pointer text-xs text-[#7A756D] hover:text-[#14151A]">
+                <label className="flex items-start gap-2.5 cursor-pointer text-xs text-[#8C8176] hover:text-[#F6F2EB]">
                   <input
                     type="checkbox"
                     checked={termsAccepted}
                     onChange={(e) => setTermsAccepted(e.target.checked)}
-                    className="mt-0.5 rounded border-[#E5DFD3] bg-[#F4EFE6] text-[#FF6B4A] focus:ring-[#FF6B4A]/20"
+                    className="mt-0.5 rounded border-[#382D25] bg-[#26201B] text-[#E07A28] focus:ring-[#E07A28]/20"
                     aria-label="Accept terms and conditions"
                   />
                   <span>
                     I agree to the{" "}
-                    <Link href="/terms" target="_blank" className="text-[#FF6B4A] underline hover:text-[#FF8566]">
+                    <Link href="/terms" target="_blank" className="text-[#E07A28] underline hover:text-[#F08C3A]">
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link href="/privacy" target="_blank" className="text-[#FF6B4A] underline hover:text-[#FF8566]">
+                    <Link href="/privacy" target="_blank" className="text-[#E07A28] underline hover:text-[#F08C3A]">
                       Privacy Policy
                     </Link>.
                   </span>
@@ -1393,7 +1393,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading || (mode === "signup" && (usernameStatus === "taken" || usernameStatus === "checking"))}
-              className="relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] via-[#FF5733] to-[#FF7A59] px-4 py-3.5 font-bold text-white shadow-lg shadow-[#FF6B4A]/25 hover:shadow-[#FF6B4A]/40 hover:brightness-105 active:scale-[0.98] disabled:opacity-50 transition-all cursor-pointer"
+              className="relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#E07A28] via-[#C25B15] to-[#FF7A59] px-4 py-3.5 font-bold text-white shadow-lg shadow-[#E07A28]/25 hover:shadow-[#E07A28]/40 hover:brightness-105 active:scale-[0.98] disabled:opacity-50 transition-all cursor-pointer"
               aria-label={mode === "login" ? "Sign in to SpendWise" : "Create free account"}
             >
               {isLoading ? (
@@ -1420,12 +1420,12 @@ export default function Login() {
         </div>
 
         {/* Sleek Footer Navigation */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#7A756D]">
-          <Link href="/terms" className="hover:text-[#FF6B4A] transition-colors">Terms of Service</Link>
-          <Link href="/privacy" className="hover:text-[#FF6B4A] transition-colors">Privacy Policy</Link>
-          <Link href="/disclaimer" className="hover:text-[#FF6B4A] transition-colors">Disclaimer</Link>
-          <Link href="/contact" className="hover:text-[#FF6B4A] transition-colors">Help &amp; FAQ</Link>
-          <Link href="/about" className="hover:text-[#FF6B4A] transition-colors">About</Link>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-[#8C8176]">
+          <Link href="/terms" className="hover:text-[#E07A28] transition-colors">Terms of Service</Link>
+          <Link href="/privacy" className="hover:text-[#E07A28] transition-colors">Privacy Policy</Link>
+          <Link href="/disclaimer" className="hover:text-[#E07A28] transition-colors">Disclaimer</Link>
+          <Link href="/contact" className="hover:text-[#E07A28] transition-colors">Help &amp; FAQ</Link>
+          <Link href="/about" className="hover:text-[#E07A28] transition-colors">About</Link>
         </div>
       </div>
     </main>

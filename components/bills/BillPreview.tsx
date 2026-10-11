@@ -29,10 +29,10 @@ export default function BillPreview({
     (file && file.name.toLowerCase().endsWith(".pdf"));
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9]">
-      <div className="flex items-center justify-between border-b border-[#E5DFD3] px-4 py-3 bg-[#F4EFE6]">
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#14151A]">
-          {isPdf ? <FileText size={15} className="text-red-500" /> : <ImageIcon size={15} className="text-[#FF6B4A]" />}
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#382D25] bg-[#1D1815]">
+      <div className="flex items-center justify-between border-b border-[#382D25] px-4 py-3 bg-[#26201B]">
+        <div className="flex items-center gap-2 text-xs font-semibold text-[#F6F2EB]">
+          {isPdf ? <FileText size={15} className="text-red-500" /> : <ImageIcon size={15} className="text-[#E07A28]" />}
           <span className="truncate max-w-[180px]">{filename || file?.name || "Uploaded Document"}</span>
         </div>
 
@@ -42,7 +42,7 @@ export default function BillPreview({
               <button
                 type="button"
                 onClick={() => setZoom(Math.max(0.7, zoom - 0.2))}
-                className="rounded-lg p-1.5 text-[#7A756D] hover:bg-[#EAE4D7] hover:text-[#14151A] transition-colors"
+                className="rounded-lg p-1.5 text-[#8C8176] hover:bg-[#28211B] hover:text-[#F6F2EB] transition-colors"
                 title="Zoom Out"
               >
                 <ZoomOut size={14} />
@@ -50,7 +50,7 @@ export default function BillPreview({
               <button
                 type="button"
                 onClick={() => setZoom(Math.min(2.0, zoom + 0.2))}
-                className="rounded-lg p-1.5 text-[#7A756D] hover:bg-[#EAE4D7] hover:text-[#14151A] transition-colors"
+                className="rounded-lg p-1.5 text-[#8C8176] hover:bg-[#28211B] hover:text-[#F6F2EB] transition-colors"
                 title="Zoom In"
               >
                 <ZoomIn size={14} />
@@ -63,7 +63,7 @@ export default function BillPreview({
               href={fileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg p-1.5 text-[#7A756D] hover:bg-[#EAE4D7] hover:text-[#14151A] transition-colors"
+              className="rounded-lg p-1.5 text-[#8C8176] hover:bg-[#28211B] hover:text-[#F6F2EB] transition-colors"
               title="Open full document in new tab"
             >
               <ExternalLink size={14} />
@@ -72,14 +72,14 @@ export default function BillPreview({
         </div>
       </div>
 
-      <div className="relative flex-1 overflow-auto bg-[#FAF6EE] p-4 grid place-items-center min-h-[300px]">
+      <div className="relative flex-1 overflow-auto bg-[#121316] p-4 grid place-items-center min-h-[300px]">
         {isPdf ? (
           <div className="flex flex-col items-center justify-center p-6 text-center">
             <div className="grid h-16 w-16 place-items-center rounded-2xl bg-red-500/10 text-red-500 mb-3">
               <FileText size={32} />
             </div>
-            <div className="text-sm font-bold text-[#14151A]">PDF Document</div>
-            <div className="mt-1 text-xs text-[#7A756D]">
+            <div className="text-sm font-bold text-[#F6F2EB]">PDF Document</div>
+            <div className="mt-1 text-xs text-[#8C8176]">
               {filename || file?.name || "Invoice.pdf"}
             </div>
             {fileUrl && (
@@ -87,7 +87,7 @@ export default function BillPreview({
                 href={fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-[#FFFDF9] border border-[#E5DFD3] px-3.5 py-2 text-xs font-semibold text-[#14151A] hover:bg-[#F4EFE6] transition-colors"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-xl bg-[#1D1815] border border-[#382D25] px-3.5 py-2 text-xs font-semibold text-[#F6F2EB] hover:bg-[#28211B] transition-colors"
               >
                 <ExternalLink size={13} /> View Full PDF
               </a>
@@ -102,12 +102,12 @@ export default function BillPreview({
             <img
               src={fileUrl}
               alt="Uploaded receipt preview"
-              className="max-h-[500px] w-auto max-w-full rounded-xl object-contain shadow-lg border border-[#E5DFD3]"
+              className="max-h-[500px] w-auto max-w-full rounded-xl object-contain shadow-lg border border-[#382D25]"
               onError={() => setImgError(true)}
             />
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center p-6 text-center text-[#7A756D]">
+          <div className="flex flex-col items-center justify-center p-6 text-center text-[#8C8176]">
             <ImageIcon size={36} className="opacity-40 mb-2" />
             <span className="text-xs">Document preview not available</span>
           </div>

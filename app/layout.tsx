@@ -5,8 +5,8 @@ import CookieConsent from "@/components/CookieConsent";
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://spendwise.kunaljha8990.workers.dev";
 
 export const viewport: Viewport = {
-  themeColor: "#faf6ee",
-  colorScheme: "light",
+  themeColor: "#121316",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -66,11 +66,11 @@ export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth dark">
       <head>
         <link rel="canonical" href={siteUrl} />
       </head>
-      <body className="min-h-screen bg-[#faf6ee] text-[#14151a] antialiased selection:bg-[#ff6b4a]/25 selection:text-[#14151a]">
+      <body className="min-h-screen bg-[#121316] text-[#F6F2EB] antialiased selection:bg-[#E07A28]/35 selection:text-[#F6F2EB]">
         {children}
         <CookieConsent />
       </body>

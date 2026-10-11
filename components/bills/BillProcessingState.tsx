@@ -49,16 +49,16 @@ export default function BillProcessingState({
   return (
     <div className="flex flex-col items-center justify-center p-6 text-center">
       <div className="relative mb-6">
-        <div className="absolute inset-0 rounded-full bg-[#FF6B4A]/20 blur-xl animate-pulse" />
-        <div className="relative grid h-16 w-16 place-items-center rounded-2xl border border-[#FF6B4A]/30 bg-[#FFFDF9] text-[#FF6B4A] shadow-xl">
-          <Loader2 size={32} className="animate-spin text-[#FF6B4A]" />
+        <div className="absolute inset-0 rounded-full bg-[#E07A28]/20 blur-xl animate-pulse" />
+        <div className="relative grid h-16 w-16 place-items-center rounded-2xl border border-[#E07A28]/30 bg-[#1D1815] text-[#E07A28] shadow-xl">
+          <Loader2 size={32} className="animate-spin text-[#E07A28]" />
         </div>
       </div>
 
-      <h3 className="text-lg font-black tracking-tight text-[#14151A]">
+      <h3 className="text-lg font-black tracking-tight text-[#F6F2EB]">
         Processing Your Bill
       </h3>
-      <p className="mt-1 text-xs text-[#7A756D] max-w-xs">
+      <p className="mt-1 text-xs text-[#8C8176] max-w-xs">
         Automating extraction and classification. Your expense will be ready for review in moments.
       </p>
 
@@ -73,10 +73,10 @@ export default function BillProcessingState({
               key={step.id}
               className={`flex items-start gap-3 rounded-2xl border p-3.5 transition-all ${
                 isCurrent
-                  ? "border-[#FF6B4A]/50 bg-[#FF6B4A]/10 shadow-lg shadow-[#FF6B4A]/10"
+                  ? "border-[#E07A28]/50 bg-[#E07A28]/10 shadow-lg shadow-[#E07A28]/10"
                   : isDone
-                  ? "border-emerald-500/30 bg-emerald-500/10 text-[#45423E]"
-                  : "border-[#E5DFD3] bg-[#F4EFE6] text-[#7A756D] opacity-75"
+                  ? "border-emerald-500/30 bg-emerald-500/10 text-[#C6BCB3]"
+                  : "border-[#382D25] bg-[#26201B] text-[#8C8176] opacity-75"
               }`}
             >
               <div
@@ -84,8 +84,8 @@ export default function BillProcessingState({
                   isDone
                     ? "bg-emerald-500/20 text-emerald-600"
                     : isCurrent
-                    ? "bg-[#FF6B4A]/20 text-[#FF6B4A]"
-                    : "bg-[#EAE4D7] text-[#7A756D]"
+                    ? "bg-[#E07A28]/20 text-[#E07A28]"
+                    : "bg-[#28211B] text-[#8C8176]"
                 }`}
               >
                 {isDone ? (
@@ -101,15 +101,15 @@ export default function BillProcessingState({
                 <div
                   className={`text-xs font-bold ${
                     isCurrent
-                      ? "text-[#FF6B4A]"
+                      ? "text-[#E07A28]"
                       : isDone
                       ? "text-emerald-800"
-                      : "text-[#45423E]"
+                      : "text-[#C6BCB3]"
                   }`}
                 >
                   {step.label}
                 </div>
-                <div className="text-[11px] text-[#7A756D] truncate">
+                <div className="text-[11px] text-[#8C8176] truncate">
                   {step.description}
                 </div>
               </div>

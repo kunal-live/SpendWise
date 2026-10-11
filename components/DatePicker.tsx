@@ -41,19 +41,19 @@ export default function DatePicker({ value, onChange }: { value: string, onChang
     <div className="relative" ref={popoverRef}>
       <div 
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-[#E5DFD3] bg-[#F4EFE6] px-4 py-3 text-sm text-[#14151A] outline-none hover:border-[#FF6B4A] hover:bg-[#FFFDF9] transition-all"
+        className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-[#382D25] bg-[#26201B] px-4 py-3 text-sm text-[#F6F2EB] outline-none hover:border-[#E07A28] hover:bg-[#1D1815] transition-all"
       >
         <span>{value || "Select a date"}</span>
-        <CalendarIcon size={16} className="text-[#7A756D]" />
+        <CalendarIcon size={16} className="text-[#8C8176]" />
       </div>
 
       {isOpen && (
-        <div className="absolute top-full z-50 mt-2 w-[280px] rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 shadow-2xl">
+        <div className="absolute top-full z-50 mt-2 w-[280px] rounded-2xl border border-[#382D25] bg-[#1D1815] p-4 shadow-2xl">
           <div className="mb-4 flex items-center justify-between gap-3">
             <select 
               value={currentMonth.getMonth()} 
               onChange={(e) => setCurrentMonth(new Date(currentMonth.getFullYear(), Number(e.target.value), 1))}
-              className="w-full cursor-pointer rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-2 py-1.5 text-sm font-bold text-[#14151A] outline-none hover:bg-[#F7F2E7] focus:ring-1 focus:ring-[#FF6B4A]"
+              className="w-full cursor-pointer rounded-lg border border-[#382D25] bg-[#26201B] px-2 py-1.5 text-sm font-bold text-[#F6F2EB] outline-none hover:bg-[#28211B] focus:ring-1 focus:ring-[#E07A28]"
             >
               {Array.from({length: 12}).map((_, i) => (
                 <option key={i} value={i}>{new Date(2000, i, 1).toLocaleString('default', { month: 'long' })}</option>
@@ -62,7 +62,7 @@ export default function DatePicker({ value, onChange }: { value: string, onChang
             <select
               value={currentMonth.getFullYear()}
               onChange={(e) => setCurrentMonth(new Date(Number(e.target.value), currentMonth.getMonth(), 1))}
-              className="w-full cursor-pointer rounded-lg border border-[#E5DFD3] bg-[#F4EFE6] px-2 py-1.5 text-sm font-bold text-[#14151A] outline-none hover:bg-[#F7F2E7] focus:ring-1 focus:ring-[#FF6B4A]"
+              className="w-full cursor-pointer rounded-lg border border-[#382D25] bg-[#26201B] px-2 py-1.5 text-sm font-bold text-[#F6F2EB] outline-none hover:bg-[#28211B] focus:ring-1 focus:ring-[#E07A28]"
             >
               {Array.from({length: 120}).map((_, i) => {
                 const year = new Date().getFullYear() - 100 + i;
@@ -71,7 +71,7 @@ export default function DatePicker({ value, onChange }: { value: string, onChang
             </select>
           </div>
           
-          <div className="grid grid-cols-7 gap-1 text-center text-xs font-bold text-[#7A756D]">
+          <div className="grid grid-cols-7 gap-1 text-center text-xs font-bold text-[#8C8176]">
             {days.map(d => <div key={d} className="w-8 py-1">{d}</div>)}
           </div>
           
@@ -95,10 +95,10 @@ export default function DatePicker({ value, onChange }: { value: string, onChang
                   onClick={(e) => handleSelectDate(e, day)}
                   className={`grid h-8 w-8 place-items-center rounded-lg text-sm transition-colors ${
                     isSelected 
-                      ? "bg-[#FF6B4A] text-white font-bold" 
+                      ? "bg-[#E07A28] text-white font-bold" 
                       : isToday 
-                        ? "bg-[#F4EFE6] text-[#FF6B4A] font-bold border border-[#FF6B4A]/40" 
-                        : "text-[#45423E] hover:bg-[#F7F2E7] hover:text-[#14151A]"
+                        ? "bg-[#26201B] text-[#E07A28] font-bold border border-[#E07A28]/40" 
+                        : "text-[#C6BCB3] hover:bg-[#28211B] hover:text-[#F6F2EB]"
                   }`}
                 >
                   {day}

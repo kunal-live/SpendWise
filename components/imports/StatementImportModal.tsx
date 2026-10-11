@@ -228,15 +228,15 @@ export default function StatementImportModal({
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-5xl rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 sm:p-8 shadow-2xl z-10 max-h-[92vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-5xl rounded-3xl border border-[#382D25] bg-[#1D1815] p-5 sm:p-8 shadow-2xl z-10 max-h-[92vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-[#E5DFD3] shrink-0">
+        <div className="flex items-center justify-between pb-4 border-b border-[#382D25] shrink-0">
           <div>
             <div className="flex items-center gap-2">
-              <span className="grid h-7 w-7 place-items-center rounded-lg bg-[#FF6B4A]/10 text-[#FF6B4A]">
+              <span className="grid h-7 w-7 place-items-center rounded-lg bg-[#E07A28]/10 text-[#E07A28]">
                 <UploadCloud size={16} />
               </span>
-              <h2 className="text-xl font-black tracking-tight text-[#14151A]">
+              <h2 className="text-xl font-black tracking-tight text-[#F6F2EB]">
                 {currentBatch ? "Review & Confirm Statement" : "Import Statement or History"}
               </h2>
             </div>
@@ -248,7 +248,7 @@ export default function StatementImportModal({
               onClose();
             }}
             disabled={isProcessing || isConfirming}
-            className="rounded-full p-2 text-[#7A756D] hover:bg-[#F4EFE6] hover:text-[#14151A] disabled:opacity-40 transition-colors"
+            className="rounded-full p-2 text-[#8C8176] hover:bg-[#28211B] hover:text-[#F6F2EB] disabled:opacity-40 transition-colors"
           >
             <X size={18} />
           </button>
@@ -268,7 +268,7 @@ export default function StatementImportModal({
             <div className="space-y-6">
               {/* Source Selection */}
               <div>
-                <label className="text-xs font-semibold text-[#7A756D] block mb-2">
+                <label className="text-xs font-semibold text-[#8C8176] block mb-2">
                   Select Statement / History Source
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -282,11 +282,11 @@ export default function StatementImportModal({
                         onClick={() => setSelectedSource(s.id)}
                         className={`flex items-center gap-2 rounded-xl border p-2.5 text-xs font-medium transition-all text-left ${
                           isSelected
-                            ? "border-[#FF6B4A] bg-[#FF6B4A]/10 text-[#FF6B4A] shadow-sm"
-                            : "border-[#E5DFD3] bg-[#F4EFE6] text-[#45423E] hover:border-[#FF6B4A]/40 hover:bg-[#FFFDF9] hover:text-[#14151A]"
+                            ? "border-[#E07A28] bg-[#E07A28]/10 text-[#E07A28] shadow-sm"
+                            : "border-[#382D25] bg-[#26201B] text-[#C6BCB3] hover:border-[#E07A28]/40 hover:bg-[#1D1815] hover:text-[#F6F2EB]"
                         }`}
                       >
-                        <Icon size={14} className={isSelected ? "text-[#FF6B4A]" : "text-[#7A756D]"} />
+                        <Icon size={14} className={isSelected ? "text-[#E07A28]" : "text-[#8C8176]"} />
                         <span className="truncate">{s.name}</span>
                       </button>
                     );
@@ -305,10 +305,10 @@ export default function StatementImportModal({
                 onClick={() => fileInputRef.current?.click()}
                 className={`flex flex-col items-center justify-center rounded-3xl border-2 border-dashed p-10 text-center cursor-pointer transition-all ${
                   isDragging
-                    ? "border-[#FF6B4A] bg-[#FF6B4A]/10"
+                    ? "border-[#E07A28] bg-[#E07A28]/10"
                     : file
                     ? "border-emerald-500/50 bg-emerald-500/5"
-                    : "border-[#E5DFD3] bg-[#F4EFE6] hover:border-[#FF6B4A]/40 hover:bg-[#FFFDF9]"
+                    : "border-[#382D25] bg-[#26201B] hover:border-[#E07A28]/40 hover:bg-[#1D1815]"
                 }`}
               >
                 <input
@@ -323,23 +323,23 @@ export default function StatementImportModal({
                   }}
                 />
 
-                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#FF6B4A]/10 text-[#FF6B4A] mb-4">
+                <div className="grid h-16 w-16 place-items-center rounded-2xl bg-[#E07A28]/10 text-[#E07A28] mb-4">
                   {file ? <FileText size={32} className="text-emerald-600" /> : <UploadCloud size={32} />}
                 </div>
 
                 {file ? (
                   <div>
-                    <p className="text-sm font-bold text-[#14151A]">{file.name}</p>
-                    <p className="text-xs text-[#7A756D] mt-1">
+                    <p className="text-sm font-bold text-[#F6F2EB]">{file.name}</p>
+                    <p className="text-xs text-[#8C8176] mt-1">
                       {(file.size / 1024).toFixed(1)} KB • Click or drop another file to replace
                     </p>
                   </div>
                 ) : (
                   <div>
-                    <p className="text-sm font-bold text-[#14151A]">
-                      Drop statement file here or <span className="text-[#FF6B4A] underline font-bold">browse</span>
+                    <p className="text-sm font-bold text-[#F6F2EB]">
+                      Drop statement file here or <span className="text-[#E07A28] underline font-bold">browse</span>
                     </p>
-                    <p className="text-xs text-[#7A756D] mt-1">
+                    <p className="text-xs text-[#8C8176] mt-1">
                       Supports Bank PDF, CSV, TSV, or XLSX statement exports (max 15MB)
                     </p>
                   </div>
@@ -348,10 +348,10 @@ export default function StatementImportModal({
 
               {/* Process Button / Progress */}
               {isProcessing ? (
-                <div className="rounded-2xl border border-[#FF6B4A]/30 bg-[#FF6B4A]/10 p-6 text-center space-y-3">
-                  <RefreshCw size={24} className="animate-spin text-[#FF6B4A] mx-auto" />
-                  <p className="text-sm font-semibold text-[#14151A]">{processingStage}</p>
-                  <p className="text-xs text-[#7A756D]">
+                <div className="rounded-2xl border border-[#E07A28]/30 bg-[#E07A28]/10 p-6 text-center space-y-3">
+                  <RefreshCw size={24} className="animate-spin text-[#E07A28] mx-auto" />
+                  <p className="text-sm font-semibold text-[#F6F2EB]">{processingStage}</p>
+                  <p className="text-xs text-[#8C8176]">
                     Applying debit/credit rules, merchant aliases, and expense categories...
                   </p>
                 </div>
@@ -360,7 +360,7 @@ export default function StatementImportModal({
                   type="button"
                   disabled={!file}
                   onClick={handleUploadAndProcess}
-                  className="w-full rounded-2xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] py-3.5 text-sm font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#FF6B4A]/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-2xl bg-gradient-to-r from-[#E07A28] to-[#C25B15] py-3.5 text-sm font-bold text-white hover:brightness-105 transition-all shadow-lg shadow-[#E07A28]/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Parse &amp; Review Statement
                 </button>
