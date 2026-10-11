@@ -77,12 +77,8 @@ export default function ExtractedBillForm({
       {/* Top Banner with Confidence */}
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4">
         <div>
-          <div className="text-xs uppercase tracking-wider text-[#7A756D] font-bold flex items-center gap-1.5">
-            <Sparkles size={13} className="text-[#FF6B4A]" />
-            Automatic Extraction
-          </div>
-          <div className="text-sm font-semibold text-[#14151A] mt-0.5">
-            Review and adjust details before creating expense
+          <div className="text-sm font-bold text-[#14151A]">
+            Extracted Bill Details
           </div>
         </div>
 
@@ -191,10 +187,9 @@ export default function ExtractedBillForm({
       {/* Line Items Section */}
       <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4">
         <div className="flex items-center justify-between mb-3">
-          <div className="text-xs font-bold uppercase tracking-wider text-[#7A756D]">
+          <div className="text-xs font-bold text-[#14151A]">
             Purchased Items ({formData.items?.length || 0})
           </div>
-          <span className="text-[11px] text-[#7A756D]">Used for smart categorization</span>
         </div>
 
         {formData.items && formData.items.length > 0 ? (

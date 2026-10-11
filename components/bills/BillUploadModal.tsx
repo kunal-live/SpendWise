@@ -177,11 +177,7 @@ export default function BillUploadModal({
                 </button>
               )}
               <div>
-                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-[#FF6B4A] font-bold">
-                  <Sparkles size={13} />
-                  SpendWise Bill Scan
-                </div>
-                <h2 className="mt-0.5 text-lg font-black text-[#14151A]">
+                <h2 className="text-lg font-black text-[#14151A]">
                   {step === "dropzone" && "Upload Bill or Receipt"}
                   {step === "processing" && "Analyzing Document"}
                   {step === "duplicate_warning" && "Duplicate Detection"}

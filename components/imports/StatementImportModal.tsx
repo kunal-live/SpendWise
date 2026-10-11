@@ -240,11 +240,6 @@ export default function StatementImportModal({
                 {currentBatch ? "Review & Confirm Statement" : "Import Statement or History"}
               </h2>
             </div>
-            <p className="mt-1 text-xs text-[#7A756D]">
-              {currentBatch 
-                ? "Review detected transactions, adjust categories, and confirm expenses."
-                : "Upload bank statements (PDF/CSV) or payment app exports (Google Pay, PhonePe, Paytm)."}
-            </p>
           </div>
 
           <button

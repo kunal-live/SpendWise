@@ -92,15 +92,9 @@ export default function ImportHistoryView({
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-3xl border border-[#FF6B4A]/25 bg-gradient-to-r from-[#FF6B4A]/10 via-[#FFFDF9] to-[#FFFDF9] p-6 sm:p-8 shadow-sm">
         <div>
-          <div className="inline-flex items-center gap-1.5 rounded-lg bg-[#FF6B4A]/10 px-2.5 py-1 text-xs font-semibold text-[#FF6B4A] border border-[#FF6B4A]/20 mb-2">
-            <FileSpreadsheet size={13} /> Automated Expense Ingestion
-          </div>
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-[#14151A]">
             Statement &amp; History Imports
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-[#7A756D] max-w-xl">
-            Import monthly bank statements and payment app history. Categorizes debits, excludes transfers and income, and detects duplicates.
-          </p>
         </div>
 
         <button
@@ -116,19 +110,16 @@ export default function ImportHistoryView({
         <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 sm:p-5 shadow-sm">
           <div className="text-xs text-[#7A756D]">Statements Processed</div>
           <div className="mt-2 text-2xl font-black text-[#14151A]">{batches.length}</div>
-          <div className="mt-1 text-[11px] text-[#7A756D]">Bank &amp; Payment files</div>
         </div>
 
         <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 sm:p-5 shadow-sm">
           <div className="text-xs text-[#7A756D]">Expenses Created</div>
           <div className="mt-2 text-2xl font-black text-emerald-700">{totalImportedExpenses}</div>
-          <div className="mt-1 text-[11px] text-[#7A756D]">Reconciled into SpendWise</div>
         </div>
 
         <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-4 sm:p-5 col-span-2 sm:col-span-1 shadow-sm">
           <div className="text-xs text-[#7A756D]">Reversibility</div>
-          <div className="mt-2 text-2xl font-black text-[#FF6B4A]">100% Safe</div>
-          <div className="mt-1 text-[11px] text-[#7A756D]">Undo any statement anytime</div>
+          <div className="mt-2 text-2xl font-black text-[#FF6B4A]">Reversible</div>
         </div>
       </div>
 

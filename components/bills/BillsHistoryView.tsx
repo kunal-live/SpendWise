@@ -39,9 +39,6 @@ export default function BillsHistoryView({ onOpenUploadModal }: BillsHistoryView
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-2xl font-black tracking-tight text-[#14151A]">Uploaded Bills &amp; Invoices</h2>
-          <p className="mt-1 text-sm text-[#7A756D]">
-            View your scanned bill documents, extraction status, and categorization audit trail.
-          </p>
         </div>
 
         <div className="flex items-center gap-3">

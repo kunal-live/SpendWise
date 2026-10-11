@@ -930,7 +930,6 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
           <div className="flex items-center justify-between">
             <div>
               <div className="text-2xl font-black tracking-tight text-[#14151a]">SPEND<span className="text-[#ff6b4a]">WISE</span></div>
-              <div className="mt-1 text-xs text-[#7a756d]">Personal finance OS</div>
             </div>
             <button className="lg:hidden text-[#7a756d] hover:text-[#14151a]" onClick={() => setMobileOpen(false)}><X /></button>
           </div>
@@ -979,10 +978,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <div className="flex items-center gap-3">
                 <button className="lg:hidden text-[#7a756d] hover:text-[#14151a]" onClick={() => setMobileOpen(true)}><Menu /></button>
                 <div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-[#7a756d]">
-                    {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                  </div>
-                  <div className="mt-1 text-lg font-bold text-[#14151a]">{active}</div>
+                  <div className="text-xl font-bold text-[#14151a]">{active}</div>
                 </div>
               </div>
 
@@ -1038,8 +1034,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="mb-8 rounded-3xl border border-[#ff6b4a]/25 bg-gradient-to-br from-[#fff2ee] via-[#fffdf9] to-[#f7f2e7] p-6 lg:p-8 shadow-sm">
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                   <div>
-                    <div className="text-sm font-medium text-[#7a756d]">{new Date().toLocaleDateString('en-US', { month: 'long' })} overview</div>
-                    <h1 className="mt-2 text-3xl font-black tracking-tight text-[#14151a] lg:text-4xl">Your money, under control.</h1>
+                    <h1 className="text-3xl font-black tracking-tight text-[#14151a] lg:text-4xl">Your money, under control.</h1>
                     <p className="mt-2 max-w-2xl text-sm leading-6 text-[#45423e]">
                       You have spent {money(totalSpent)} this month and invested {money(investment)}. Your current projected savings are {money(saved)}.
                     </p>
@@ -1053,7 +1048,6 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                     <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#e8e1d2]">
                       <div className="h-full w-[82%] rounded-full bg-gradient-to-r from-[#ff6b4a] to-[#ff8566]" />
                     </div>
-                    <div className="mt-2 text-xs text-[#7a756d]">Strong progress. Keep discretionary spending below your budget.</div>
                   </div>
                 </div>
               </section>
@@ -1065,7 +1059,6 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <section className="mb-6 flex items-center justify-between rounded-2xl border border-dashed border-[#e5dfd3] bg-[#fffdf9]/70 p-6 shadow-sm">
                     <div>
                       <h3 className="font-bold text-[#14151a]">Set a Monthly Goal</h3>
-                      <p className="mt-1 text-sm text-[#7a756d]">Track a specific target like investing or saving.</p>
                     </div>
                     <button onClick={() => setShowGoalModal(true)} className="rounded-xl bg-gradient-to-r from-[#ff6b4a] to-[#ff5733] px-4 py-2 text-sm font-bold text-white hover:brightness-105 shadow-md shadow-[#ff6b4a]/20 transition-all">
                       Set Goal
@@ -1090,28 +1083,17 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 )}
 
                 <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                  <MetricCard label={onboardingData?.userType === "Student" ? "Pocket money" : "Monthly income"} value={money(monthlyIncome)} delta="On track" deltaType="positive" icon={Wallet}/>
-                  <MetricCard label="Spent" value={money(totalSpent)} delta={spentDeltaInfo.text} deltaType={spentDeltaInfo.type} icon={ArrowDownRight} onClick={() => setActive("Transactions")}/>
-                  <MetricCard label="Saved" value={money(saved)} delta={`${savingsRate}% savings rate`} deltaType={Number(savingsRate) >= 20 ? "positive" : "neutral"} icon={PiggyBank}/>
-                  <MetricCard label="Invested" value={money(investment)} delta={investedDeltaInfo.text} deltaType={investedDeltaInfo.type} icon={TrendingUp}/>
+                  <MetricCard label={onboardingData?.userType === "Student" ? "Pocket money" : "Monthly income"} value={money(monthlyIncome)} icon={Wallet}/>
+                  <MetricCard label="Spent" value={money(totalSpent)} icon={ArrowDownRight} onClick={() => setActive("Transactions")}/>
+                  <MetricCard label="Saved" value={money(saved)} icon={PiggyBank}/>
+                  <MetricCard label="Invested" value={money(investment)} icon={TrendingUp}/>
                 </section>
 
                 <section className="mt-6 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
                   <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <h2 className="font-bold text-[#14151a]">Spending trend</h2>
-                        <p className="mt-1 text-xs text-[#7a756d]">
-                          {dynamicMonthlyTrend.length < 2 ? "First month tracking" : "Last six months"}
-                        </p>
-                      </div>
-                      {dynamicMonthlyTrend.length < 2 ? (
-                        <div className="rounded-lg bg-[#ff6b4a]/10 px-3 py-1.5 text-xs text-[#ff6b4a] border border-[#ff6b4a]/20 font-medium">
-                          Comparison unlocks next month
-                        </div>
-                      ) : (
-                        <div className="rounded-lg bg-[#f4efe6] px-3 py-2 text-xs text-[#7a756d]">Monthly</div>
-                      )}
+                      <h2 className="font-bold text-[#14151a]">Spending trend</h2>
+                      <div className="rounded-lg bg-[#f4efe6] px-3 py-1.5 text-xs text-[#7a756d]">Monthly</div>
                     </div>
                     <div className="mt-6 h-72">
                       <ResponsiveContainer width="100%" height="100%">
@@ -1131,7 +1113,6 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
                     <div>
                       <h2 className="font-bold text-[#14151a]">Category breakdown</h2>
-                      <p className="mt-1 text-xs text-[#7a756d]">Where this month&apos;s money went</p>
                     </div>
                     <div className="mt-5 space-y-4">
                       {dynamicCategoryBreakdown.map((row) => {
@@ -1160,10 +1141,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 <section className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
                   <div className="rounded-2xl border border-[#e5dfd3] bg-[#fffdf9] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <h2 className="font-bold text-[#14151a]">Recent transactions</h2>
-                        <p className="mt-1 text-xs text-[#7a756d]">Latest recorded activity</p>
-                      </div>
+                      <h2 className="font-bold text-[#14151a]">Recent transactions</h2>
                       <button className="text-xs font-semibold text-[#ff6b4a] hover:text-[#ff5733]" onClick={() => setActive("Transactions")}>View all</button>
                     </div>
                     <div className="mt-5 divide-y divide-[#e5dfd3]">
@@ -1209,10 +1187,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                     <div className="flex items-center gap-3">
                       <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#FF6B4A]/10 text-[#FF6B4A]"><Sparkles size={18}/></div>
-                      <div>
-                        <h2 className="font-bold text-[#14151A]">Monthly insight</h2>
-                        <p className="text-xs text-[#7A756D]">Generated from your activity</p>
-                      </div>
+                      <h2 className="font-bold text-[#14151A]">Monthly insight</h2>
                     </div>
                     <div className="mt-5 space-y-4 text-sm leading-6 text-[#45423E]">
                       <p><span className="text-[#14151A] font-semibold">{dynamicCategoryBreakdown.length > 0 ? dynamicCategoryBreakdown[0].name : "No expenses yet"}</span> is currently your largest expense category this month.</p>
@@ -1232,19 +1207,8 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
               <section className="space-y-6">
                 <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="flex items-center justify-between">
-                    <div>
-                      <h2 className="font-bold text-[#14151A]">Spending trend</h2>
-                      <p className="mt-1 text-xs text-[#7A756D]">
-                        {dynamicMonthlyTrend.length < 2 ? "First month tracking" : "Last six months"}
-                      </p>
-                    </div>
-                    {dynamicMonthlyTrend.length < 2 ? (
-                      <div className="rounded-lg bg-[#FF6B4A]/10 px-3 py-1.5 text-xs text-[#FF6B4A] border border-[#FF6B4A]/25 font-semibold">
-                        Comparison unlocks next month
-                      </div>
-                    ) : (
-                      <div className="rounded-lg bg-[#F4EFE6] px-3 py-2 text-xs font-medium text-[#45423E]">Monthly</div>
-                    )}
+                    <h2 className="font-bold text-[#14151A]">Spending trend</h2>
+                    <div className="rounded-lg bg-[#F4EFE6] px-3 py-1.5 text-xs font-medium text-[#45423E]">Monthly</div>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
@@ -1263,10 +1227,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                 <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-bold text-[#14151A]">All Transactions</h2>
-                      <p className="mt-1 text-xs text-[#7A756D]">Your entire expense history</p>
-                    </div>
+                    <h2 className="font-bold text-[#14151A]">All Transactions</h2>
                   </div>
                   <div className="divide-y divide-[#E5DFD3]">
                     {allExpenses.length === 0 ? (
@@ -1326,10 +1287,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Budgets" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-[#14151A]">Savings Analysis</h2>
-                    <p className="mt-1 text-sm text-[#7A756D]">Track and forecast your savings</p>
-                  </div>
+                  <h2 className="text-2xl font-black text-[#14151A]">Savings Analysis</h2>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -1357,10 +1315,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                 <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-bold text-[#14151A]">Historical Savings Trend</h2>
-                      <p className="mt-1 text-xs text-[#7A756D]">Your savings over the past 6 months</p>
-                    </div>
+                    <h2 className="font-bold text-[#14151A]">Historical Savings Trend</h2>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
@@ -1379,10 +1334,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 <div className="rounded-2xl border border-emerald-600/20 bg-gradient-to-br from-emerald-500/10 via-[#FFFDF9] to-[#F7F2E7] p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-600/15 text-emerald-700"><Target size={18}/></div>
-                    <div>
-                      <h2 className="font-bold text-[#14151A]">Smart Analysis</h2>
-                      <p className="text-xs text-emerald-700 font-medium">Actionable insights</p>
-                    </div>
+                    <h2 className="font-bold text-[#14151A]">Smart Analysis</h2>
                   </div>
                   <div className="space-y-4 text-sm leading-6 text-[#45423E]">
                     <p>
@@ -1415,10 +1367,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                 <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-bold text-[#14151A]">Investment Growth</h2>
-                      <p className="mt-1 text-xs text-[#7A756D]">Your historical investments</p>
-                    </div>
+                    <h2 className="font-bold text-[#14151A]">Investment Growth</h2>
                   </div>
                   <div className="mt-6 h-72">
                     <ResponsiveContainer width="100%" height="100%">
@@ -1435,8 +1384,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                 </div>
 
                 <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
-                  <h2 className="font-bold text-[#14151A]">Investment History</h2>
-                  <p className="mt-1 mb-5 text-xs text-[#7A756D]">All your investment transactions</p>
+                  <h2 className="font-bold text-[#14151A] mb-5">Investment History</h2>
                   <div className="divide-y divide-[#E5DFD3]">
                     {allExpenses.filter(e => e.category === 'Invest').length === 0 ? (
                       <div className="py-12 text-center text-[#7A756D]">
@@ -1478,10 +1426,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "EMIs" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-[#14151A]">Active EMIs & Loans</h2>
-                    <p className="mt-1 text-sm text-[#7A756D]">Track monthly EMIs, interest breakdowns, and auto-deductions</p>
-                  </div>
+                  <h2 className="text-2xl font-black text-[#14151A]">Active EMIs & Loans</h2>
                   <button onClick={() => setShowEmiModal(true)} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#FF6B4A] to-[#FF5733] px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#FF6B4A]/20 hover:brightness-105 transition-all">
                     <Plus size={17}/> Add EMI
                   </button>
@@ -1514,10 +1459,10 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                   return (
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                      <MetricCard label="Monthly EMI Outflow" value={money(totalMonthlyOutflow)} icon={CreditCard} delta={`${emis.length} active loans`} deltaType="neutral"/>
-                      <MetricCard label="Total Principal" value={money(totalPrincipalSum)} icon={Wallet} delta="Original borrowed" deltaType="neutral"/>
-                      <MetricCard label="Total Interest" value={money(totalInterestSum)} icon={TrendingUp} delta="Cost of loans" deltaType={totalInterestSum > 0 ? "negative" : "neutral"}/>
-                      <MetricCard label="Outstanding Balance" value={money(totalRemainingSum)} icon={ReceiptText} delta="Principal left" deltaType="neutral"/>
+                      <MetricCard label="Monthly EMI Outflow" value={money(totalMonthlyOutflow)} icon={CreditCard}/>
+                      <MetricCard label="Total Principal" value={money(totalPrincipalSum)} icon={Wallet}/>
+                      <MetricCard label="Total Interest" value={money(totalInterestSum)} icon={TrendingUp}/>
+                      <MetricCard label="Outstanding Balance" value={money(totalRemainingSum)} icon={ReceiptText}/>
                     </div>
                   );
                 })()}
@@ -1609,10 +1554,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Reports" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-[#14151A]">Financial Health Report</h2>
-                    <p className="mt-1 text-sm text-[#7A756D]">Based on the 50/30/20 Rule</p>
-                  </div>
+                  <h2 className="text-2xl font-black text-[#14151A]">Financial Health Report</h2>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
@@ -1690,10 +1632,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
 
                 <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-5 lg:p-6 shadow-sm">
                   <div className="mb-5 flex items-center justify-between">
-                    <div>
-                      <h2 className="font-bold text-[#14151A]">Comprehensive Growth Timeline</h2>
-                      <p className="mt-1 text-xs text-[#7A756D]">Comparing Income vs Expenses vs Investments</p>
-                    </div>
+                    <h2 className="font-bold text-[#14151A]">Comprehensive Growth Timeline</h2>
                   </div>
                   <div className="mt-6 h-80">
                     <ResponsiveContainer width="100%" height="100%">
@@ -1714,10 +1653,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Achievements" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-[#14151A]">Achievements</h2>
-                    <p className="mt-1 text-sm text-[#7A756D]">Track your financial milestones and badges.</p>
-                  </div>
+                  <h2 className="text-2xl font-black text-[#14151A]">Achievements</h2>
                 </div>
                 
                 <div className="space-y-4">
@@ -1766,16 +1702,12 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Settings" ? (
               <section className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-2xl font-black text-[#14151A]">Settings</h2>
-                    <p className="mt-1 text-sm text-[#7A756D]">Manage your account and preferences.</p>
-                  </div>
+                  <h2 className="text-2xl font-black text-[#14151A]">Settings</h2>
                 </div>
                 
                 <div className="max-w-xl space-y-6">
                   <div className="rounded-2xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-sm space-y-4">
                     <h3 className="font-bold text-[#14151A]">Profile Information</h3>
-                    <p className="text-sm text-[#7A756D]">Update your details. These numbers power your Financial Score and Savings Analysis.</p>
                     
                     <div className="grid gap-4 sm:grid-cols-2">
                       <label className="block text-sm">
@@ -1918,10 +1850,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
           <div className="flex min-h-full items-center justify-center p-5">
             <div className="w-full max-w-lg rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <div>
-                <div className="text-xs uppercase tracking-[0.16em] text-[#7A756D]">Transaction</div>
-                <h2 className="mt-1 text-2xl font-black text-[#14151A]">Add expense</h2>
-              </div>
+              <h2 className="text-2xl font-black text-[#14151A]">Add expense</h2>
               <button onClick={() => setShowExpense(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
             </div>
 
@@ -1998,10 +1927,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
           <div className="flex min-h-full items-center justify-center p-5">
             <div className="w-full max-w-lg rounded-3xl border border-[#E5DFD3] bg-[#FFFDF9] p-6 shadow-2xl">
             <div className="flex items-center justify-between">
-              <div>
-                <div className="text-xs uppercase tracking-[0.16em] text-[#7A756D]">EMI</div>
-                <h2 className="mt-1 text-2xl font-black text-[#14151A]">Add New EMI</h2>
-              </div>
+              <h2 className="text-2xl font-black text-[#14151A]">Add New EMI</h2>
               <button onClick={() => setShowEmiModal(false)} className="text-[#7A756D] hover:text-[#14151A]"><X/></button>
             </div>
 
@@ -2153,7 +2079,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                   {/* Live Calculation Breakdown Widget */}
                   {Number(newEmi.principal) > 0 && Number(newEmi.tenureMonths) > 0 && (
                     <div className="rounded-2xl border border-[#FF6B4A]/25 bg-gradient-to-br from-[#FFF2EE] via-[#FFFDF9] to-[#F7F2E7] p-4 space-y-2.5">
-                      <div className="text-xs uppercase tracking-wider font-bold text-[#FF6B4A] flex items-center justify-between">
+                      <div className="text-xs font-semibold text-[#14151A] flex items-center justify-between">
                         <span>Loan Breakdown Preview</span>
                         <span className="text-[11px] font-normal text-[#7A756D]">
                           {liveCalc.effectiveRate > 0 ? `${liveCalc.effectiveRate}% p.a.` : "0% No-Cost"}
@@ -2217,7 +2143,7 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
                         <BadgeIcon className={isUnlocked ? badge.color : "text-[#7A756D]"} size={48} />
                       </div>
                       
-                      <div className={`text-xs uppercase tracking-[0.2em] font-bold mb-2 ${isUnlocked ? 'text-[#7A756D]' : 'text-[#7A756D]'}`}>
+                      <div className="text-xs font-semibold mb-2 text-[#7A756D]">
                         {isUnlocked ? "Achievement Unlocked" : "Locked Badge"}
                       </div>
                       <h2 className={`text-3xl font-black mb-3 ${isUnlocked ? badge.color : "text-[#45423E]"}`}>{badge.name}</h2>
