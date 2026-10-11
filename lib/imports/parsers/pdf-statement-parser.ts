@@ -31,8 +31,8 @@ export class PdfStatementParser {
     const transactions: ParsedRawTransaction[] = [];
 
     // Date regexes:
-    // 01/09/2026, 01-09-2026, 2026-09-01, 01 Sep 2026, 01-SEP-2026
-    const dateRegex = /^(\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}-\d{2}-\d{2}|\d{1,2}[-\s][A-Za-z]{3}[-\s]\d{2,4})\b/;
+    // 01/09/2026, 01-09-2026, 2026-09-01, 01 Sep 2026, 01-SEP-2026 (with optional leading index e.g. "1 01/09/2026")
+    const dateRegex = /^(?:\d+[\s.-]+)?(\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}-\d{2}-\d{2}|\d{1,2}[-\s][A-Za-z]{3}[-\s]\d{2,4})\b/;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
@@ -40,7 +40,7 @@ export class PdfStatementParser {
       if (!dateMatch) continue;
 
       const dateStr = dateMatch[1];
-      const remainder = line.slice(dateMatch[0].length).trim();
+      const remainder = line.slice((dateMatch.index ?? 0) + dateMatch[0].length).trim();
       if (!remainder) continue;
 
       // Extract trailing amounts: e.g. "542.00 24580.00" or "2499.00" or "50000.00 CR 72081.00"

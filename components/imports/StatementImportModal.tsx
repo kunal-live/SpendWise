@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { ImportBatch, ImportedTransaction } from "@/lib/types";
+import { ImportBatch, ImportedTransaction, Expense } from "@/lib/types";
 import { 
   X, 
   UploadCloud, 
@@ -18,7 +18,7 @@ import ImportReviewQueue from "./ImportReviewQueue";
 export interface StatementImportModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onImportConfirmed?: (importedCount: number) => void;
+  onImportConfirmed?: (importedCount: number, createdExpenses?: Expense[]) => void;
   showToast?: (message: string, type?: "success" | "warning" | "info") => void;
 }
 
@@ -53,6 +53,13 @@ export default function StatementImportModal({
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const getActiveUserId = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("spendwise_active_user") || "Guest User";
+    }
+    return "Guest User";
+  };
+
   if (!isOpen) return null;
 
   const handleFileDrop = (e: React.DragEvent) => {
@@ -86,6 +93,7 @@ export default function StatementImportModal({
     setProcessingStage("Validating statement file...");
 
     try {
+      const activeUser = getActiveUserId();
       const formData = new FormData();
       formData.append("file", file);
       formData.append("source", selectedSource);
@@ -93,6 +101,9 @@ export default function StatementImportModal({
       setProcessingStage("Extracting and parsing transactions...");
       const res = await fetch("/api/imports", {
         method: "POST",
+        headers: {
+          "x-user-id": activeUser
+        },
         body: formData
       });
 
@@ -104,7 +115,11 @@ export default function StatementImportModal({
       setProcessingStage("Classifying categories & checking duplicates...");
 
       // Fetch review transactions
-      const reviewRes = await fetch(`/api/imports/${data.import_id}/review`);
+      const reviewRes = await fetch(`/api/imports/${data.import_id}/review`, {
+        headers: {
+          "x-user-id": activeUser
+        }
+      });
       const reviewData = await reviewRes.json();
 
       setCurrentBatch(data.batch);
@@ -120,9 +135,13 @@ export default function StatementImportModal({
   const handleUpdateTransaction = async (txnId: string, updates: Partial<ImportedTransaction>) => {
     if (!currentBatch) return;
     try {
+      const activeUser = getActiveUserId();
       const res = await fetch(`/api/imports/${currentBatch.id}/transactions/${txnId}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-user-id": activeUser
+        },
         body: JSON.stringify(updates)
       });
       const data = await res.json();
@@ -139,9 +158,13 @@ export default function StatementImportModal({
   const handleBulkUpdate = async (txnIds: string[], updates: Partial<ImportedTransaction>) => {
     if (!currentBatch) return;
     try {
+      const activeUser = getActiveUserId();
       const res = await fetch(`/api/imports/${currentBatch.id}/bulk`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-user-id": activeUser
+        },
         body: JSON.stringify({ transaction_ids: txnIds, ...updates })
       });
       const data = await res.json();
@@ -160,9 +183,13 @@ export default function StatementImportModal({
     if (!currentBatch) return;
     setIsConfirming(true);
     try {
+      const activeUser = getActiveUserId();
       const res = await fetch(`/api/imports/${currentBatch.id}/confirm`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-user-id": activeUser
+        },
         body: JSON.stringify({ transaction_ids: selectedTxnIds })
       });
       const data = await res.json();
@@ -170,7 +197,7 @@ export default function StatementImportModal({
 
       setIsConfirming(false);
       showToast?.(`Successfully imported ${data.imported} expenses!`, "success");
-      onImportConfirmed?.(data.imported);
+      onImportConfirmed?.(data.imported, data.created_expenses);
       handleReset();
       onClose();
     } catch (err: any) {

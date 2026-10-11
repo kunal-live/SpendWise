@@ -52,8 +52,14 @@ export class PaymentAppParser {
       if (columns.debitIdx >= 0 && columns.creditIdx >= 0) {
         const d = parseNumericAmount(row[columns.debitIdx]);
         const c = parseNumericAmount(row[columns.creditIdx]);
-        if (d !== null && d > 0) debit = d;
-        if (c !== null && c > 0) credit = c;
+        if (d !== null && d !== 0) debit = Math.abs(d);
+        if (c !== null && c !== 0) credit = Math.abs(c);
+      } else if (columns.debitIdx >= 0) {
+        const d = parseNumericAmount(row[columns.debitIdx]);
+        if (d !== null && d !== 0) debit = Math.abs(d);
+      } else if (columns.creditIdx >= 0) {
+        const c = parseNumericAmount(row[columns.creditIdx]);
+        if (c !== null && c !== 0) credit = Math.abs(c);
       }
 
       if (debit === undefined && credit === undefined && columns.amountIdx >= 0) {

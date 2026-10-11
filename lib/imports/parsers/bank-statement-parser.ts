@@ -76,23 +76,42 @@ export class BankStatementParser {
 
       if (columns.debitIdx >= 0) {
         const d = parseNumericAmount(row[columns.debitIdx]);
-        if (d !== null && d > 0) debit = d;
+        if (d !== null && d !== 0) debit = Math.abs(d);
       }
 
       if (columns.creditIdx >= 0) {
         const c = parseNumericAmount(row[columns.creditIdx]);
-        if (c !== null && c > 0) credit = c;
+        if (c !== null && c !== 0) credit = Math.abs(c);
       }
 
       // Handle single amount column with Dr/Cr sign or Type indicator
       if (debit === undefined && credit === undefined && columns.amountIdx >= 0) {
         const a = parseNumericAmount(row[columns.amountIdx]);
-        if (a !== null) {
+        if (a !== null && a !== 0) {
           const typeStr = columns.typeIdx >= 0 ? (row[columns.typeIdx] || "").toLowerCase() : "";
-          if (a < 0 || typeStr.includes("dr") || typeStr.includes("debit")) {
+          if (typeStr.includes("cr") || typeStr.includes("credit") || typeStr.includes("deposit") || typeStr.includes("received")) {
+            credit = Math.abs(a);
+          } else if (typeStr.includes("dr") || typeStr.includes("debit") || typeStr.includes("withdrawal") || typeStr.includes("paid") || typeStr.includes("spent")) {
+            debit = Math.abs(a);
+          } else if (a < 0) {
             debit = Math.abs(a);
           } else {
-            credit = Math.abs(a);
+            // Positive single amount with no type column:
+            // Check if narration clearly denotes income/refund/deposit
+            const lowerDesc = descStr.toLowerCase();
+            if (
+              lowerDesc.includes("salary") ||
+              lowerDesc.includes("refund") ||
+              lowerDesc.includes("reversal") ||
+              lowerDesc.includes("cashback") ||
+              lowerDesc.includes("interest") ||
+              lowerDesc.includes("deposit") ||
+              lowerDesc.includes("dividend")
+            ) {
+              credit = Math.abs(a);
+            } else {
+              debit = Math.abs(a);
+            }
           }
         }
       }

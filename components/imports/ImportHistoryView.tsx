@@ -16,11 +16,13 @@ import {
 
 interface ImportHistoryViewProps {
   onOpenImportModal: () => void;
+  onUndoBatch?: (batchId: string) => void;
   showToast?: (message: string, type?: "success" | "warning" | "info") => void;
 }
 
 export default function ImportHistoryView({
   onOpenImportModal,
+  onUndoBatch,
   showToast
 }: ImportHistoryViewProps) {
   const [batches, setBatches] = useState<ImportBatch[]>([]);
@@ -30,10 +32,20 @@ export default function ImportHistoryView({
 
   const money = (n: number) => `₹${Number(n || 0).toLocaleString("en-IN")}`;
 
+  const getActiveUserId = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("spendwise_active_user") || "Guest User";
+    }
+    return "Guest User";
+  };
+
   const loadBatches = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/imports");
+      const activeUser = getActiveUserId();
+      const res = await fetch("/api/imports", {
+        headers: { "x-user-id": activeUser }
+      });
       const data = await res.json();
       if (data.batches) {
         setBatches(data.batches);
@@ -52,14 +64,18 @@ export default function ImportHistoryView({
   const handleUndoImport = async () => {
     if (!undoTarget) return;
     setIsUndoing(true);
+    const targetId = undoTarget.id;
     try {
-      const res = await fetch(`/api/imports/${undoTarget.id}/undo`, {
-        method: "POST"
+      const activeUser = getActiveUserId();
+      const res = await fetch(`/api/imports/${targetId}/undo`, {
+        method: "POST",
+        headers: { "x-user-id": activeUser }
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to undo import.");
 
       showToast?.(data.message || `Reverted import batch. Removed ${data.undone_count} expenses.`, "success");
+      onUndoBatch?.(targetId);
       setUndoTarget(null);
       await loadBatches();
     } catch (err: any) {

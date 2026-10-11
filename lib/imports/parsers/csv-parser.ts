@@ -78,22 +78,26 @@ export function findHeaderRowIndex(rows: string[][]): {
     const row = rows[i].map(c => c.toLowerCase().trim());
 
     const dateIdx = row.findIndex(c => 
-      c.includes("date") || c === "txn date" || c === "trans date" || c === "transaction date" || c === "value dt"
+      c.includes("date") || c.includes("value dt") || c === "posted" || c === "txn date" || c === "trans date" || c === "transaction date"
     );
     const descIdx = row.findIndex(c => 
       c.includes("description") || c.includes("narration") || c.includes("particular") || 
-      c.includes("details") || c.includes("remarks") || c.includes("merchant") || c === "payee"
+      c.includes("details") || c.includes("remarks") || c.includes("merchant") || c === "payee" ||
+      c.includes("narrative") || c.includes("memo") || c.includes("note") || c === "title" || c === "name" || c === "item"
     );
 
     // Look for debit/credit or amount
     const debitIdx = row.findIndex(c => 
-      c.includes("debit") || c.includes("withdrawal") || /\bdr\b/i.test(c)
+      c.includes("debit") || c.includes("withdrawal") || c.includes("money out") || c.includes("paid out") ||
+      c.includes("spent") || c.includes("spend") || c.includes("outflow") || /\bdr\b/i.test(c)
     );
     const creditIdx = row.findIndex(c => 
-      c.includes("credit") || c.includes("deposit") || /\bcr\b/i.test(c)
+      c.includes("credit") || c.includes("deposit") || c.includes("money in") || c.includes("paid in") ||
+      c.includes("inflow") || c.includes("received") || /\bcr\b/i.test(c)
     );
     const amountIdx = row.findIndex(c => 
-      (c.includes("amount") || c === "total" || c === "amt") && !c.includes("debit") && !c.includes("credit")
+      (c.includes("amount") || c === "total" || c === "amt" || c === "sum" || c === "value" || c === "price") &&
+      !c.includes("debit") && !c.includes("credit") && !c.includes("withdrawal") && !c.includes("deposit")
     );
 
     // If we have date + description + either (debit/credit) or amount, we found the table header!
@@ -101,9 +105,9 @@ export function findHeaderRowIndex(rows: string[][]): {
       const typeIdx = row.findIndex(c => c.includes("type") || c === "direction");
       const refIdx = row.findIndex(c => 
         c.includes("ref") || c.includes("utr") || c.includes("chq") || c.includes("cheque") || 
-        c.includes("transaction id") || c.includes("order id") || c.includes("txn id")
+        c.includes("transaction id") || c.includes("order id") || c.includes("txn id") || c === "id"
       );
-      const balanceIdx = row.findIndex(c => c.includes("balance"));
+      const balanceIdx = row.findIndex(c => c.includes("balance") || c.includes("closing"));
       const valueDateIdx = row.findIndex(c => c.includes("value date") || c.includes("value dt"));
 
       return {

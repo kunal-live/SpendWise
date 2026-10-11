@@ -1313,6 +1313,14 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
             ) : active === "Imports" ? (
               <ImportHistoryView 
                 onOpenImportModal={() => setShowImportModal(true)} 
+                onUndoBatch={(undoneBatchId) => {
+                  setExpenses((prev) => {
+                    const updated = prev.filter((e) => !e.notes?.includes(undoneBatchId));
+                    const key = getScopedKey("spendwise_expenses", activeUserRef.current);
+                    localStorage.setItem(key, JSON.stringify(updated));
+                    return updated;
+                  });
+                }}
                 showToast={showToast} 
               />
             ) : active === "Budgets" ? (
@@ -2289,34 +2297,21 @@ export default function Dashboard({ userEmail, userName }: { userEmail?: string;
       <StatementImportModal
         isOpen={showImportModal}
         onClose={() => setShowImportModal(false)}
-        onImportConfirmed={async (count) => {
+        onImportConfirmed={(count, newExpenses) => {
           trackEvent("statement_imported", { count });
-          // Reload user expenses from server to update analytics
-          try {
-            const res = await fetch("/api/bills");
-            // Also refresh local expenses if user is authenticated
-            const supabase = createClient();
-            const { data } = await supabase.from("expenses").select("*").order("expense_date", { ascending: false });
-            if (data && data.length > 0) {
-              const mapped: Expense[] = data.map((d: any) => ({
-                id: d.id,
-                user_id: d.user_id,
-                title: d.title || d.merchant || "Expense",
-                category: d.category,
-                amount: Number(d.amount),
-                currency: d.currency || "INR",
-                date: d.expense_date,
-                payment_method: d.payment_method || "UPI",
-                notes: d.note,
-                merchant: d.merchant,
-                source: d.source,
-                bill_document_id: d.bill_document_id,
-                classification_confidence: d.classification_confidence,
-                invoice_number: d.invoice_number
-              }));
-              setExpenses(mapped);
-            }
-          } catch {}
+          if (newExpenses && newExpenses.length > 0) {
+            setExpenses((prev) => {
+              const existingIds = new Set(prev.map((e) => e.id));
+              const fresh = newExpenses.filter((e) => !existingIds.has(e.id));
+              const updated = [...fresh, ...prev];
+              const key = getScopedKey("spendwise_expenses", activeUserRef.current);
+              localStorage.setItem(key, JSON.stringify(updated));
+              return updated;
+            });
+            showToast(`Imported ${count} expenses into your dashboard!`, "success");
+          } else {
+            showToast(`Import processed ${count} transactions.`, "info");
+          }
         }}
         showToast={showToast}
       />
